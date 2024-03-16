@@ -1,0 +1,70 @@
+{
+    "tabs": [
+        {
+            "seq": 0,
+            "label": "Tab 1",
+            "columns": [
+                {
+                    "seq": 0,
+                    "fields": [
+                        {
+                            "id": "text0",
+                            "type": "list",
+                            "label": "Text",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        }
+                    ]
+                },
+                {
+                    "seq": 1,
+                    "fields": [
+                        {
+                            "id": "text0",
+                            "type": "text",
+                            "label": "Text",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        }
+                    ]
+                },
+                {
+                    "seq": 2,
+                    "fields": [
+                        {
+                            "id": "text0",
+                            "type": "boolean",
+                            "label": "Text",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        }
+                    ]
+                },
+                {
+                    "seq": 3,
+                    "fields": [
+                        {
+                            "id": "text0",
+                            "type": "datetime",
+                            "label": "Text",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

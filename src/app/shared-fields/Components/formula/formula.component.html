@@ -1,0 +1,8 @@
+<div class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-4" [ngClass]="{'required-label': ControlAccess['validators']?.['required'] ||  FieldControl.errors?.['required']}">{{ ControlAccess["label"] }}</label>
+
+    <div class="col-8">
+        Field
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+    </div>
+</div>

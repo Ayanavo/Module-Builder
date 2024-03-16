@@ -1,0 +1,20 @@
+<div *ngIf="(ControlAccess?.['active'] === undefined) || (ControlAccess?.['active']) " class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-4" [ngClass]="{'required-label': ControlAccess['validators']?.['required'] ||  FieldControl.errors?.['required']}">{{ ControlAccess["label"] }}</label>
+
+    <div class="col-8">
+        <select [formControlName]="ControlAccess['id']" [id]="ControlAccess['id']" [ngClass]="{'form-select': true, 'required-field':  FieldControl.touched && FieldControl.errors?.['required']}">
+            <option value="">Select</option>
+            <option *ngFor="let item of ControlAccess['options']" [value]="item">
+                {{ item }}
+            </option>
+        </select>
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+    </div>
+</div>
+
+<!-- <option *ngFor="let item of ControlAccess['options']">
+  <div>
+      <input type="checkbox" [id]="item.id" [value]="item" (change)="toggleSelection(item)" />
+  </div>
+  {{ item }}
+</option> -->

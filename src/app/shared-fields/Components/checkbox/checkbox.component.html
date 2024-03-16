@@ -1,0 +1,11 @@
+<div class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-4" [ngClass]="{ 'required-label': ControlAccess['validators']?.['required'] }" for="flexSwitchCheckDefault">{{ ControlAccess["label"] }}</label>
+
+    <div class="col-8">
+        <div *ngFor="let item of ControlAccess['options']; let i = index" [formGroupName]="ControlAccess['id']" class="form-check col-8">
+            <input type="checkbox" id="check{{ i }}" [ngClass]="{ 'required-field': FieldControl.touched && FieldControl.errors?.['atleastOneRequired']}" [formControlName]="item" class="form-check-input" />
+            <label class="check-label" for="check{{ i }}">{{ item }}</label>
+        </div>
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+    </div>
+</div>

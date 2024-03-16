@@ -1,0 +1,154 @@
+{
+    "tabs": [
+        {
+            "seq": 0,
+            "label": "Market",
+            "fields": [
+                {
+                    "id": "vercel",
+                    "type": "vercel",
+                    "label": "Remember me",
+                    "input": true,
+                    "default": null,
+                    "validators": { "required": true },
+                    "options": [
+                        {
+                            "id": "123a",
+                            "text": "Care"
+                        },
+                        {
+                            "id": "123b",
+                            "text": "Calm"
+                        },
+                        {
+                            "id": "123c",
+                            "text": "Challenge"
+                        },
+                        {
+                            "id": "123d",
+                            "text": "Charisma"
+                        }
+                    ],
+                    "col-width": "quarter",
+                    "seq": 0
+                },
+                {
+                    "id": "password",
+                    "type": "password",
+                    "label": "Password",
+                    "input": true,
+                    "default": null,
+                    "validators": { "required": true },
+                    "col-width": "quarter",
+                    "seq": 1
+                }
+            ]
+        },
+        {
+            "seq": 1,
+            "label": "Mangaer",
+            "fields": []
+        },
+        {
+            "seq": 2,
+            "label": "Route",
+            "fields": []
+        },
+        {
+            "seq": 3,
+            "label": "On Demand",
+            "fields": []
+        },
+        {
+            "seq": 4,
+            "label": "Hamper",
+            "fields": [
+                {
+                    "id": "activation_status",
+                    "type": "boolean",
+                    "label": "Activate",
+                    "input": true,
+                    "default": true,
+                    "validators": null,
+                    "col-width": "full",
+                    "seq": 0
+                },
+                {
+                    "id": "pickup_date",
+                    "type": "datetime",
+                    "label": "PickUp Date",
+                    "input": true,
+                    "default": "current_date",
+                    "validators": null,
+                    "col-width": "half",
+                    "seq": 1
+                },
+                {
+                    "id": "delivery_date",
+                    "type": "datetime",
+                    "label": "Delivery Date",
+                    "input": true,
+                    "default": null,
+                    "validators": null,
+                    "col-width": "half",
+                    "seq": 2
+                },
+                {
+                    "id": "pickup_area",
+                    "type": "list",
+                    "label": "PickUp From",
+                    "input": true,
+                    "default": null,
+                    "validators": null,
+                    "options": [
+                        "Not Started",
+                        "In Progress",
+                        "Completed",
+                        "Re-Opened"
+                    ],
+                    "col-width": "half",
+                    "seq": 3
+                },
+
+                {
+                    "id": "delivery_area",
+                    "type": "list",
+                    "label": "Delivery From",
+                    "input": true,
+                    "default": "current_date",
+                    "validators": null,
+                    "options": [],
+                    "col-width": "half",
+                    "seq": 4
+                }
+            ]
+        },
+        {
+            "seq": 5,
+            "label": "Rates",
+            "fields": [
+                {
+                    "id": "formula",
+                    "type": "formula",
+                    "label": "Formula",
+                    "input": true,
+                    "default": null,
+                    "validators": null,
+                    "col-width": "half",
+                    "seq": 0
+                },
+                {
+                    "id": "rating",
+                    "type": "rating",
+                    "label": "Give us a Rating",
+                    "input": true,
+                    "range": 5,
+                    "default": 0,
+                    "validators": null,
+                    "col-width": "full",
+                    "seq": 1
+                }
+            ]
+        }
+    ]
+}

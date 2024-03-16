@@ -1,0 +1,49 @@
+<div class="m-3">
+    <ul class="nav nav-pills flex-column flex-xl-row">
+        <li class="flex-fill text-xl-center nav-link" role="presentation" *ngFor="let tab of Layout_Schema.tabs; index as i">
+            <a [ngClass]="{ active: activeIndex == i }" class="nav-link" href="javascript:void(0)" (click)="activeIndex = i">{{ tab["label"] }}</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div [ngClass]="{ active: activeIndex == i }" class="tab-pane fade show" [id]="i" role="tabpanel" *ngFor="let body of Layout_Schema.tabs; index as i" [tabindex]="i">
+            <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                <div class="container-fluid">
+                    <div class="mb-3 row needs-validation">
+                        <div class="col" *ngFor="let col of body['columns']">
+                            <ng-container *ngFor="let item of col['fields']">
+                                <ng-container [ngSwitch]="item.type">
+                                    <div [class]="config.colWidthConfig[item['col-width']]">
+                                        <app-label *ngSwitchCase="'label'" [ControlAccess]="item"></app-label>
+                                        <app-text *ngSwitchCase="'text'" [ControlAccess]="item"></app-text>
+                                        <app-textarea *ngSwitchCase="'textarea'" [ControlAccess]="item"></app-textarea>
+                                        <app-list *ngSwitchCase="['list', 'multilist'].includes(item.type) && item.type" [ControlAccess]="item"></app-list>
+                                        <app-boolean *ngSwitchCase="'boolean'" [ControlAccess]="item"></app-boolean>
+                                        <app-phone *ngSwitchCase="'phone'" [ControlAccess]="item"></app-phone>
+                                        <app-datetimerange *ngSwitchCase="['date', 'datetime', 'time'].includes(item.type) && item.type" [ControlAccess]="item"></app-datetimerange>
+                                        <app-checkbox *ngSwitchCase="'checkbox'" [ControlAccess]="item"></app-checkbox>
+                                        <app-radio *ngSwitchCase="'radio'" [ControlAccess]="item"></app-radio>
+                                        <app-number *ngSwitchCase="'number'" [ControlAccess]="item"></app-number>
+                                        <app-editor *ngSwitchCase="'html'" [ControlAccess]="item"></app-editor>
+                                        <app-email *ngSwitchCase="'email'" [ControlAccess]="item"></app-email>
+                                        <app-vercel *ngSwitchCase="'vercel'" [ControlAccess]="item"></app-vercel>
+                                        <app-password *ngSwitchCase="'password'" [ControlAccess]="item"></app-password>
+                                        <app-rating *ngSwitchCase="'rating'" [ControlAccess]="item"></app-rating>
+                                        <app-formula *ngSwitchCase="'formula'" [ControlAccess]="item"></app-formula>
+                                        <app-link *ngSwitchCase="'link'" [ControlAccess]="item"></app-link>
+                                    </div>
+                                    <app-button *ngSwitchCase="'button'" [ControlAccess]="item"></app-button>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="m-3 fixed-bottom d-flex align-items-start flex-column">
+                        <button class="btn btn-primary mb-3" [routerLink]="['/build-forms']">Go to Builder</button>
+                        <button class="btn btn-primary mb-3" [routerLink]="['/store']">Go to Store</button>
+                        <button type="submit" class="btn btn-primary mb-3 w-100">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

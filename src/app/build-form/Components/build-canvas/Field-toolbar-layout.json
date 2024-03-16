@@ -1,0 +1,276 @@
+[
+    {
+        "label": "Text",
+        "icon": "input-cursor",
+        "field": {
+            "id": "text0",
+            "type": "text",
+            "label": "Text",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Textarea",
+        "icon": "textarea-resize",
+        "field": {
+            "id": "text0",
+            "type": "textarea",
+            "label": "Textarea",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "List",
+        "icon": "list",
+        "field": {
+            "id": "text0",
+            "type": "list",
+            "label": "List",
+            "input": true,
+            "default": "",
+            "options": [],
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Boolean",
+        "icon": "toggle-on",
+        "field": {
+            "id": "text0",
+            "type": "boolean",
+            "label": "Boolean",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Phone",
+        "icon": "telephone",
+        "field": {
+            "id": "text0",
+            "type": "phone",
+            "label": "Phone",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Date",
+        "icon": "calendar",
+        "field": {
+            "id": "text0",
+            "type": "date",
+            "label": "Date",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Datetime",
+        "icon": "calendar",
+        "field": {
+            "id": "text0",
+            "type": "datetime",
+            "label": "Datetime",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Time",
+        "icon": "clock",
+        "field": {
+            "id": "text0",
+            "type": "time",
+            "label": "Time",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Checkbox",
+        "icon": "ui-checks",
+        "field": {
+            "id": "text0",
+            "type": "checkbox",
+            "label": "Checkbox",
+            "input": true,
+            "default": "",
+            "options": [],
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Radio",
+        "icon": "ui-radios",
+        "field": {
+            "id": "text0",
+            "type": "radio",
+            "label": "Radio",
+            "input": true,
+            "default": "",
+            "options": [],
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Number",
+        "icon": "icon123",
+        "field": {
+            "id": "text0",
+            "type": "number",
+            "label": "Number",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Html",
+        "icon": "terminal",
+        "field": {
+            "id": "text0",
+            "type": "html",
+            "label": "Html",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Email",
+        "icon": "envelope",
+        "field": {
+            "id": "text0",
+            "type": "email",
+            "label": "Email",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Vercel",
+        "icon": "icon123",
+        "field": {
+            "id": "text0",
+            "type": "vercel",
+            "label": "Vercel",
+            "input": true,
+            "default": "",
+            "options": [],
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Password",
+        "icon": "asterisk",
+        "field": {
+            "id": "text0",
+            "type": "password",
+            "label": "Password",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Rating",
+        "icon": "star",
+        "field": {
+            "id": "text0",
+            "type": "rating",
+            "label": "Rating",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Formula",
+        "icon": "filter",
+        "field": {
+            "id": "text0",
+            "type": "formula",
+            "label": "Formula",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Button",
+        "icon": "stop-btn",
+        "field": {
+            "id": "text0",
+            "type": "button",
+            "label": "Button",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Link",
+        "icon": "link",
+        "field": {
+            "id": "text0",
+            "type": "link",
+            "label": "Link",
+            "input": true,
+            "default": "",
+            "validators": null,
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "label",
+        "icon": "card-heading"
+    }
+]

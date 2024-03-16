@@ -1,0 +1,9 @@
+.custom-control-label::before {
+    background-color: #007bff; /* Default background color */
+    width: 60px; /* Adjust width */
+    height: 30px; /* Adjust height */
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #28a745; /* Background color when checked */
+}
