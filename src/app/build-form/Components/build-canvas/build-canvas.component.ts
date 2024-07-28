@@ -51,9 +51,6 @@ export class BuildCanvasComponent implements OnInit {
 
     ngOnInit(): void {
         this.StructuredFieldArray = this.Fieldsarray.map((item) => item.field);
-        // this.storage.get("layout_schema").then(console.log);
-        // // this.storage.get("layout_schema") && (this.Basic_Layout = this.storage.get("layout_schema"));
-        // this.storage.get("layout_schema").then((val) => val && ((this.Basic_Layout = val), console.log(val), (this.col_size = [0, 1, 2])));
         this.service.getFormSchema().subscribe({
             next: (res) => {
                 res && (this.Basic_Layout = res);
