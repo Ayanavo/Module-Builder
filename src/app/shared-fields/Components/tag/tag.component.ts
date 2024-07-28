@@ -13,7 +13,10 @@ export class TagComponent implements OnInit {
     FormGroup: FormGroup;
     SelectedItems: Array<string> = [];
     active: boolean = false;
-    constructor(public controlContainer: ControlContainer, private service: FieldDependencyService) {}
+    constructor(
+        public controlContainer: ControlContainer,
+        private service: FieldDependencyService
+    ) {}
 
     ngOnInit() {
         this.FormGroup = this.controlContainer.control as FormGroup;

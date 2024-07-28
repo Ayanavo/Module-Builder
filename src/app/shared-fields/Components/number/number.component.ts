@@ -11,7 +11,10 @@ export class NumberComponent implements OnInit {
     @Input() ControlAccess: Object;
     @Input() mode: "edit" | "list";
     FormGroup: FormGroup;
-    constructor(public controlContainer: ControlContainer, private service: FieldDependencyService) {}
+    constructor(
+        public controlContainer: ControlContainer,
+        private service: FieldDependencyService
+    ) {}
 
     ngOnInit() {
         this.FormGroup = this.controlContainer.control as FormGroup;

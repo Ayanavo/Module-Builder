@@ -16,7 +16,10 @@ export class PhoneComponent {
     initialPattern = "(201)555-0123";
     IsdCode: { dial_code: any; code: any }[];
 
-    constructor(public controlContainer: ControlContainer, private fb: FormBuilder) {
+    constructor(
+        public controlContainer: ControlContainer,
+        private fb: FormBuilder
+    ) {
         this.IsdCode = countrycode.map((cc: { dial_code: any; code: any }) => {
             return { isd: cc.dial_code, cc: cc.code };
         });

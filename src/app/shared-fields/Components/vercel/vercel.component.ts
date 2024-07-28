@@ -16,7 +16,11 @@ export class VercelComponent implements OnInit {
     FormGroup: FormGroup;
     activeVercelId: string;
 
-    constructor(public controlContainer: ControlContainer, private service: FieldDependencyService, private storage: StorageService) {}
+    constructor(
+        public controlContainer: ControlContainer,
+        private service: FieldDependencyService,
+        private storage: StorageService
+    ) {}
 
     ngOnInit() {
         this.storage.get("vrclId").then((res) => (this.activeVercelId = res));

@@ -1,9 +1,14 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: "root",
 })
 export class TableListingService {
+    route = inject(Router);
 
-  constructor() { }
+    logout() {
+        localStorage.clear();
+        this.route.navigateByUrl("/");
+    }
 }

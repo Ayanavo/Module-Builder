@@ -26,7 +26,10 @@ export class BuildFieldComponent implements OnInit {
         { label: "Previous Week", ngbDate: -7 },
     ];
 
-    constructor(@Inject(NgbCalendar) private calendar, public activeModal: NgbActiveModal) {}
+    constructor(
+        @Inject(NgbCalendar) private calendar,
+        public activeModal: NgbActiveModal
+    ) {}
 
     ngOnInit(): void {
         this.CustomOptions.reset();

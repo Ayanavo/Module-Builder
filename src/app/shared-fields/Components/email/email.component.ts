@@ -12,7 +12,10 @@ export class EmailComponent {
     FormGroup: FormGroup;
     defaultIsd = "+91";
 
-    constructor(public controlContainer: ControlContainer, private fb: FormBuilder) {}
+    constructor(
+        public controlContainer: ControlContainer,
+        private fb: FormBuilder
+    ) {}
     @HostListener("window:submit") onSubmit() {
         this.FormGroup.valid && this.resetForm;
     }

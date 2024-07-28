@@ -16,7 +16,11 @@ export class EditorComponent implements OnInit {
     FormGroup: FormGroup;
     quillUndoIcon: any;
     quillRedoIcon: any;
-    constructor(public controlContainer: ControlContainer, public sanitizer: DomSanitizer, public config: FieldConfig) {
+    constructor(
+        public controlContainer: ControlContainer,
+        public sanitizer: DomSanitizer,
+        public config: FieldConfig
+    ) {
         // const icons = Quill.import("ui/icons");
         // icons["undo"] = this.quillUndoIcon;
         // icons["redo"] = this.quillRedoIcon;

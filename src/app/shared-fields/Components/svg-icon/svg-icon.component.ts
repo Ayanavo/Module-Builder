@@ -12,7 +12,10 @@ export class SvgIconComponent {
     @Input() public fill: string = "black-fill";
     public svgIcon: any;
 
-    constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) {}
+    constructor(
+        private httpClient: HttpClient,
+        private sanitizer: DomSanitizer
+    ) {}
 
     ngOnInit(): void {}
 

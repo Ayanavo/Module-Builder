@@ -11,7 +11,10 @@ import { Array } from "./array-methods";
     providers: [PromtUserService],
 })
 export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked {
-    constructor(private swUpdate: SwUpdate, private offcanvasService: NgbOffcanvas) {
+    constructor(
+        private swUpdate: SwUpdate,
+        private offcanvasService: NgbOffcanvas
+    ) {
         swUpdate.versionUpdates.subscribe((evt) => {
             switch (evt.type) {
                 case "VERSION_DETECTED":

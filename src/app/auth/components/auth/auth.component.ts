@@ -2,7 +2,7 @@ import { Component, OnDestroy, inject } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { FirebaseError } from "firebase/app";
-import { Subscription } from "rxjs";
+import { Subscription, switchMap } from "rxjs";
 import { AuthService } from "../../auth.service";
 import { ToastService } from "src/app/toast-service/toast-container.service";
 import { UserCredential } from "firebase/auth";
@@ -44,32 +44,38 @@ export class AuthComponent implements OnDestroy {
         }
     }
 
-    authAnonymous(){
-      this.service.GuestLogin().subscribe({
-          next: (res: UserCredential) => {
-            res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
-              this.notifyservice.showToasterMsg({ message: "Logged in as Guest", type: "success" });
-              this.router.navigateByUrl("/table-listing");
-          },
-          error: (err: FirebaseError) => {
-              this.notifyservice.showToasterMsg({ message: err.code + "Logged in failed", type: "fail" });
-              console.log(err.message);
-          },
-      });
+    authAnonymous() {
+        this.service
+            .GuestLogin()
+            .pipe(switchMap(async (x) => x))
+            .subscribe({
+                next: (res: UserCredential) => {
+                    res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
+                    this.notifyservice.showToasterMsg({ message: "Logged in as Guest", type: "success" });
+                    this.router.navigateByUrl("/table-listing");
+                },
+                error: (err: FirebaseError) => {
+                    this.notifyservice.showToasterMsg({ message: err.code + "Logged in failed", type: "fail" });
+                    console.log(err.message);
+                },
+            });
     }
 
     authProvider(providername: string) {
-        this.service.setAuthProvider(providername).subscribe({
-            next: (res: UserCredential) => {
-              res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
-                this.notifyservice.showToasterMsg({ message: "Logged in successfully", type: "success" });
-                this.router.navigateByUrl("/table-listing");
-            },
-            error: (err: FirebaseError) => {
-                this.notifyservice.showToasterMsg({ message: err.code + "Logged in failed", type: "fail" });
-                console.log(err.message);
-            },
-        });
+        this.service
+            .setAuthProvider(providername)
+            .pipe(switchMap(async (x) => x))
+            .subscribe({
+                next: (res: UserCredential) => {
+                    res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
+                    this.notifyservice.showToasterMsg({ message: "Logged in successfully", type: "success" });
+                    this.router.navigateByUrl("/table-listing");
+                },
+                error: (err: FirebaseError) => {
+                    this.notifyservice.showToasterMsg({ message: err.code + "Logged in failed", type: "fail" });
+                    console.log(err.message);
+                },
+            });
     }
 
     get FieldControlPass() {

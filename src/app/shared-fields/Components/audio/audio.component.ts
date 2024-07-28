@@ -15,7 +15,10 @@ export class AudioComponent implements OnInit {
     errorMsg: string;
     recording: boolean = false;
 
-    constructor(public controlContainer: ControlContainer, private domSanitizer: DomSanitizer) {}
+    constructor(
+        public controlContainer: ControlContainer,
+        private domSanitizer: DomSanitizer
+    ) {}
 
     ngOnInit() {
         this.FormGroup = this.controlContainer.control as FormGroup;

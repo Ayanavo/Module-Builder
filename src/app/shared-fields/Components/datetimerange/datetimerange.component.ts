@@ -17,7 +17,10 @@ export class DatetimeRangeComponent implements OnInit {
     dateformatter = "dd/mm/yyyy";
     CustomNavConfig: Array<{ label: string; ngbDate: number }> = DateOptions.default;
 
-    constructor(@Inject(NgbCalendar) private calendar, public controlContainer: ControlContainer) {}
+    constructor(
+        @Inject(NgbCalendar) private calendar,
+        public controlContainer: ControlContainer
+    ) {}
 
     ngOnInit() {
         this.FormGroup = this.controlContainer.control as FormGroup;

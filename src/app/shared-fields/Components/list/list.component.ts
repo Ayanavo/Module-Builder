@@ -12,7 +12,10 @@ export class ListComponent implements OnInit {
     @Input() ControlAccess: { id: string; type: string; options: string[] };
     @Input() mode: "edit" | "list";
     FormGroup: FormGroup;
-    constructor(public controlContainer: ControlContainer, private service: FieldDependencyService) {}
+    constructor(
+        public controlContainer: ControlContainer,
+        private service: FieldDependencyService
+    ) {}
 
     ngOnInit() {
         this.FormGroup = this.controlContainer.control as FormGroup;
