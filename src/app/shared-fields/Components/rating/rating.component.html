@@ -1,0 +1,17 @@
+<div class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{'required-label': ControlAccess['validators']?.['required'] ||  FieldControl.errors?.['required']}">{{ ControlAccess["label"] }}</label>
+
+    <div class="col-8">
+        <ngb-rating [(rate)]="customRate" [max]="ControlAccess['range']" (click)="getFractionalValue()">
+            <ng-template let-fill="fill" let-index="index">
+                <i-bs class="text-warning" [name]="fill === 100 ? 'star-fill' : 'star'" width="20" height="20"> </i-bs>
+            </ng-template>
+        </ngb-rating>
+
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+        <div>({{ FieldControl.value * ControlAccess["range"] }}/{{ ControlAccess["range"] }})</div>
+    </div>
+    <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
+        ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
+    ></span>
+</div>

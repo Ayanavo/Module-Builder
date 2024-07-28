@@ -1,0 +1,173 @@
+<div class="modal-header">
+    <h4 class="modal-title m-0">
+        Field Settings for <strong>{{ formInfo?.type | uppercase }}</strong> Type
+    </h4>
+    <button type="button" class="mx-2 ps-2 btn btn-danger btn-sm" aria-label="Close" (click)="activeModal.dismiss()">
+        <i-bs name="x" width="15" height="15"> </i-bs>
+    </button>
+</div>
+<div *ngIf="isFormReady" class="modal-body">
+    <form class="form-group" [formGroup]="CustomOptions" (ngSubmit)="onSubmit()">
+        <div *ngIf="formInfo?.id != undefined" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Identifier</label>
+            <div class="col-8">
+                <input type="text" formControlName="id" type="text" class="form-control" />
+                <error-msg control="id"></error-msg>
+            </div>
+        </div>
+
+        <div *ngIf="formInfo?.label != undefined" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Label</label>
+            <div class="col-8">
+                <input type="text" formControlName="label" type="text" class="form-control" />
+                <error-msg control="label"></error-msg>
+            </div>
+        </div>
+
+        <div *ngIf="formInfo?.help != undefined" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Help Text</label>
+            <div class="col-8">
+                <input type="text" formControlName="help" type="text" class="form-control" />
+                <error-msg control="help"></error-msg>
+            </div>
+        </div>
+
+        <!-- Default Values -->
+        <div *ngIf="formInfo?.default != undefined" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Default Value</label>
+            <div class="col-8" *ngIf="['text', 'textarea', 'html', 'email'].includes(formInfo?.type)">
+                <input type="text" formControlName="default" type="text" class="form-control" />
+                <error-msg control="default"></error-msg>
+            </div>
+            <div class="col-8" *ngIf="['list', 'multilist', 'vercel', 'checkbox', 'radio'].includes(formInfo?.type)">
+                <select formControlName="default" class="form-select">
+                    <option value="">Select</option>
+                    <option *ngFor="let item of FieldControl.value" [value]="item">
+                        {{ item }}
+                    </option>
+                </select>
+                <error-msg control="default"></error-msg>
+            </div>
+            <div class="col-8" *ngIf="formInfo?.type == 'boolean'">
+                <select class="form-select" formControlName="default">
+                    <option [ngValue]="null">Select</option>
+                    <option [ngValue]="true">Active</option>
+                    <option [ngValue]="false">Inactive</option>
+                </select>
+                <error-msg control="default"></error-msg>
+            </div>
+
+            <div class="col-8" *ngIf="['date', 'datetime', 'time'].includes(formInfo?.type)">
+                <div class="input-group">
+                    <input class="form-control" [placeholder]="dateformatter" [contentTemplate]="c" formControlName="default" ngbDatepicker #d="ngbDatepicker" />
+
+                    <div title="open picker" class="input-group-append mx-auto p-2" (click)="d.toggle()" role="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c0c3c6" class="bi bi-calendar" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                        </svg>
+                    </div>
+                </div>
+                <error-msg control="default"></error-msg>
+            </div>
+
+            <div class="col-8" *ngIf="['rating', 'number', 'phone'].includes(formInfo?.type)">
+                <input type="text" formControlName="default" type="number" class="form-control" />
+                <error-msg control="default"></error-msg>
+            </div>
+        </div>
+        <!-- Default Values -->
+
+        <!-- Specific Values -->
+
+        <div *ngIf="formInfo?.validators != undefined && ['text', 'textarea'].includes(formInfo?.type)" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Max Length</label>
+            <div class="col-8">
+                <input formControlName="maxLength" [min]="minAllowedLimit" [max]="maxAllowedLimit" type="number" class="form-control" />
+                <error-msg control="maxLength"></error-msg>
+            </div>
+        </div>
+
+        <div *ngIf="formInfo?.validators != undefined && ['text', 'textarea'].includes(formInfo?.type)" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Min Length</label>
+            <div class="col-8">
+                <input formControlName="minLength" [min]="minAllowedLimit" [max]="maxAllowedLimit" type="number" class="form-control" />
+                <error-msg control="minLength"></error-msg>
+            </div>
+        </div>
+
+        <div *ngIf="formInfo?.type == 'rating'" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Range</label>
+            <div class="col-8">
+                <input formControlName="range" [min]="minAllowedLimit" [max]="maxAllowedLimit" type="number" class="form-control" />
+                <error-msg control="range"></error-msg>
+            </div>
+        </div>
+
+        <!-- Specific Values -->
+
+        <!-- Boolean type Values -->
+
+        <div *ngIf="formInfo?.validators != undefined" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Required</label>
+            <div class="form-check form-switch form-check-custom col-8">
+                <input class="form-check-input" type="checkbox" formControlName="required" />
+                <error-msg control="required"></error-msg>
+            </div>
+        </div>
+
+        <div *ngIf="formInfo?.disabled != undefined" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Disabled</label>
+            <div class="form-check form-switch form-check-custom col-8">
+                <input class="form-check-input" type="checkbox" formControlName="disabled" />
+                <error-msg control="disabled"></error-msg>
+            </div>
+        </div>
+
+        <div *ngIf="formInfo?.input != undefined" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Input</label>
+            <div class="form-check form-switch form-check-custom col-8">
+                <input class="form-check-input" type="checkbox" formControlName="input" />
+                <error-msg control="input"></error-msg>
+            </div>
+        </div>
+
+        <!-- Boolean type Values -->
+
+        <!-- Option Values -->
+
+        <ng-container *ngIf="formInfo?.options" formArrayName="options">
+            <div class="mb-3 row d-flex justify-content-between" *ngFor="let control of FieldControl.controls; index as i">
+                <label class="col-form-label text-wrap w-10 col-4">Option {{ i + 1 }}</label>
+                <div class="col-8">
+                    <input [formControlName]="i" type="text" class="form-control" />
+                    <error-msg [control]="'' + i"></error-msg>
+                </div>
+            </div>
+            <div class="mb-3 row d-flex justify-content-between">
+                <div class="w-10 col-4"></div>
+                <div class="col-8">
+                    <button type="button" class="btn btn-outline-secondary mt-2" data-toggle="tooltip" data-placement="top" title="Add more" (click)="FieldControl.push(this.createElement)">
+                        <i-bs name="plus" width="15" height="15"> </i-bs>
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Option Values -->
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary my-3">Save</button>
+        </div>
+    </form>
+</div>
+
+<ng-template #c let-dp>
+    <div class="p-2 d-flex justify-content-center">
+        <div class="btn-group-vertical mx-2" role="group" aria-label="Vertical button group">
+            <button type="button" class="btn btn-sm btn-outline-primary" *ngFor="let item of CustomNavConfig" (click)="navigate(dp, item.ngbDate)">{{ item.label }}</button>
+        </div>
+        <div class="custom-month-grid" *ngFor="let month of dp.state.months">
+            <ngb-datepicker-month class="border rounded" [month]="month"></ngb-datepicker-month>
+        </div>
+    </div>
+</ng-template>

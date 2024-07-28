@@ -1,0 +1,25 @@
+.chipbox {
+    border: 1px solid #dee2e6;
+    border-radius: 50rem;
+    padding: 2px 7px;
+    margin: 2px;
+    overflow: hidden;
+    &:hover {
+        background-color: #b9bec2;
+    }
+}
+
+.list-group {
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    border-collapse: collapse;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    max-height: 200px;
+}
+
+.list-group button {
+    white-space: nowrap;
+}

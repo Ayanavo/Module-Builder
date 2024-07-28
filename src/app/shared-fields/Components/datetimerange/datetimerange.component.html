@@ -1,0 +1,37 @@
+<div class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{ 'required-label': ControlAccess['validators']?.['required'] }">{{ ControlAccess["label"] }}</label>
+    <div class="col-8">
+        <div class="input-group">
+            <input
+                [ngClass]="{'form-control': true, 'required-field': FieldControl.touched && FieldControl.errors?.['required']}"
+                [placeholder]="dateformatter"
+                [contentTemplate]="c"
+                [formControlName]="ControlAccess['id']"
+                ngbDatepicker
+                #d="ngbDatepicker" />
+
+            <div title="open picker" class="input-group-append mx-auto p-2" (click)="d.toggle()" role="button">
+                <i-bs name="calendar-event" width="15" height="15"> </i-bs>
+            </div>
+        </div>
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+    </div>
+    <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
+        ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
+    ></span>
+</div>
+
+<ng-template #c let-dp>
+    <div class="p-2 d-flex justify-content-center" *ngIf="ControlAccess['type'] != 'time'">
+        <div class="btn-group-vertical mx-2" role="group" aria-label="Vertical button group">
+            <button type="button" class="btn btn-sm btn-outline-primary" *ngFor="let item of CustomNavConfig" (click)="navigate(dp, item.ngbDate)">{{ item.label }}</button>
+        </div>
+        <div class="custom-month-grid" *ngFor="let month of dp.state.months">
+            <ngb-datepicker-month class="border rounded" [month]="month"></ngb-datepicker-month>
+        </div>
+    </div>
+
+    <div class="custom-time-grid" *ngIf="ControlAccess['type'] != 'date'">
+        <ngb-timepicker #tp name="timepicker" [formControlName]="ControlAccess['id']" [meridian]="true" />
+    </div>
+</ng-template>

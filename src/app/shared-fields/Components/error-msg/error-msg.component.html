@@ -1,0 +1,9 @@
+<div *ngIf="FormControl.touched && FormControl.invalid">
+    <div *ngIf="FormControl.errors?.['required'] " class="text-danger">Field is required!</div>
+    <div *ngIf="FormControl.errors?.['maxlength'] " class="text-danger">Field length must be atmost {{FormControl.errors?.['maxlength']['requiredLength']}} characters long!</div>
+    <div *ngIf="FormControl.errors?.['minlength'] " class="text-danger">Field length must be atleast {{FormControl.errors?.['minlength']['requiredLength']}} characters long!</div>
+    <div *ngIf="FormControl.errors?.['email'] " class="text-danger">Email pattern is invalid!</div>
+    <div *ngIf="FormControl.errors?.['pattern'] " class="text-danger">Field pattern is invalid!</div>
+    <div *ngIf="FormControl.errors?.['patternMatchError']" class="text-danger">Password pattern did not match!</div>
+    <div *ngIf="FormControl.errors?.['outOfRange']" class="text-danger">Field range cannot be less than its default value!</div>
+</div>

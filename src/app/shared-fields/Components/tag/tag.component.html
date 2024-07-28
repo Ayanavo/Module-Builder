@@ -1,0 +1,31 @@
+<div *ngIf="mode == 'edit'" class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{'required-label': ControlAccess['validators']?.['required'] ||  FieldControl.errors?.['required']}">{{ ControlAccess["label"] }}</label>
+
+    <div class="col-8">
+        <div style="height: 40px" [ngClass]="{'form-control d-flex align-items-center': true, 'required-field': FieldControl.touched && FieldControl.errors?.['required']}">
+            <ng-container *ngIf="SelectedItems.length >= 3; else elseBlock">
+                +{{ SelectedItems.length - 1 }}
+                <span class="chipbox" *ngIf="SelectedItems[SelectedItems.length - 1]"
+                    >{{ SelectedItems[SelectedItems.length - 1] }}
+                    <i-bs name="x" width="15" height="15" class="cursor-pointer" (click)="removeSelected(SelectedItems[SelectedItems.length - 1])"> </i-bs>
+                </span>
+            </ng-container>
+            <ng-template #elseBlock>
+                <span class="chipbox" *ngFor="let item of SelectedItems">
+                    {{ item }}
+                    <i-bs name="x" width="15" height="15" class="cursor-pointer" (click)="removeSelected(item)"> </i-bs> </span
+            ></ng-template>
+        </div>
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+        <div class="list-group list-group-flush overflow-hidden d-flex mt-3">
+            <button type="button" [ngClass]="{ active: this.SelectedItems.length == this.ControlAccess.options.length, 'list-group-item list-group-item-action': true }" (click)="active = !active; selectAll(active)">Select All</button>
+            <button type="button" [ngClass]="{ active: this.SelectedItems.includes(item), 'list-group-item list-group-item-action': true }" (click)="getSelection(item)" *ngFor="let item of ControlAccess['options']">{{ item }}</button>
+        </div>
+    </div>
+    <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
+        ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
+    ></span>
+</div>
+<span *ngIf="mode == 'list'">
+    <span class="chipbox" *ngFor="let item of FieldControl.value">{{ item }}</span>
+</span>

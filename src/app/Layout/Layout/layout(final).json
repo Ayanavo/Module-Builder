@@ -1,0 +1,117 @@
+{
+    "tabs": [
+        {
+            "seq": 0,
+            "label": "Tab 1",
+            "columns": [
+                {
+                    "seq": 0,
+                    "fields": [
+                        {
+                            "id": "text0",
+                            "type": "list",
+                            "label": "Text",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        },
+                        {
+                            "id": "file",
+                            "type": "file",
+                            "label": "File",
+                            "input": true,
+                            "default": null,
+                            "validators": { "required": true },
+                            "col-width": "full",
+                            "seq": 0
+                        },
+
+                        {
+                            "id": "tag",
+                            "type": "tag",
+                            "label": "Tag",
+                            "input": true,
+                            "default": ["Not Started"],
+                            "validators": { "required": true },
+                            "options": [
+                                "Not Started",
+                                "In Progress",
+                                "Completed",
+                                "Re-Opened"
+                            ],
+                            "col-width": "full",
+                            "seq": 0
+                        }
+                    ]
+                },
+                {
+                    "seq": 1,
+                    "fields": [
+                        {
+                            "id": "text0",
+                            "type": "text",
+                            "label": "Text",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        },
+                        {
+                            "id": "date",
+                            "type": "date",
+                            "label": "Active date",
+                            "input": true,
+                            "default": { "year": 2024, "month": 2, "day": 11 },
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 1
+                        }
+                    ]
+                },
+                {
+                    "seq": 2,
+                    "fields": [
+                        {
+                            "id": "text0",
+                            "type": "boolean",
+                            "label": "Text",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        }
+                    ]
+                },
+                {
+                    "seq": 3,
+                    "fields": [
+                        {
+                            "id": "text0",
+                            "type": "datetime",
+                            "label": "Text",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        },
+                        {
+                            "id": "text0",
+                            "type": "progress",
+                            "label": "Progress",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

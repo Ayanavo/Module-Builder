@@ -1,0 +1,328 @@
+[
+    {
+        "label": "label",
+        "icon": "card-heading",
+        "field": {
+            "type": "label",
+            "label": "Label",
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Text (Single Line)",
+        "icon": "input-cursor",
+        "field": {
+            "id": "",
+            "type": "text",
+            "label": "Text",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Text (Multi Line)",
+        "icon": "textarea-resize",
+        "field": {
+            "id": "",
+            "type": "textarea",
+            "label": "Textarea",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "List",
+        "icon": "list",
+        "field": {
+            "id": "",
+            "type": "list",
+            "label": "List",
+            "input": true,
+            "default": "",
+            "options": [],
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Boolean",
+        "icon": "toggle-on",
+        "field": {
+            "id": "",
+            "type": "boolean",
+            "label": "Boolean",
+            "input": true,
+            "default": false,
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Phone",
+        "icon": "telephone",
+        "field": {
+            "id": "",
+            "type": "phone",
+            "label": "Phone",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Date",
+        "icon": "calendar",
+        "field": {
+            "id": "",
+            "type": "date",
+            "label": "Date",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Datetime",
+        "icon": "calendar",
+        "field": {
+            "id": "",
+            "type": "datetime",
+            "label": "Datetime",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Time",
+        "icon": "clock",
+        "field": {
+            "id": "",
+            "type": "time",
+            "label": "Time",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Checkbox",
+        "icon": "ui-checks",
+        "field": {
+            "id": "",
+            "type": "checkbox",
+            "label": "Checkbox",
+            "input": true,
+            "default": "",
+            "options": [],
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Radio",
+        "icon": "ui-radios",
+        "field": {
+            "id": "",
+            "type": "radio",
+            "label": "Radio",
+            "input": true,
+            "default": "",
+            "options": [],
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Number",
+        "icon": "icon123",
+        "field": {
+            "id": "",
+            "type": "number",
+            "label": "Number",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Html",
+        "icon": "code-square",
+        "field": {
+            "id": "",
+            "type": "html",
+            "label": "Html",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Email",
+        "icon": "envelope",
+        "field": {
+            "id": "",
+            "type": "email",
+            "label": "Email",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Password",
+        "icon": "asterisk",
+        "field": {
+            "id": "",
+            "type": "password",
+            "label": "Password",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Rating",
+        "icon": "star",
+        "field": {
+            "id": "",
+            "type": "rating",
+            "label": "Rating",
+            "input": true,
+            "range": 5,
+            "default": 0,
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Formula",
+        "icon": "filter",
+        "field": {
+            "id": "",
+            "type": "formula",
+            "label": "Formula",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Button",
+        "icon": "stop-btn",
+        "field": {
+            "id": "button",
+            "type": "button",
+            "label": "Button",
+            "align": "center",
+            "width": "quarter",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Link",
+        "icon": "link",
+        "field": {
+            "id": "",
+            "type": "link",
+            "label": "Link",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Currency",
+        "icon": "currency-dollar",
+        "field": {
+            "id": "",
+            "type": "currency",
+            "label": "Currency",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "File",
+        "icon": "file-earmark",
+        "field": {
+            "id": "",
+            "type": "file",
+            "label": "File",
+            "input": true,
+            "default": "",
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Tag",
+        "icon": "tag",
+        "field": {
+            "id": "tag",
+            "type": "tag",
+            "label": "Tag",
+            "input": true,
+            "default": [],
+            "validators": {},
+            "options": [],
+            "col-width": "full",
+            "seq": 0
+        }
+    }
+]

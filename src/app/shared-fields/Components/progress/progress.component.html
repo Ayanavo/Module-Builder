@@ -1,0 +1,14 @@
+<div *ngIf="mode == 'edit'" class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{ 'required-label': ControlAccess['validators']?.['required'] ||  FieldControl.errors?.['required'] }">{{ ControlAccess["label"] }}</label>
+
+    <div class="col-8 w-100">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+            <error-msg [control]="ControlAccess['id']"></error-msg>
+        </div>
+    </div>
+    <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
+        ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
+    ></span>
+</div>
+<span *ngIf="mode == 'list'">{{ FieldControl.value }}</span>

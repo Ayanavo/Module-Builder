@@ -1,0 +1,21 @@
+<div class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <div class="row">
+        <nav class="navbar bg-body-tertiary fixed-top">
+            <a class="navbar-brand p-2 cursor-pointer" (click)="open(content)"> <i-bs name="menu-button-wide" width="25" height="25"> </i-bs></a>
+            <!-- <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                <label class="form-check-label" for="flexSwitchCheckDefault">Theme</label>
+            </div> -->
+            <input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger" />
+        </nav>
+
+        <div class="mt-4">
+            <router-outlet></router-outlet>
+            <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-offcanvas>
+    <app-navbar (mouseleave)="close()"></app-navbar>
+</ng-template>

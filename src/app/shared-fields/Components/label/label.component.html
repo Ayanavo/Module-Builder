@@ -1,0 +1,6 @@
+<span class="m-3">
+    <h1 data-bs-toggle="tooltip" data-bs-placement="right" [title]="ControlAccess['help']">{{ ControlAccess["label"] }}</h1>
+    <hr />
+</span>
+
+<span *ngIf="mode == 'list'">{{ ControlAccess["label"] }}</span>

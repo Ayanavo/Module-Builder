@@ -1,0 +1,62 @@
+<div *ngIf="mode == 'edit'" class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{ 'required-label': ControlAccess['validators']?.['required'] }">{{ ControlAccess["label"] }}</label>
+
+    <div class="col-8">
+        <quill-editor #quill customToolbarPosition="bottom" [formControlName]="ControlAccess['id']" [modules]="modules" [styles]="editorStyle" [ngClass]="{ 'ql-required': FieldControl.touched && FieldControl.errors?.['required']}">
+            <div quill-editor-toolbar>
+                <span class="ql-format">
+                    <button class="ql-undo" (click)="undo()">
+                        <i class="ql-icon ql-undo"></i>
+                    </button>
+                    <button id="redo-button" (click)="redo()">R</button>
+                </span>
+                <span class="ql-formats">
+                    <select class="ql-font"></select>
+                    <select class="ql-size"></select>
+                </span>
+                <span class="ql-align">
+                    <button class="ql-align"></button>
+                    <button class="ql-align" value="right"></button>
+                    <button class="ql-align" value="center"></button>
+                    <button class="ql-align" value="justify"></button>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-strike"></button>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-blockquote"></button>
+                    <button class="ql-code-block"></button>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-list" value="ordered"></button>
+                    <button class="ql-list" value="bullet"></button>
+                    <!-- <button class="ql-indent" value="-1"></button>
+                    <button class="ql-indent" value="+1"></button> -->
+                </span>
+
+                <span class="ql-formats">
+                    <button class="ql-link"></button>
+                    <button class="ql-image"></button>
+                </span>
+                <span class="ql-formats">
+                    <select class="ql-color"></select>
+                    <select class="ql-background"></select>
+                </span>
+                <span class="ql-formats">
+                    <button class="ql-clean"></button>
+                </span>
+            </div>
+        </quill-editor>
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+    </div>
+    <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
+        ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
+    ></span>
+</div>
+
+<span *ngIf="mode == 'list'">
+    <span [innerHTML]="SanitizedHTML"></span>
+</span>

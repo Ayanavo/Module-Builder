@@ -1,0 +1,84 @@
+<div class="m-3">
+    <div class="row" cdkDropListGroup>
+        <div class="col-2">
+            <div id="dragsourcecolumn" class="container form-toolbar" cdkDropList [cdkDropListData]="StructuredFieldArray" [cdkDropListConnectedTo]="['dragcolumn0', 'dragcolumn1', 'dragcolumn2']" (cdkDropListDropped)="ondrop($event)">
+                <div class="d-flex flex-column p-2" *ngFor="let item of Fieldsarray; index as index">
+                    <div class="tablet" cdkDrag><i-bs [name]="item['icon']" width="15" height="15"> </i-bs> {{ item["label"] }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10">
+            <ul class="nav nav-pills flex-column flex-xl-row flex-nowrap overflow-x-auto">
+                <li class="text-xl-center nav-link" role="presentation" *ngFor="let tab of Basic_Layout.tabs; index as i">
+                    <a draggable="false" [ngClass]="{ active: activeIndex == i }" class="nav-link" href="javascript:void(0)" (click)="activeIndex = i" (dblclick)="editTab(i)"
+                        >{{ activeEditTab != i ? tab["label"] : "" }}
+                        <input #focusinput class="width60" *ngIf="activeEditTab == i" type="text" [formControl]="editTabControl" (keyup.enter)="saveTab(i)" (blur)="saveTab(i)" />
+                        <span class="ps-2"> <i-bs *ngIf="i" class="px-2" name="x" width="15" height="15" (click)="removeTab(i)"> </i-bs></span>
+                    </a>
+                </li>
+                <li *ngIf="maxTabs >= Basic_Layout.tabs.length" class="text-xl-center nav-link" role="presentation">
+                    <a draggable="false" class="nav-link active" href="javascript:void(0)" (click)="addTab(Basic_Layout.tabs.length)">
+                        <i-bs name="plus-lg" width="20" height="20"> </i-bs>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div [ngClass]="{ active: activeIndex == formindex }" class="tab-pane fade show" [id]="'dragcolumn' + formindex" role="tabpanel" *ngFor="let body of Basic_Layout.tabs; index as formindex" [tabindex]="formindex">
+                    <div class="form-canvas">
+                        <!-- col-width -->
+                        <div class="d-flex justify-content-end">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <ng-container *ngFor="let col of [].constructor(MaxColSize); index as i">
+                                    <input type="radio" class="btn-check" name="btnradio{{ formindex }}" id="btnradio{{ formindex + '' + i }}" [checked]="i == col_size[formindex]" (click)="setColumnConfig(formindex, i)" />
+                                    <label class="btn btn-outline-primary" for="btnradio{{ formindex + '' + i }}">{{ i + 1 }}</label>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <!-- col-width -->
+
+                        <!-- canvas -->
+                        <div class="container-flex">
+                            <div class="row mx-4">
+                                <div
+                                    *ngFor="let col of Array(col_size[formindex]); index as i"
+                                    [id]="'dragcolumn' + i"
+                                    cdkDropList
+                                    [cdkDropListData]="Basic_Layout.tabs[formindex].columns[i].fields"
+                                    cdkDropListConnectedTo="dragsourcecolumn"
+                                    (cdkDropListDropped)="ondrop($event)"
+                                    class="column-form col">
+                                    <span class="d-flex flex-column align-items-center">Column {{ formindex }}{{ i }}</span>
+
+                                    <div cdkDrag class="d-flex flex-column w-100 p-2" *ngFor="let item of Basic_Layout.tabs[formindex].columns[i].fields; index as i">
+                                        <div class="tablet mb-auto">
+                                            <div class="label-wrapper">
+                                                <div class="label-text">{{ item["label"] }}</div>
+                                            </div>
+
+                                            <button (click)="openFieldSettings(item)" class="mx-2 ps-2 btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Option Settings">
+                                                <i-bs name="pencil-square" width="15" height="15"> </i-bs>
+                                            </button>
+
+                                            <button (click)="deleteField(Basic_Layout.tabs[formindex].columns[0].fields, i)" class="mx-2 ps-2 btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete Field">
+                                                <i-bs name="trash" width="15" height="15"> </i-bs>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- canvas -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="m-3 fixed-bottom d-flex align-items-start flex-column">
+            <button type="button" class="btn btn-primary mb-3" (click)="reRouteLayout()">Go to Form</button>
+            <button type="submit" class="btn btn-primary mb-3 w-100" (click)="SubmitForm()">{{ Basic_Layout ? "Update" : "Submit" }}</button>
+        </div>
+    </div>
+
+    <!-- <ngb-toast header="Hello" [autohide]="true"> I am a simple static toast. </ngb-toast> -->
+</div>

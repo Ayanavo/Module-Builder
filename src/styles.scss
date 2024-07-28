@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.snow.css";
+/*!
+ * Bootstrap v4.3.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+@import "bootstrap/scss/bootstrap-utilities";
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+label.required-label:after {
+    content: " *";
+    color: red;
+}
+.required-field {
+    border: 2px solid red !important;
+}
+
+.ql-required {
+    .ql-snow {
+        border: 2px solid red !important;
+    }
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+//for dynamic button size
+.w-10 {
+    width: 10%;
+}
+.width60 {
+    width: 60px;
+}
+.width80 {
+    width: 80px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+.cursor-move {
+    cursor: move;
+}
+.cursor-wait {
+    cursor: wait;
+}
+.cursor-help {
+    cursor: help;
+}
+.cursor-text {
+    cursor: text;
+}
+
+.form-check-custom {
+    .form-check-input {
+        width: 40px;
+        height: 24px;
+    }
+}
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

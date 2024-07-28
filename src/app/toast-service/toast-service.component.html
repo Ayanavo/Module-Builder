@@ -1,0 +1,33 @@
+@for (toast of toastService.toasts; track toast) { @switch (toast.type) { @case ("success") {
+<ngb-toast class="bg-success text-light" [autohide]="true" [delay]="delaytime" aria-live="assertive" (hidden)="toastService.remove(toast)" (shown)="generateProgressiveNumber()">
+    <div class="d-flex justify-content-between">
+        <span>{{ toast.message }}</span>
+        <i-bs name="x-lg" class="cursor-pointer" (click)="toastService.remove(toast)"></i-bs>
+    </div>
+    <ngb-progressbar class="mb-0" type="success" [value]="progressValue" height=".5rem"></ngb-progressbar>
+</ngb-toast>
+} @case ("fail") {
+<ngb-toast class="bg-danger text-light" [autohide]="true" [delay]="delaytime" aria-live="assertive" (hidden)="toastService.remove(toast)" (shown)="generateProgressiveNumber()">
+    <div class="d-flex justify-content-between">
+        <span>{{ toast.message }}</span>
+        <i-bs name="x-lg" class="cursor-pointer" (click)="toastService.remove(toast)"></i-bs>
+    </div>
+    <ngb-progressbar class="mb-0" type="danger" [value]="progressValue" height=".5rem"></ngb-progressbar>
+</ngb-toast>
+} @case ("warning") {
+<ngb-toast class="bg-warning text-dark" [autohide]="true" [delay]="delaytime" aria-live="assertive" (hidden)="toastService.remove(toast)" (shown)="generateProgressiveNumber()">
+    <div class="d-flex justify-content-between">
+        <span>{{ toast.message }}</span>
+        <i-bs name="x-lg" class="cursor-pointer" (click)="toastService.remove(toast)"></i-bs>
+    </div>
+    <ngb-progressbar class="mb-0" type="warning" [value]="progressValue" height=".5rem"></ngb-progressbar>
+</ngb-toast>
+} @default {
+<ngb-toast class="text-dark" [autohide]="true" [delay]="delaytime" aria-live="assertive" (hidden)="toastService.remove(toast)" (shown)="generateProgressiveNumber()">
+    <div class="d-flex justify-content-between">
+        <span>{{ toast.message }}</span>
+        <i-bs name="x-lg" class="cursor-pointer" (click)="toastService.remove(toast)"></i-bs>
+    </div>
+    <ngb-progressbar class="mb-0" type="primary" [value]="progressValue" height=".5rem"></ngb-progressbar>
+</ngb-toast>
+} } }

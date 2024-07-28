@@ -1,0 +1,20 @@
+<div *ngIf="mode == 'edit' &&(ControlAccess?.['active'] === undefined) || (ControlAccess?.['active']) " class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{'required-label': ControlAccess['validators']?.['required'] ||  FieldControl.errors?.['required']}">{{ ControlAccess["label"] }}</label>
+
+    <div class="col-8">
+        <div class="input-group" [ngClass]="{'required-field':  FieldControl.touched && FieldControl.errors?.['required']}">
+            <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="top" title="Remember Me">
+                <input class="form-check-input mt-0" type="checkbox" [disabled]="!FieldControl.value?.id" [checked]="FieldControl.value?.id && activeVercelId == FieldControl.value.id" (change)="onCheckbox($event)" />
+            </div>
+            <select class="form-select" [formControlName]="ControlAccess['id']" [id]="ControlAccess['id']" [compareWith]="_compareFn">
+                <option [value]="null">Select</option>
+                <option *ngFor="let item of ControlAccess['options']" [ngValue]="item">{{ item["text"] }}</option>
+            </select>
+        </div>
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+    </div>
+    <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
+        ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
+    ></span>
+</div>
+<span *ngIf="mode == 'list'">{{ FieldControl.value }}</span>

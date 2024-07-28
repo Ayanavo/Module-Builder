@@ -1,0 +1,108 @@
+.log-body {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 13px 0px 0px 13px;
+    display: flex;
+    justify-content: center;
+}
+.form-body {
+    height: 470px;
+    padding: 20px;
+}
+
+.log-text {
+    display: flex;
+    justify-content: center;
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+.submitbtn {
+    margin-top: 36px;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    width: 100%;
+    height: 50px;
+    background-color: #171b24;
+    border-radius: 10px;
+    transition: background 0.8s;
+    color: #ffffff;
+    font-size: 12px;
+}
+.submitbtn:hover {
+    background: #171b24 radial-gradient(circle, transparent 1%, #171b24 1%) center/15000%;
+}
+
+.submitbtn:active {
+    background-color: #171b2454;
+    background-size: 100%;
+    transition: background 0s;
+}
+.divider-log {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000000;
+}
+
+.separator {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.separate-login-box {
+    display: flex;
+    justify-content: center;
+}
+.separate-line {
+    position: fixed;
+    margin-top: 38px;
+    width: 329px;
+}
+.separate-login {
+    display: inline-block;
+    vertical-align: middle;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #a1a1a1;
+    cursor: pointer;
+    border-radius: 13px;
+}
+.separate-login:hover {
+    display: inline-block;
+    vertical-align: middle;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #a1a1a1;
+    cursor: pointer;
+    border-radius: 13px;
+    background-color: #ececec;
+}
+
+.separate-login-box {
+    margin: 30px;
+    display: flex;
+    gap: 45px;
+    justify-content: center;
+}
+
+.icon-hidden {
+    padding: 10px;
+    cursor: pointer;
+}
+.active-link {
+    a {
+        color: #000;
+        text-decoration: none;
+
+        &:hover {
+            color: #ff0000;
+        }
+    }
+
+    display: flex;
+    justify-content: center;
+}

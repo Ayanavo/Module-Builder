@@ -1,0 +1,55 @@
+<div *ngIf="Layout_Schema" class="m-3">
+    <ul class="nav nav-pills flex-column flex-xl-row">
+        <li class="flex-fill text-xl-center nav-link" role="presentation" *ngFor="let tab of Layout_Schema.data.tabs; index as i">
+            <a [ngClass]="{ active: activeIndex == i }" class="nav-link" href="javascript:void(0)" (click)="activeIndex = i">{{ tab["label"] }}</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div [ngClass]="{ active: activeIndex == i }" class="tab-pane fade show" [id]="i" role="tabpanel" *ngFor="let body of Layout_Schema.data.tabs; index as i" [tabindex]="i">
+            <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                <div class="container-fluid">
+                    <div class="mb-3 row needs-validation">
+                        <div class="col" *ngFor="let col of body['columns']">
+                            <ng-container *ngFor="let item of col['fields']">
+                                <ng-container [ngSwitch]="item.type">
+                                    <div [class]="config.colWidthConfig[item['col-width']]">
+                                        <app-label *ngSwitchCase="'label'" [ControlAccess]="item" [mode]="mode"></app-label>
+                                        <app-text *ngSwitchCase="'text'" [ControlAccess]="item" [mode]="mode"></app-text>
+                                        <app-textarea *ngSwitchCase="'textarea'" [ControlAccess]="item" [mode]="mode"></app-textarea>
+                                        <app-list *ngSwitchCase="['list', 'multilist'].includes(item.type) && item.type" [ControlAccess]="item" [mode]="mode"></app-list>
+                                        <app-boolean *ngSwitchCase="'boolean'" [ControlAccess]="item" [mode]="mode"></app-boolean>
+                                        <app-phone *ngSwitchCase="'phone'" [ControlAccess]="item" [mode]="mode"></app-phone>
+                                        <app-datetimerange *ngSwitchCase="['date', 'datetime', 'time'].includes(item.type) && item.type" [ControlAccess]="item" [mode]="mode"></app-datetimerange>
+                                        <app-checkbox *ngSwitchCase="'checkbox'" [ControlAccess]="item" [mode]="mode"></app-checkbox>
+                                        <app-radio *ngSwitchCase="'radio'" [ControlAccess]="item" [mode]="mode"></app-radio>
+                                        <app-number *ngSwitchCase="'number'" [ControlAccess]="item" [mode]="mode"></app-number>
+                                        <app-editor *ngSwitchCase="'html'" [ControlAccess]="item" [mode]="mode"></app-editor>
+                                        <app-email *ngSwitchCase="'email'" [ControlAccess]="item" [mode]="mode"></app-email>
+                                        <app-vercel *ngSwitchCase="'vercel'" [ControlAccess]="item" [mode]="mode"></app-vercel>
+                                        <app-password *ngSwitchCase="'password'" [ControlAccess]="item" [mode]="mode"></app-password>
+                                        <app-rating *ngSwitchCase="'rating'" [ControlAccess]="item" [mode]="mode"></app-rating>
+                                        <app-formula *ngSwitchCase="'formula'" [ControlAccess]="item" [mode]="mode"></app-formula>
+                                        <app-currency *ngSwitchCase="'currency'" [ControlAccess]="item" [mode]="mode"></app-currency>
+                                        <app-link *ngSwitchCase="'link'" [ControlAccess]="item" [mode]="mode"></app-link>
+                                        <app-file *ngSwitchCase="'file'" [ControlAccess]="item" [mode]="mode"></app-file>
+                                        <app-audio *ngSwitchCase="'audio'" [ControlAccess]="item" [mode]="mode"></app-audio>
+                                        <app-tag *ngSwitchCase="'tag'" [ControlAccess]="item" [mode]="mode"></app-tag>
+                                        <app-progress *ngSwitchCase="'progress'" [ControlAccess]="item" [mode]="mode"></app-progress>
+                                    </div>
+                                    <app-button *ngSwitchCase="'button'" [ControlAccess]="item"></app-button>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="m-3 fixed-bottom d-flex align-items-start flex-column">
+                        <button class="btn btn-primary mb-3" [routerLink]="['/table-listing']"><i-bs name="dot" width="20" height="20"> </i-bs> Form table</button>
+                        <button class="btn btn-primary mb-3" [routerLink]="['/build-forms']"><i-bs name="dot" width="20" height="20"> </i-bs> Form Builder</button>
+                        <button class="btn btn-primary mb-3" [routerLink]="['/store']"><i-bs name="dot" width="20" height="20"> </i-bs> Store Demo</button>
+                        <button type="submit" class="btn btn-primary mb-3 w-100">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

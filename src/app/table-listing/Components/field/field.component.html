@@ -1,0 +1,24 @@
+<ng-container [ngSwitch]="field.type">
+    <app-label [formGroup]="FormGroup" *ngSwitchCase="'label'" [ControlAccess]="field" [mode]="mode"></app-label>
+    <app-text [formGroup]="FormGroup" *ngSwitchCase="'text'" [ControlAccess]="field" [mode]="mode"></app-text>
+    <app-textarea [formGroup]="FormGroup" *ngSwitchCase="'textarea'" [ControlAccess]="field" [mode]="mode"></app-textarea>
+    <app-list [formGroup]="FormGroup" *ngSwitchCase="['list', 'multilist'].includes(field.type) && field.type" [ControlAccess]="field" [mode]="mode"></app-list>
+    <app-boolean [formGroup]="FormGroup" *ngSwitchCase="'boolean'" [ControlAccess]="field" [mode]="mode"></app-boolean>
+    <app-phone [formGroup]="FormGroup" *ngSwitchCase="'phone'" [ControlAccess]="field" [mode]="mode"></app-phone>
+    <app-datetimerange [formGroup]="FormGroup" *ngSwitchCase="['date', 'datetime', 'time'].includes(field.type) && field.type" [ControlAccess]="field" [mode]="mode"></app-datetimerange>
+    <app-checkbox [formGroup]="FormGroup" *ngSwitchCase="'checkbox'" [ControlAccess]="field" [mode]="mode"></app-checkbox>
+    <app-radio [formGroup]="FormGroup" *ngSwitchCase="'radio'" [ControlAccess]="field" [mode]="mode"></app-radio>
+    <app-number [formGroup]="FormGroup" *ngSwitchCase="'number'" [ControlAccess]="field" [mode]="mode"></app-number>
+    <app-editor [formGroup]="FormGroup" *ngSwitchCase="'html'" [ControlAccess]="field" [mode]="mode"></app-editor>
+    <app-email [formGroup]="FormGroup" *ngSwitchCase="'email'" [ControlAccess]="field" [mode]="mode"></app-email>
+    <app-vercel [formGroup]="FormGroup" *ngSwitchCase="'vercel'" [ControlAccess]="field" [mode]="mode"></app-vercel>
+    <app-password [formGroup]="FormGroup" *ngSwitchCase="'password'" [ControlAccess]="field" [mode]="mode"></app-password>
+    <app-rating [formGroup]="FormGroup" *ngSwitchCase="'rating'" [ControlAccess]="field" [mode]="mode"></app-rating>
+    <app-formula [formGroup]="FormGroup" *ngSwitchCase="'formula'" [ControlAccess]="field" [mode]="mode"></app-formula>
+    <app-currency [formGroup]="FormGroup" *ngSwitchCase="'currency'" [ControlAccess]="field" [mode]="mode"></app-currency>
+    <app-link [formGroup]="FormGroup" *ngSwitchCase="'link'" [ControlAccess]="field" [mode]="mode"></app-link>
+    <app-file [formGroup]="FormGroup" *ngSwitchCase="'file'" [ControlAccess]="field" [mode]="mode"></app-file>
+    <app-audio [formGroup]="FormGroup" *ngSwitchCase="'audio'" [ControlAccess]="field" [mode]="mode"></app-audio>
+    <app-tag [formGroup]="FormGroup" *ngSwitchCase="'tag'" [ControlAccess]="field" [mode]="mode"></app-tag>
+    <app-progress [formGroup]="FormGroup" *ngSwitchCase="'progress'" [ControlAccess]="field" [mode]="mode"></app-progress>
+</ng-container>

@@ -1,0 +1,18 @@
+.table {
+    border: 2px solid #dee2e6;
+    border-radius: 0.375rem;
+    border-collapse: collapse;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+.action-button {
+    display: none;
+}
+tr:hover .action-button {
+    display: inline-block;
+}
+
+.toogle-icon::after {
+    display: none;
+}

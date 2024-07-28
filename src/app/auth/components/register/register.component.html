@@ -1,0 +1,61 @@
+<section class="ftco-section">
+    <div class="log-body">
+        <div class="form-body">
+            <h1 class="text-header log-text">Sign Up</h1>
+            <form class="form-group" [formGroup]="SigninForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3 row needs-validation">
+                    <label class="form-label" [ngClass]="{ 'required-label': true }"> Username </label>
+                    <input type="text" formControlName="username" [ngClass]="{ 'form-control': true, 'required-field': FieldControlUser.touched && FieldControlUser.errors?.['required'] }" />
+                    <error-msg [control]="'username'"></error-msg>
+                </div>
+                <div class="mb-3 row needs-validation">
+                    <label class="form-label" [ngClass]="{ 'required-label': true }"> Email </label>
+                    <input type="email" formControlName="email" [ngClass]="{ 'form-control': true, 'required-field': FieldControlEmail.touched && FieldControlEmail.errors?.['required'] }" />
+                    <error-msg [control]="'email'"></error-msg>
+
+                    <!-- <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
+              ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
+          ></span> -->
+                </div>
+
+                <div class="mb-3 row needs-validation">
+                    <label class="form-label" [ngClass]="{ 'required-label': true }"> Password </label>
+                    <div class="d-flex justify-content-between align-items-center p-0">
+                        <input
+                            [type]="toggle ? 'text' : 'password'"
+                            formControlName="password"
+                            placeholder="8+ characters"
+                            [ngClass]="{ 'form-control': true, 'required-field': FieldControlPass.touched && ( FieldControlPass.errors?.['required'] || SigninForm.get('cnfpassword').errors?.['patternMatchError'])}" />
+
+                        <span class="icon-hidden" (click)="$event.stopPropagation(); toggleVisual()">
+                            <i-bs [name]="toggle ? 'eye' : 'eye-slash'" width="15" height="15"> </i-bs>
+                        </span>
+                    </div>
+                    <error-msg [control]="'password'"></error-msg>
+                </div>
+
+                <div class="mb-3 row needs-validation">
+                    <label class="form-label" [ngClass]="{ 'required-label': true }"> Confirm Password </label>
+                    <div class="d-flex justify-content-between align-items-center p-0">
+                        <input
+                            [type]="toggle ? 'text' : 'password'"
+                            formControlName="cnfpassword"
+                            placeholder="8+ characters"
+                            [ngClass]="{ 'form-control': true, 'required-field': FieldControlPass.touched  && (FieldControlPass.errors?.['required'] || SigninForm.get('cnfpassword').errors?.['patternMatchError'])}" />
+
+                        <span class="icon-hidden" (click)="$event.stopPropagation(); toggleVisual()">
+                            <i-bs [name]="toggle ? 'eye' : 'eye-slash'" width="15" height="15"> </i-bs>
+                        </span>
+                    </div>
+                    <error-msg [control]="'password'"></error-msg>
+                </div>
+
+                <div class="mb-3 row needs-validation">
+                    <button class="text-header submitbtn" type="submit">Sign Up</button>
+                </div>
+            </form>
+
+            <div class="text-header active-link">Already have an account? <a href="javaScript:void(0)" [routerLink]="['/auth/login']"> Log in</a></div>
+        </div>
+    </div>
+</section>

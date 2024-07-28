@@ -1,0 +1,46 @@
+<div class="m-3">
+    <div class="m-4 d-flex align-items-end flex-column">
+        <button class="btn btn-primary mb-3" [routerLink]="['/forms']">Add<i-bs name="plus" width="15" height="15"></i-bs></button>
+    </div>
+    <table class="align-middle table table-hover">
+        <thead>
+            <tr>
+                <th scope="col"><input class="form-check-input" type="checkbox" /></th>
+                @for (label of CommonHeader; track $index) {
+                <th scope="col">{{ label }}</th>
+                }
+                <th scope="col" style="width: 40px"></th>
+            </tr>
+        </thead>
+
+        <tbody class="table-group-divider">
+            @for (obj of CommonListing; track obj;let i = $index; let count = $count){
+            <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" [id]="i" /></th>
+
+                @for ( field of CommonSchema; track field){
+                <td><app-field [field]="field" [data]="obj"></app-field></td>
+                }
+                <td>
+                    <div ngbDropdown container="body" #myDrop="ngbDropdown">
+                        <div class="toogle-icon" ngbDropdownToggle></div>
+                        <i-bs class="action-button cursor-pointer" name="three-dots" (click)="$event.stopPropagation(); myDrop.open()"></i-bs>
+                        <div ngbDropdownMenu><ng-container *ngTemplateOutlet="menu"></ng-container></div>
+                    </div>
+                </td>
+            </tr>
+            }@empty {
+            <tr>
+                <td colspan="80000" class="text-center">No data available</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<ng-template #menu>
+    <button ngbDropdownItem>Edit</button>
+    <button ngbDropdownItem>Copy</button>
+    <div class="dropdown-divider"></div>
+    <button ngbDropdownItem>Delete</button></ng-template
+>

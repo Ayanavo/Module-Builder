@@ -1,0 +1,235 @@
+{
+    "tabs": [
+        {
+            "seq": 0,
+            "label": "General",
+            "fields": [
+                {
+                    "id": "name",
+                    "type": "text",
+                    "label": "Text",
+                    "input": true,
+                    "default": "Name",
+                    "validators": { "required": true, "maxLength": 6 },
+                    "col-width": "third",
+                    "seq": 0
+                },
+                {
+                    "id": "drop1",
+                    "type": "list",
+                    "label": "Progress",
+                    "input": true,
+                    "default": "",
+                    "validators": null,
+                    "options": [
+                        "Not Started",
+                        "In Progress",
+                        "Completed",
+                        "Re-Opened"
+                    ],
+                    "col-width": "third",
+                    "seq": 1
+                },
+                {
+                    "id": "detail2",
+                    "type": "textarea",
+                    "label": "Text-Area2",
+                    "input": true,
+                    "default": "",
+                    "validators": null,
+                    "col-width": "third",
+                    "seq": 2
+                },
+                {
+                    "id": "detail1",
+                    "type": "textarea",
+                    "label": "Text-Area1",
+                    "input": true,
+                    "default": "",
+                    "validators": { "required": true },
+                    "col-width": "third",
+                    "seq": 3
+                },
+                {
+                    "id": "drop2",
+                    "type": "list",
+                    "label": "Variables",
+                    "input": false,
+                    "default": "Wayne",
+                    "validators": null,
+                    "options": ["Hall", "Palmer", "Wayne", "Jordon"],
+                    "col-width": "third",
+                    "seq": 3
+                },
+                {
+                    "id": "status",
+                    "type": "boolean",
+                    "label": "Status",
+                    "input": true,
+                    "default": true,
+                    "validators": null,
+                    "col-width": "third",
+                    "seq": 4,
+                    "dependencies": [
+                        {
+                            "field_id": "drop2",
+                            "field_state": true,
+                            "field_action": "demanded"
+                        }
+                    ]
+                },
+
+                {
+                    "id": "date",
+                    "type": "date",
+                    "label": "Active date",
+                    "input": true,
+                    "default": null,
+                    "validators": null,
+                    "col-width": "third",
+                    "seq": 6
+                },
+                {
+                    "id": "button",
+                    "type": "button",
+                    "label": "Check",
+                    "align": "center",
+                    "width": "quarter",
+                    "seq": 10
+                },
+
+                {
+                    "id": "check",
+                    "type": "checkbox",
+                    "label": "Progress",
+                    "input": true,
+                    "default": ["New"],
+                    "validators": { "requiredcheckbox": true },
+                    "options": ["New", "In Progress", "Pending", "Completed"],
+                    "col-width": "third",
+                    "seq": 7
+                },
+                {
+                    "id": "radio",
+                    "type": "radio",
+                    "label": "Gender",
+                    "input": true,
+                    "default": "",
+                    "validators": null,
+                    "options": ["Male", "Female", "Others"],
+                    "col-width": "third",
+                    "seq": 8
+                },
+                {
+                    "id": "link",
+                    "type": "link",
+                    "label": "Link",
+                    "input": true,
+                    "default": "",
+                    "validators": null,
+                    "col-width": "third",
+                    "seq": 8
+                },
+                {
+                    "id": "phone",
+                    "type": "phone",
+                    "label": "Phone",
+                    "input": true,
+                    "default": "",
+                    "validators": { "required": true, "format": true },
+                    "col-width": "half",
+                    "seq": 5
+                },
+                {
+                    "id": "acc_number",
+                    "type": "number",
+                    "label": "Account Number",
+                    "length": 12,
+                    "input": true,
+                    "default": null,
+                    "validators": null,
+                    "col-width": "half",
+                    "seq": 9
+                }
+            ]
+        },
+        {
+            "seq": 1,
+            "label": "Address",
+            "fields": [
+                {
+                    "type": "label",
+                    "label": "Account",
+                    "col-width": "full",
+                    "help": "Account Information",
+                    "seq": 0
+                },
+                {
+                    "id": "ads1",
+                    "type": "text",
+                    "label": "First Address",
+                    "input": true,
+                    "default": null,
+                    "validators": { "maxLength": 6 },
+                    "col-width": "full",
+                    "seq": 1
+                },
+                {
+                    "id": "ads12",
+                    "type": "text",
+                    "label": "Second Address",
+                    "input": true,
+                    "default": null,
+                    "validators": { "maxLength": 6 },
+                    "col-width": "full",
+                    "seq": 2
+                },
+                {
+                    "id": "city",
+                    "type": "multilist",
+                    "label": "City",
+                    "input": true,
+                    "default": null,
+                    "validators": null,
+                    "options": [
+                        "Kolkata",
+                        "New Delhi",
+                        "Mumbai",
+                        "Chennai",
+                        "Bangalore",
+                        "Ahmedabad",
+                        "Hydrabad"
+                    ],
+                    "col-width": "half",
+                    "seq": 3
+                }
+            ]
+        },
+        {
+            "seq": 2,
+            "label": "Comments",
+            "fields": [
+                {
+                    "id": "comment",
+                    "type": "html",
+                    "label": "Comments",
+                    "input": true,
+                    "default": "",
+                    "validators": null,
+                    "col-width": "full",
+                    "seq": 0
+                },
+                {
+                    "id": "email",
+                    "type": "email",
+                    "label": "Email",
+                    "input": true,
+                    "default": "",
+                    "validators": null,
+                    "col-width": "full",
+                    "seq": 0
+                }
+            ]
+        }
+    ]
+}

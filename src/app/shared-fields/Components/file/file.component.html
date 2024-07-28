@@ -1,0 +1,31 @@
+<div class="mb-3 row">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{ 'required-label': ControlAccess['validators']?.['required'] }">{{ ControlAccess["label"] }}</label>
+    <div class="col-8">
+        <input class="d-none" type="file" #fileUpload multiple (change)="fileBrowserHandler($event)" />
+
+        <div role="button" (click)="fileUpload.click()" (fileUpload)="convertAndSaveFile($event)" [ngClass]="{'dropzone': true, 'required-field': FieldControl.touched && FieldControl.errors?.['required']}">
+            Drop your files or Click Here
+        </div>
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+
+        <table *ngIf="FileList.length" class="table table-hover">
+            <thead>
+                <tr class="d-flex align-item-center">
+                    <th scope="col" *ngFor="let head of ['*', 'Name', 'Type', 'Size']">{{ head }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="d-flex align-item-center" *ngFor="let file of FileList; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td class="text-truncate w-25">{{ file["name"] }}</td>
+                    <td><i-bs [name]="fileType[file['type'].split('/')[1]]" class="text-danger" width="15" height="15"> </i-bs></td>
+                    <td>{{ file["size"] | sizeConverter }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
+        ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
+    ></span>
+</div>

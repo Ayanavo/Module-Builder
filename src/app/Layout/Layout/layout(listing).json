@@ -1,0 +1,66 @@
+{
+    "tabs": [
+        {
+            "seq": 0,
+            "label": "Tab 1",
+            "columns": [
+                {
+                    "seq": 0,
+                    "fields": [
+                        {
+                            "id": "text",
+                            "type": "text",
+                            "label": "Text",
+                            "input": true,
+                            "default": null,
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        },
+                        {
+                            "id": "tag",
+                            "type": "tag",
+                            "label": "Tag",
+                            "input": true,
+                            "default": ["Not Started", "Completed"],
+                            "validators": { "required": true },
+                            "options": [
+                                "Not Started",
+                                "In Progress",
+                                "Completed",
+                                "Re-Opened"
+                            ],
+                            "col-width": "full",
+                            "seq": 0
+                        }
+                    ]
+                },
+                {
+                    "seq": 1,
+                    "fields": [
+                        {
+                            "id": "comment",
+                            "type": "html",
+                            "label": "Comments",
+                            "input": true,
+                            "default": "",
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        },
+                        {
+                            "id": "email",
+                            "type": "email",
+                            "label": "Email",
+                            "input": true,
+                            "default": [],
+                            "validators": null,
+                            "col-width": "full",
+                            "seq": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
