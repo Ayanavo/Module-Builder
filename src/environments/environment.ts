@@ -7,6 +7,7 @@ export const environment = {
         authDomain: "my-project-82219-c98e3.firebaseapp.com",
         messagingSenderId: "936361997256",
         measurementId: "G-1QMB35MTJR",
+        recaptchaSiteKey: "6LeiDhoqAAAAAKsbuvQta4Y7b1JBvlntRqZNE0y3",
     },
     production: false,
 };

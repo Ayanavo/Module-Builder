@@ -16,11 +16,7 @@
                 <div class="mb-3 row needs-validation">
                     <label class="form-label" [ngClass]="{ 'required-label': true }"> Password </label>
                     <div class="d-flex justify-content-between align-items-center p-0">
-                        <input
-                            [type]="toggle ? 'text' : 'password'"
-                            formControlName="password"
-                            placeholder="8+ characters"
-                            [ngClass]="{ 'form-control': true, 'required-field': FieldControlPass.touched && FieldControlPass.errors?.['required'] }" />
+                        <input [type]="toggle ? 'text' : 'password'" formControlName="password" [ngClass]="{ 'form-control': true, 'required-field': FieldControlPass.touched && FieldControlPass.errors?.['required'] }" />
 
                         <span class="icon-hidden" (click)="$event.stopPropagation(); toggleVisual()">
                             <i-bs [name]="toggle ? 'eye' : 'eye-slash'" width="15" height="15"> </i-bs>
@@ -42,14 +38,14 @@
                         <label class="text-header form-check-label" for="flexCheckDefault"> Remember me! </label>
                     </div>
                 </div>
-                Are you human?
 
+                <button type="button" (click)="executeImportantAction()">Are you human?</button>
                 <div class="mb-3 row needs-validation">
                     <button class="text-header submitbtn" type="submit">Log In</button>
                 </div>
                 <div class="mb-3 row needs-validation">
-                  <button class="text-header guestbtn" type="button" (click)="authAnonymous()">Log In as Guest</button>
-              </div>
+                    <button class="text-header guestbtn" type="button" (click)="authAnonymous()">Log In as Guest</button>
+                </div>
             </form>
             <div class="separator">
                 <div class="my-4 separate-line"></div>

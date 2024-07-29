@@ -2,6 +2,12 @@ import { Component, inject, OnInit, TemplateRef, ViewChild } from "@angular/core
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { StorageService } from "src/app/Services/storage.service";
 import { TableListingService } from "../../table-listing.service";
+import { AuthService } from "src/app/auth/auth.service";
+import { debounceTime, switchMap } from "rxjs";
+import { UserCredential } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
+import { Router } from "@angular/router";
+import { ToastService } from "src/app/toast-service/toast-container.service";
 
 @Component({
     selector: "app-listing",
@@ -17,7 +23,9 @@ export class ListingComponent implements OnInit {
     service = inject(TableListingService);
     store = inject(StorageService);
     modalService = inject(NgbModal);
-
+    authService = inject(AuthService);
+    notifyservice = inject(ToastService);
+    router = inject(Router);
     ngOnInit(): void {
         this.store.get("listing").then((res) => {
             this.CommonListing = res;
@@ -42,6 +50,22 @@ export class ListingComponent implements OnInit {
     // }
 
     logout() {
-        this.service.logout();
+        this.authService
+            .AuthLogout()
+            .pipe(
+                debounceTime(300),
+                switchMap(async (x) => x)
+            )
+            .subscribe({
+                next: () => {
+                    localStorage.clear();
+                    this.notifyservice.showToasterMsg({ message: "Logged out successfully", type: "success" });
+                    this.router.navigateByUrl("/");
+                },
+                error: (err: FirebaseError) => {
+                    this.notifyservice.showToasterMsg({ message: err.code + "Logged in failed", type: "fail" });
+                    console.log(err.message);
+                },
+            });
     }
 }

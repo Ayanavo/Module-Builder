@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Auth, createUserWithEmailAndPassword, FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, signInAnonymously, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, UserCredential } from "@angular/fire/auth";
 import { defer, from, Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 
 type LoginConfig = {
     email: string;
@@ -43,10 +44,9 @@ export class AuthService {
         }
     }
 
-    // setRecaptchaAuth(): Observable<void>{
-    //     const appCheck = new AppCheck(this.auth, { provider: new ReCaptchaV3Provider("6LeiDhoqAAAAAKsbuvQta4Y7b1JBvlntRqZNE0y3") });
-    //     return this.appCheck.checkAction("recaptcha-v3", appCheck);
-    // }
+    setRecaptchaAuth() {
+        return defer(() => (window as any).grecaptcha.execute(environment.firebase.recaptchaSiteKey, { action: "submit" }));
+    }
 
     GuestLogin() {
         return defer(() => signInAnonymously(this.auth));
@@ -54,5 +54,9 @@ export class AuthService {
 
     AuthLogin(pararms) {
         return defer(() => signInWithPopup(this.auth, pararms));
+    }
+
+    AuthLogout(): Observable<UserCredential | any> {
+        return defer(() => signOut(this.auth));
     }
 }

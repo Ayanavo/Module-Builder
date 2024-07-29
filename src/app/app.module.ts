@@ -10,7 +10,7 @@ const FirebaseConfig = {
 
 import { NgModule, isDevMode } from "@angular/core";
 import { ScreenTrackingService, UserTrackingService, getAnalytics, provideAnalytics } from "@angular/fire/analytics";
-import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
+import { getApp, initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getAuth, provideAuth } from "@angular/fire/auth";
 import { getDatabase, provideDatabase } from "@angular/fire/database";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
@@ -32,6 +32,8 @@ import { ToastServiceComponent } from "./toast-service/toast-service.component";
 import { NgTemplateOutlet } from "@angular/common";
 import { CommonService } from "./Services/common.service";
 import { HttpClientModule } from "@angular/common/http";
+import { initializeAppCheck, provideAppCheck, ReCaptchaV3Provider } from "@angular/fire/app-check";
+import { environment } from "src/environments/environment";
 
 // import { reducers, metaReducers } from "./store/reducers/counter.reducer";
 
@@ -71,6 +73,7 @@ import { HttpClientModule } from "@angular/common/http";
         UserTrackingService,
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()),
+        provideAppCheck(() => initializeAppCheck(getApp(), { provider: new ReCaptchaV3Provider(environment.firebase.recaptchaSiteKey), isTokenAutoRefreshEnabled: true })),
     ],
 })
 export class AppModule {}
