@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NgxBootstrapIconsModule, allIcons } from "ngx-bootstrap-icons";
-import { environment } from "src/environments/environment";
 import { SharedFieldsModule } from "../shared-fields/shared-fields.module";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { AuthService } from "./auth.service";

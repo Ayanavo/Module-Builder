@@ -44,7 +44,7 @@ export class AuthComponent implements OnDestroy {
                         this.router.navigateByUrl("/table-listing");
                     },
                     error: (err: FirebaseError) => {
-                        this.notifyservice.showToasterMsg({ message: err.code + " Logged in failed", type: "fail" });
+                        this.notifyservice.showToasterMsg({ message: err.code + " " + err.message, type: "fail" });
                     },
                 });
         }
@@ -64,7 +64,7 @@ export class AuthComponent implements OnDestroy {
                     this.router.navigateByUrl("/table-listing");
                 },
                 error: (err: FirebaseError) => {
-                    this.notifyservice.showToasterMsg({ message: err.code + "Logged in failed", type: "fail" });
+                    this.notifyservice.showToasterMsg({ message: err.code + " " + err.message, type: "fail" });
                     console.log(err.message);
                 },
             });
@@ -84,19 +84,23 @@ export class AuthComponent implements OnDestroy {
                     this.router.navigateByUrl("/table-listing");
                 },
                 error: (err: FirebaseError) => {
-                    this.notifyservice.showToasterMsg({ message: err.code + "Logged in failed", type: "fail" });
+                    this.notifyservice.showToasterMsg({ message: err.code + " " + err.message, type: "fail" });
                     console.log(err.message);
                 },
             });
     }
 
-    executeImportantAction(): void {
-        this.service.setRecaptchaAuth().subscribe({
-            next(token) {
-                console.log(token);
-            },
-        });
-    }
+    // executeImportantAction(): void {
+    //     this.service.getAppChecktoken().subscribe({
+    //         next(token: string) {
+    //             console.log(token, "call");
+    //         },
+    //         error: (err: FirebaseError) => {
+    //             this.notifyservice.showToasterMsg({ message: err.message + "Logged in failed", type: "fail" });
+    //             console.log(err.message);
+    //         },
+    //     });
+    // }
 
     get FieldControlPass() {
         return this.loginform.get("password") as FormControl;

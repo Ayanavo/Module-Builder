@@ -1,8 +1,20 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { Auth, createUserWithEmailAndPassword, FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, signInAnonymously, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, UserCredential } from "@angular/fire/auth";
+import {
+    Auth,
+    AuthProvider,
+    createUserWithEmailAndPassword,
+    FacebookAuthProvider,
+    GithubAuthProvider,
+    GoogleAuthProvider,
+    signInAnonymously,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    signOut,
+    updateProfile,
+    UserCredential,
+} from "@angular/fire/auth";
 import { defer, from, Observable } from "rxjs";
-import { environment } from "src/environments/environment";
 
 type LoginConfig = {
     email: string;
@@ -23,7 +35,6 @@ export class AuthService {
     auth = inject(Auth);
 
     LogIn(params: LoginConfig): Observable<UserCredential | any> {
-        // return from(signInWithEmailAndPassword(this.auth, params.email, params.password).then((res) => {}));
         return defer(() => signInWithEmailAndPassword(this.auth, params.email, params.password));
     }
 
@@ -31,7 +42,7 @@ export class AuthService {
         return from(createUserWithEmailAndPassword(this.auth, params.email, params.password).then((res) => updateProfile(res.user, { displayName: params.username })));
     }
 
-    setAuthProvider(providertype): Observable<UserCredential | any> {
+    setAuthProvider(providertype: string): Observable<UserCredential | any> {
         switch (providertype) {
             case "google":
                 return this.AuthLogin(new GoogleAuthProvider());
@@ -44,15 +55,11 @@ export class AuthService {
         }
     }
 
-    setRecaptchaAuth() {
-        return defer(() => (window as any).grecaptcha.execute(environment.firebase.recaptchaSiteKey, { action: "submit" }));
-    }
-
     GuestLogin() {
         return defer(() => signInAnonymously(this.auth));
     }
 
-    AuthLogin(pararms) {
+    AuthLogin(pararms: AuthProvider) {
         return defer(() => signInWithPopup(this.auth, pararms));
     }
 

@@ -1,16 +1,9 @@
-const FirebaseConfig = {
-    projectId: "my-project-82219-c98e3",
-    appId: "1:936361997256:web:149ca30bcbef7254f246fd",
-    storageBucket: "my-project-82219-c98e3.appspot.com",
-    apiKey: "AIzaSyA2rU3ln-0P6Z_i3qnB5dS021MTgvqrZe0",
-    authDomain: "my-project-82219-c98e3.firebaseapp.com",
-    messagingSenderId: "936361997256",
-    measurementId: "G-1QMB35MTJR",
-};
-
+import { NgTemplateOutlet } from "@angular/common";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { NgModule, isDevMode } from "@angular/core";
 import { ScreenTrackingService, UserTrackingService, getAnalytics, provideAnalytics } from "@angular/fire/analytics";
-import { getApp, initializeApp, provideFirebaseApp } from "@angular/fire/app";
+import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
+import { ReCaptchaV3Provider, initializeAppCheck, provideAppCheck } from "@angular/fire/app-check";
 import { getAuth, provideAuth } from "@angular/fire/auth";
 import { getDatabase, provideDatabase } from "@angular/fire/database";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
@@ -22,18 +15,16 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { StoreModule } from "@ngrx/store";
 import { NgxBootstrapIconsModule, allIcons } from "ngx-bootstrap-icons";
 import { ToastService } from "src/app/toast-service/toast-container.service";
+import { environment } from "src/environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { authInterceptor } from "./auth.interceptor";
 import { MainLayoutComponent } from "./main-layout/main-layout.component";
 import { NavbarComponent } from "./navbar/navbar.component";
+import { CommonService } from "./Services/common.service";
 import { StorageService } from "./Services/storage.service";
 import { counterReducer } from "./store/reducers/counter.reducer";
 import { ToastServiceComponent } from "./toast-service/toast-service.component";
-import { NgTemplateOutlet } from "@angular/common";
-import { CommonService } from "./Services/common.service";
-import { HttpClientModule } from "@angular/common/http";
-import { initializeAppCheck, provideAppCheck, ReCaptchaV3Provider } from "@angular/fire/app-check";
-import { environment } from "src/environments/environment";
 
 // import { reducers, metaReducers } from "./store/reducers/counter.reducer";
 
@@ -66,14 +57,19 @@ import { environment } from "src/environments/environment";
         CommonService,
         StorageService,
         ToastService,
-        provideFirebaseApp(() => initializeApp(FirebaseConfig)),
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideAnalytics(() => getAnalytics()),
         ScreenTrackingService,
         UserTrackingService,
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()),
-        provideAppCheck(() => initializeAppCheck(getApp(), { provider: new ReCaptchaV3Provider(environment.firebase.recaptchaSiteKey), isTokenAutoRefreshEnabled: true })),
+        provideAppCheck(() => initializeAppCheck(undefined, { provider: new ReCaptchaV3Provider(environment.firebase.recaptchaSiteKey), isTokenAutoRefreshEnabled: true })),
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: authInterceptor,
+            multi: true,
+        },
     ],
 })
 export class AppModule {}

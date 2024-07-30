@@ -17,8 +17,6 @@ export class SvgIconComponent {
         private sanitizer: DomSanitizer
     ) {}
 
-    ngOnInit(): void {}
-
     ngOnChanges(): void {
         if (!this.name) {
             this.svgIcon = "";

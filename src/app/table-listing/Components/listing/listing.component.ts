@@ -63,8 +63,8 @@ export class ListingComponent implements OnInit {
                     this.router.navigateByUrl("/");
                 },
                 error: (err: FirebaseError) => {
-                    this.notifyservice.showToasterMsg({ message: err.code + "Logged in failed", type: "fail" });
-                    console.log(err.message);
+                    this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });
+                    console.error(err.message);
                 },
             });
     }
