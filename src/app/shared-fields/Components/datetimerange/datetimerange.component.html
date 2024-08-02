@@ -1,9 +1,9 @@
-<div class="mb-3 row" [formGroup]="FormGroup">
+<div *ngIf="(mode == 'edit' && ControlAccess?.['active'] === undefined) || ControlAccess?.['active']" class="mb-3 row" [formGroup]="FormGroup">
     <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{ 'required-label': ControlAccess['validators']?.['required'] }">{{ ControlAccess["label"] }}</label>
     <div class="col-8">
         <div class="input-group">
             <input
-                [ngClass]="{'form-control': true, 'required-field': FieldControl.touched && FieldControl.errors?.['required']}"
+                [ngClass]="{ 'form-control': true, 'required-field': FieldControl.touched && FieldControl.errors?.['required'] }"
                 [placeholder]="dateformatter"
                 [contentTemplate]="c"
                 [formControlName]="ControlAccess['id']"
@@ -30,8 +30,10 @@
             <ngb-datepicker-month class="border rounded" [month]="month"></ngb-datepicker-month>
         </div>
     </div>
-
-    <div class="custom-time-grid" *ngIf="ControlAccess['type'] != 'date'">
+    <!-- do it later with a new formcontrol -->
+    <!-- <div class="custom-time-grid" *ngIf="ControlAccess['type'] != 'date'">
         <ngb-timepicker #tp name="timepicker" [formControlName]="ControlAccess['id']" [meridian]="true" />
-    </div>
+    </div> -->
 </ng-template>
+
+<span *ngIf="mode == 'list'">{{ displayDateTimeRange }}</span>

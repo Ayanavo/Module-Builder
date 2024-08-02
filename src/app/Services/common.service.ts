@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: "root",
@@ -17,12 +18,14 @@ export class CommonService {
     }
 
     updateFormSchema(config) {
-        console.log(config);
-
         return this.http.patch(this.firebaseUrl + "/schema.json", config);
     }
 
     saveDataSource(dataObj) {
         return this.http.post(this.firebaseUrl + "/listing.json", dataObj);
+    }
+
+    getDataSource(): Observable<unknown> {
+        return this.http.get(this.firebaseUrl + "/listing.json");
     }
 }

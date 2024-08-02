@@ -3,11 +3,12 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { StorageService } from "src/app/Services/storage.service";
 import { TableListingService } from "../../table-listing.service";
 import { AuthService } from "src/app/auth/auth.service";
-import { debounceTime, switchMap } from "rxjs";
+import { debounceTime, forkJoin, switchMap } from "rxjs";
 import { UserCredential } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { Router } from "@angular/router";
 import { ToastService } from "src/app/toast-service/toast-container.service";
+import { CommonService } from "src/app/Services/common.service";
 
 @Component({
     selector: "app-listing",
@@ -20,26 +21,45 @@ export class ListingComponent implements OnInit {
     CommonSchema: Array<any> = [];
     @ViewChild("content") content!: TemplateRef<any>;
     item: any;
-    service = inject(TableListingService);
+    service = inject(CommonService);
     store = inject(StorageService);
     modalService = inject(NgbModal);
     authService = inject(AuthService);
     notifyservice = inject(ToastService);
     router = inject(Router);
     ngOnInit(): void {
-        this.store.get("listing").then((res) => {
-            this.CommonListing = res;
-            console.log(this.CommonListing);
-        });
-        this.store.get("layout_schema").then((res) => {
-            res &&
-                res.tabs.forEach((col, i) =>
-                    res.tabs[i].columns.forEach((fl) =>
+        // this.store.get("listing").then((res) => {
+        //     this.CommonListing = res;
+        //     console.log(this.CommonListing);
+        // });
+        this.initializeTable();
+        // this.store.get("layout_schema").then((res) => {
+        //     res &&
+        //         res.tabs.forEach((col, i) =>
+        //             res.tabs[i].columns.forEach((fl) =>
+        //                 fl.fields.forEach((el) => {
+        //                     this.CommonSchema.push(el), this.CommonHeader.push(el.label);
+        //                 })
+        //             )
+        //         );
+        // });
+    }
+    initializeTable() {
+        forkJoin([this.service.getDataSource(), this.service.getFormSchema()]).subscribe({
+            next: (res) => {
+                this.CommonListing = Object.values(res[0]);
+                let response = Object.values(res[1])[0];
+                response["tabs"].forEach((col, i) =>
+                    response["tabs"][i].columns.forEach((fl) =>
                         fl.fields.forEach((el) => {
                             this.CommonSchema.push(el), this.CommonHeader.push(el.label);
                         })
                     )
                 );
+            },
+            error: (err) => {
+                console.error(err);
+            },
         });
     }
 

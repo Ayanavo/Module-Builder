@@ -6,8 +6,6 @@ import { environment } from "src/environments/environment";
 @Injectable()
 export class authInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-        console.log(req);
-
         return this.getAppChecktoken().pipe(
             take(1),
             switchMap((token: string) => {

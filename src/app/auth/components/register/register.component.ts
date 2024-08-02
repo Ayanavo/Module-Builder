@@ -5,6 +5,7 @@ import { FirebaseError } from "firebase/app";
 import { Subscription } from "rxjs";
 import { AuthService } from "../../auth.service";
 import { CustomValidators } from "src/app/Custom-validators/components/custom-validators";
+import { ToastService } from "src/app/toast-service/toast-container.service";
 
 @Component({
     selector: "app-register",
@@ -14,6 +15,7 @@ import { CustomValidators } from "src/app/Custom-validators/components/custom-va
 export class RegisterComponent implements OnDestroy {
     router = inject(Router);
     service = inject(AuthService);
+    notifyservice = inject(ToastService);
     subscription: Subscription;
 
     toggle: boolean = false;
@@ -37,9 +39,11 @@ export class RegisterComponent implements OnDestroy {
         if (this.SigninForm.valid) {
             this.subscription = this.service.RegisterUser(this.SigninForm.value).subscribe({
                 next: () => {
+                    this.notifyservice.showToasterMsg({ message: "Logged in successfully", type: "success" });
                     this.router.navigate(["auth/login"]);
                 },
                 error: (err: FirebaseError) => {
+                    this.notifyservice.showToasterMsg({ message: err.code + " " + err.message, type: "fail" });
                     console.log(err.message);
                 },
             });

@@ -7,6 +7,7 @@ import { FieldConfig } from "../../shared-fields/WidthConfig";
 import { FieldDependencyService } from "../field-dependency.service";
 import { FieldModel } from "./field.model";
 import { ToastService } from "src/app/toast-service/toast-container.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-layout",
@@ -26,6 +27,7 @@ export class LayoutComponent implements OnInit {
     storage = inject(StorageService);
     service = inject(CommonService);
     notifyservice = inject(ToastService);
+    router = inject(Router);
 
     ngOnInit(): void {
         this.service.getFormSchema().subscribe({
@@ -87,12 +89,6 @@ export class LayoutComponent implements OnInit {
     onSubmit() {
         this.formGroup.markAllAsTouched();
         this.formGroup.valid &&
-            // this.storage.get("listing").then((res) => {
-            //     res.push(this.formGroup.value);
-            //     console.log(res, this.formGroup.value);
-            //     this.storage.set("listing", res ? res : []);
-            // });
-
             this.service.saveDataSource(this.formGroup.value).subscribe({
                 next: (res) => {
                     this.notifyservice.showToasterMsg({ message: "Form submitted successfully", type: "success" });
@@ -106,7 +102,7 @@ export class LayoutComponent implements OnInit {
             });
 
         console.log(this.formGroup.value);
-        // this.storage.set("layout_schema", this.Layout_Schema);
-        // this.formGroup.reset();
+        this.router.navigateByUrl("/table-listing");
+        this.formGroup.reset();
     }
 }

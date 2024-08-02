@@ -1,26 +1,25 @@
-import { Component, Inject, Input, OnInit } from "@angular/core";
+import { DatePipe } from "@angular/common";
+import { Component, inject, Input, OnInit } from "@angular/core";
 import { AbstractControl, ControlContainer, FormGroup } from "@angular/forms";
 import { NgbCalendar, NgbDateParserFormatter, NgbDatepicker } from "@ng-bootstrap/ng-bootstrap";
-import { DateTimeFormatter } from "./datetimeformater";
 import * as DateOptions from "./dateoptions.json";
+import { DateTimeFormatter } from "./datetimeformater";
 
 @Component({
     selector: "app-datetimerange",
     templateUrl: "./datetimerange.component.html",
     styleUrls: ["./datetimerange.component.scss"],
-    providers: [{ provide: NgbDateParserFormatter, useClass: DateTimeFormatter }],
+    providers: [{ provide: NgbDateParserFormatter, useClass: DateTimeFormatter }, DatePipe],
 })
 export class DatetimeRangeComponent implements OnInit {
     @Input() ControlAccess: Object;
     @Input() mode: "edit" | "list";
     FormGroup: FormGroup;
-    dateformatter = "dd/mm/yyyy";
+    dateformatter = "dd/M/yyyy";
     CustomNavConfig: Array<{ label: string; ngbDate: number }> = DateOptions.default;
-
-    constructor(
-        @Inject(NgbCalendar) private calendar,
-        public controlContainer: ControlContainer
-    ) {}
+    calendar = inject(NgbCalendar);
+    controlContainer = inject(ControlContainer);
+    datePipe = inject(DatePipe);
 
     ngOnInit() {
         this.FormGroup = this.controlContainer.control as FormGroup;
@@ -36,6 +35,12 @@ export class DatetimeRangeComponent implements OnInit {
 
     toggleDateTimeState($event: MouseEvent) {
         console.log($event);
+    }
+
+    get displayDateTimeRange(): string {
+        const { day, month, year } = this.FieldControl.value;
+        const dateObj = new Date(year, month - 1, day);
+        return this.datePipe.transform(dateObj, this.dateformatter);
     }
 
     navigate(datepicker: NgbDatepicker, number: number) {
