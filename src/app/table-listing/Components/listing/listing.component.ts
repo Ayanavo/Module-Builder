@@ -6,7 +6,7 @@ import { AuthService } from "src/app/auth/auth.service";
 import { debounceTime, forkJoin, switchMap } from "rxjs";
 import { UserCredential } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
-import { Router } from "@angular/router";
+import { NavigationExtras, Router } from "@angular/router";
 import { ToastService } from "src/app/toast-service/toast-container.service";
 import { CommonService } from "src/app/Services/common.service";
 
@@ -27,6 +27,7 @@ export class ListingComponent implements OnInit {
     authService = inject(AuthService);
     notifyservice = inject(ToastService);
     router = inject(Router);
+    injectionIdArray: Array<string>;
     ngOnInit(): void {
         // this.store.get("listing").then((res) => {
         //     this.CommonListing = res;
@@ -47,18 +48,14 @@ export class ListingComponent implements OnInit {
     initializeTable() {
         forkJoin([this.service.getDataSource(), this.service.getFormSchema()]).subscribe({
             next: (res) => {
+                this.injectionIdArray = Object.keys(res[0]);
                 this.CommonListing = Object.values(res[0]);
-                let response = Object.values(res[1])[0];
-                response["tabs"].forEach((col, i) =>
-                    response["tabs"][i].columns.forEach((fl) =>
-                        fl.fields.forEach((el) => {
-                            this.CommonSchema.push(el), this.CommonHeader.push(el.label);
-                        })
-                    )
-                );
+                const response = Object.values(res[1])[0];
+                response["tabs"].forEach((_: any, i: string | number) => response["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el) => (this.CommonSchema.push(el), this.CommonHeader.push(el.label)))));
             },
             error: (err) => {
-                console.error(err);
+                this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });
+                console.error(err.message);
             },
         });
     }
@@ -68,6 +65,12 @@ export class ListingComponent implements OnInit {
     //     modalRef.componentInstance.field = obj;
     //     modalRef.closed.subscribe((res) => console.log(res));
     // }
+
+    edit(item: string) {
+        this.router.navigate(["/forms/update", this.injectionIdArray[item]], {
+            state: this.CommonListing[item],
+        } as NavigationExtras);
+    }
 
     logout() {
         this.authService

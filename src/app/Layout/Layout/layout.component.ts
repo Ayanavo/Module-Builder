@@ -7,7 +7,7 @@ import { FieldConfig } from "../../shared-fields/WidthConfig";
 import { FieldDependencyService } from "../field-dependency.service";
 import { FieldModel } from "./field.model";
 import { ToastService } from "src/app/toast-service/toast-container.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: "app-layout",
@@ -27,13 +27,17 @@ export class LayoutComponent implements OnInit {
     storage = inject(StorageService);
     service = inject(CommonService);
     notifyservice = inject(ToastService);
+    route = inject(ActivatedRoute);
     router = inject(Router);
+    detailData: { [k: string]: any };
 
+    constructor() {
+        this.detailData = this.router.getCurrentNavigation().extras.state;
+    }
     ngOnInit(): void {
         this.service.getFormSchema().subscribe({
             next: (res) => {
                 this.Layout_Schema = { schema_id: Object.keys(res)[0], data: Object.values(res)[0] };
-
                 this.initializeForm();
             },
             error: (err) => {
@@ -43,10 +47,13 @@ export class LayoutComponent implements OnInit {
         });
     }
     initializeForm(): void {
+        this.detailData && (this.formGroup = this.nfb.group(this.detailData));
+
         let templisting = [];
         this.Layout_Schema && this.Layout_Schema.data.tabs.forEach((col, i) => this.Layout_Schema.data.tabs[i].columns.forEach((fl) => fl.fields.forEach((el) => templisting.push(el))));
 
-        templisting.length &&
+        !this.detailData &&
+            templisting.length &&
             templisting.forEach((elm: { [x: string]: any }) => {
                 //for formArrays
                 if (this.FormArrays.includes(elm["type"])) {
