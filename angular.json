@@ -101,6 +101,7 @@
                             "buildTarget": "Ayantik:build:dev"
                         }
                     },
+
                     "defaultConfiguration": "development"
                 },
                 "extract-i18n": {

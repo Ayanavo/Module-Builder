@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import {
     Auth,
@@ -7,6 +7,7 @@ import {
     FacebookAuthProvider,
     GithubAuthProvider,
     GoogleAuthProvider,
+    sendPasswordResetEmail,
     signInAnonymously,
     signInWithEmailAndPassword,
     signInWithPopup,
@@ -14,7 +15,8 @@ import {
     updateProfile,
     UserCredential,
 } from "@angular/fire/auth";
-import { defer, from, Observable } from "rxjs";
+import { defer, from, Observable, switchMap } from "rxjs";
+import { environment } from "src/environments/environment";
 
 type LoginConfig = {
     email: string;
@@ -34,7 +36,15 @@ export class AuthService {
     http = inject(HttpClient);
     auth = inject(Auth);
 
+    domain = " https://content-firebaseappcheck.googleapis.com/v1";
+    constructor() {
+        console.log(`${this.domain}/projects/${environment.firebase.projectId}/${environment.firebase.appId}:exchangeDebugToken?key=${environment.firebase.apiKey}`);
+    }
     LogIn(params: LoginConfig): Observable<UserCredential | any> {
+        // return this.http.post(`${this.domain}/projects/${environment.firebase.projectId}/${environment.firebase.appId}:exchangeDebugToken?key=${environment.firebase.apiKey}`, {
+        //     debug_token: "655f8bb8-837f-4392-b948-0ca2eb1b8e8f",
+        // });
+
         return defer(() => signInWithEmailAndPassword(this.auth, params.email, params.password));
     }
 
@@ -65,5 +75,10 @@ export class AuthService {
 
     AuthLogout(): Observable<UserCredential | any> {
         return defer(() => signOut(this.auth));
+    }
+
+    // Reset Forggot password
+    ForgotPassword(passwordResetEmail: string): Observable<any> {
+        return defer(() => sendPasswordResetEmail(this.auth, passwordResetEmail));
     }
 }

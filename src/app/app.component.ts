@@ -2,7 +2,6 @@ import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit,
 import { SwUpdate } from "@angular/service-worker";
 import { NgbOffcanvas } from "@ng-bootstrap/ng-bootstrap";
 import { PromtUserService } from "./Services/promt-user.service";
-import { Array } from "./array-methods";
 
 @Component({
     selector: "app-root",

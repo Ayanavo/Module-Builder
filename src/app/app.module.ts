@@ -64,7 +64,7 @@ import { ToastServiceComponent } from "./toast-service/toast-service.component";
         UserTrackingService,
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()),
-        provideAppCheck(() => initializeAppCheck(undefined, { provider: new ReCaptchaV3Provider(environment.firebase.recaptchaSiteKey), isTokenAutoRefreshEnabled: true })),
+        // provideAppCheck(() => initializeAppCheck(undefined, { provider: new ReCaptchaV3Provider(environment.firebase.recaptchaSiteKey), isTokenAutoRefreshEnabled: true })),
         {
             provide: HTTP_INTERCEPTORS,
             useClass: authInterceptor,

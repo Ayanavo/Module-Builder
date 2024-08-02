@@ -13,7 +13,7 @@ export class authInterceptor implements HttpInterceptor {
             switchMap((token: string) => {
                 if (token) {
                     req = req.clone({
-                        setHeaders: { "X-Firebase-AppCheck": token },
+                        setHeaders: { "Content-Type": "application/json", "X-Firebase-AppCheck": token },
                     });
 
                     return next.handle(req);
@@ -28,6 +28,9 @@ export class authInterceptor implements HttpInterceptor {
     }
 
     getAppChecktoken(): Observable<unknown> {
-        return defer(() => (window as any).grecaptcha.execute(environment.firebase.recaptchaSiteKey, { action: "submit" }));
+        if ((window as any).grecaptcha) {
+            return defer(() => (window as any).grecaptcha.execute(environment.firebase.recaptchaSiteKey, { action: "submit" }));
+        }
+        return of();
     }
 }
