@@ -27,6 +27,7 @@ export class BuildCanvasComponent implements OnInit {
     activeEditTab: number = -1;
     activeEditField: number = 0;
     col_size: number[] = [0];
+    uid: string = "";
     Basic_Layout: any = {
         tabs: [
             {
@@ -49,13 +50,15 @@ export class BuildCanvasComponent implements OnInit {
     storage = inject(StorageService);
     service = inject(CommonService);
 
+    constructor() {
+        this.uid = localStorage.getItem("uid");
+    }
     ngOnInit(): void {
         this.StructuredFieldArray = this.Fieldsarray.map((item) => item.field);
         this.service.getFormSchema().subscribe({
             next: (res) => {
-                res && (this.Basic_Layout = res);
+                res && (this.Basic_Layout = res[this.uid]);
                 // this.col_size = [0, 1, 2];
-                console.log(res);
             },
             error: (err) => {
                 this.notifyservice.showToasterMsg({ message: "Error submitting form", type: "fail" });
@@ -65,8 +68,6 @@ export class BuildCanvasComponent implements OnInit {
     }
 
     Array(index: number) {
-        // console.log(index);
-
         return index !== undefined ? Array(index + 1) : [];
     }
 
@@ -74,7 +75,7 @@ export class BuildCanvasComponent implements OnInit {
     editTabControl: FormControl = new FormControl("");
     ActivefieldControl: FormControl = new FormControl("");
 
-    addTab(index) {
+    addTab(index: number) {
         this.Basic_Layout.tabs.push({
             seq: index,
             label: `Tab ${index + 1}`,
@@ -95,8 +96,6 @@ export class BuildCanvasComponent implements OnInit {
     editTab(index: number) {
         this.activeEditTab = index;
         this.editTabControl.setValue(this.Basic_Layout.tabs[index].label);
-        console.log("p");
-
         setTimeout(() => this.focusInput && this.focusInput.nativeElement.focus());
     }
 
@@ -166,8 +165,7 @@ export class BuildCanvasComponent implements OnInit {
     }
 
     SubmitForm() {
-        console.log(this.Basic_Layout);
-        let $submitApi = false ? this.service.updateFormSchema(this.Basic_Layout) : this.service.setFormSchema(this.Basic_Layout);
+        const $submitApi = this.Basic_Layout ? this.service.updateFormSchema(this.Basic_Layout) : this.service.setFormSchema(this.Basic_Layout);
 
         $submitApi.subscribe({
             next: (res) => {

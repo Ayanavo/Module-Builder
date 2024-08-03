@@ -1,18 +1,23 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, inject } from "@angular/core";
-import { Auth, getAuth } from "@angular/fire/auth";
+import { inject, Injectable } from "@angular/core";
+import { Auth } from "@angular/fire/auth";
+import { Database } from "@angular/fire/database";
 import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: "root",
 })
 export class CommonService {
-    firebaseUrl: string = "https://my-project-82219-c98e3-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    firebaseUrl: string;
     http = inject(HttpClient);
     auth = inject(Auth);
+    database = inject(Database);
+    constructor() {
+        this.firebaseUrl = `https://my-project-82219-c98e3-default-rtdb.asia-southeast1.firebasedatabase.app/${localStorage.getItem("uid")}`;
+    }
 
-    setFormSchema(config) {
-        return this.http.post("users/" + this.auth.currentUser.uid, this.firebaseUrl + "/schema.json", config);
+    setFormSchema(config: unknown): Observable<unknown> {
+        return this.http.post(this.firebaseUrl + "/schema.json", config);
     }
 
     getFormSchema() {

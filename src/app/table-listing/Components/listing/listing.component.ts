@@ -33,10 +33,11 @@ export class ListingComponent implements OnInit {
     initializeTable() {
         forkJoin([this.service.getDataSource(), this.service.getFormSchema()]).subscribe({
             next: (res) => {
+                console.log(res);
+
                 res[0] && (this.injectionIdArray = Object.keys(res[0]));
                 res[0] && (this.CommonListing = Object.values(res[0]));
-                const response = Object.values(res[1] ?? [undefined])[0];
-                res[1] && response["tabs"].forEach((_, i: number) => response["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el) => (this.CommonSchema.push(el), this.CommonHeader.push(el.label)))));
+                res[1] && res[1]["tabs"].forEach((_, i: number) => res[1]["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el) => (this.CommonSchema.push(el), this.CommonHeader.push(el.label)))));
             },
             error: (err: FirebaseError) => {
                 this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });

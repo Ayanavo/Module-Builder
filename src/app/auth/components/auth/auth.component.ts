@@ -40,6 +40,7 @@ export class AuthComponent implements OnDestroy {
                 .subscribe({
                     next: (res: UserCredential) => {
                         res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
+                        res.user?.uid && localStorage.setItem("uid", res.user.uid);
                         this.router.navigateByUrl("/table-listing");
                         this.notifyservice.showToasterMsg({ message: "Logged in successfully", type: "success" });
                     },
@@ -60,6 +61,7 @@ export class AuthComponent implements OnDestroy {
             .subscribe({
                 next: (res: UserCredential) => {
                     res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
+                    res.user?.uid && localStorage.setItem("uid", res.user.uid);
                     this.router.navigateByUrl("/table-listing");
                     this.notifyservice.showToasterMsg({ message: "Logged in as Guest", type: "success" });
                 },
@@ -80,6 +82,7 @@ export class AuthComponent implements OnDestroy {
             .subscribe({
                 next: (res: UserCredential) => {
                     res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
+                    res.user?.uid && localStorage.setItem("uid", res.user.uid);
                     this.notifyservice.showToasterMsg({ message: "Logged in successfully", type: "success" });
                     this.router.navigateByUrl("/table-listing");
                 },

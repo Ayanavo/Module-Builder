@@ -24,6 +24,7 @@ import { CommonService } from "./Services/common.service";
 import { StorageService } from "./Services/storage.service";
 import { counterReducer } from "./store/reducers/counter.reducer";
 import { ToastServiceComponent } from "./toast-service/toast-service.component";
+import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 
 // import { reducers, metaReducers } from "./store/reducers/counter.reducer";
 
@@ -38,6 +39,7 @@ import { ToastServiceComponent } from "./toast-service/toast-service.component";
         NgbModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        AngularFirestoreModule,
         ServiceWorkerModule.register("ngsw-worker.js", {
             enabled: !isDevMode(),
             // Register the ServiceWorker as soon as the application is stable

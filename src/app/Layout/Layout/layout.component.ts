@@ -8,7 +8,8 @@ import { FieldDependencyService } from "../field-dependency.service";
 import { FieldModel } from "./field.model";
 import { ToastService } from "src/app/toast-service/toast-container.service";
 import { ActivatedRoute, Router } from "@angular/router";
-
+import { Auth } from "@angular/fire/auth";
+type Tabs = { tabs: Array<{ seq: number; label: string; columns: Array<{ seq: number; fields: Array<FieldModel> }> }> };
 @Component({
     selector: "app-layout",
     templateUrl: "./layout.component.html",
@@ -16,7 +17,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class LayoutComponent implements OnInit {
     formGroup: FormGroup = new FormGroup({});
-    Layout_Schema: { schema_id: string; data: { tabs: Array<{ seq: number; label: string; columns: Array<{ seq: number; fields: Array<FieldModel> }> }> } };
+
+    Layout_Schema: Tabs;
     mode: "edit" | "list" = "edit";
     FormArrays: string[] = ["phone", "email"];
     FormGroups: string[] = ["currency", "checkbox"];
@@ -29,15 +31,18 @@ export class LayoutComponent implements OnInit {
     notifyservice = inject(ToastService);
     route = inject(ActivatedRoute);
     router = inject(Router);
+    auth = inject(Auth);
     detailData: { [k: string]: any };
+    uid: string = "";
 
     constructor() {
         this.detailData = this.router.getCurrentNavigation().extras.state;
+        this.uid = localStorage.getItem("uid");
     }
     ngOnInit(): void {
         this.service.getFormSchema().subscribe({
             next: (res) => {
-                this.Layout_Schema = { schema_id: Object.keys(res)[0], data: Object.values(res)[0] };
+                this.Layout_Schema = res as Tabs;
                 this.initializeForm();
             },
             error: (err) => {
@@ -50,7 +55,7 @@ export class LayoutComponent implements OnInit {
         this.detailData && (this.formGroup = this.nfb.group(this.detailData));
 
         let templisting = [];
-        this.Layout_Schema && this.Layout_Schema.data.tabs.forEach((col, i) => this.Layout_Schema.data.tabs[i].columns.forEach((fl) => fl.fields.forEach((el) => templisting.push(el))));
+        this.Layout_Schema && this.Layout_Schema.tabs.forEach((col, i) => this.Layout_Schema.tabs[i].columns.forEach((fl) => fl.fields.forEach((el) => templisting.push(el))));
 
         !this.detailData &&
             templisting.length &&
@@ -100,7 +105,6 @@ export class LayoutComponent implements OnInit {
             $apiRequest.subscribe({
                 next: (res) => {
                     this.notifyservice.showToasterMsg({ message: this.detailData ? "Form updated successfully" : "Form submitted successfully", type: "success" });
-                    console.log(res);
                     this.formGroup.reset();
                 },
                 error: (err) => {
