@@ -166,18 +166,24 @@ export class BuildCanvasComponent implements OnInit {
 
     SubmitForm() {
         const $submitApi = this.Basic_Layout ? this.service.updateFormSchema(this.Basic_Layout) : this.service.setFormSchema(this.Basic_Layout);
+        confirm("Warning! Form Submission will reset records!") &&
+            this.service.resetListing().subscribe({
+                error: (err) => {
+                    this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
+                    console.log(err);
+                },
+            }) &&
+            $submitApi.subscribe({
+                next: (res) => {
+                    this.notifyservice.showToasterMsg({message: "Form submitted successfully", type: "success"});
 
-        $submitApi.subscribe({
-            next: (res) => {
-                this.notifyservice.showToasterMsg({message: "Form submitted successfully", type: "success"});
-                console.log(res);
-                this.route.navigateByUrl("/forms/create");
-            },
-            error: (err) => {
-                this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
-                console.log(err);
-            },
-        });
+                    this.route.navigateByUrl("/forms/create");
+                },
+                error: (err) => {
+                    this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
+                    console.log(err);
+                },
+            });
         // this.storage.set("layout_schema", this.Basic_Layout);
     }
 }

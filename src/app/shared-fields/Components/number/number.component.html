@@ -1,5 +1,5 @@
-<div *ngIf="(ControlAccess?.['active'] === undefined) || (ControlAccess?.['active']) " class="mb-3 row" [formGroup]="FormGroup">
-    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{ 'required-label': ControlAccess['validators']?.['required'] ||  FieldControl.errors?.['required'] }">{{ ControlAccess["label"] }}</label>
+<div *ngIf="(mode == 'edit' && ControlAccess?.['active'] === undefined) || ControlAccess?.['active']" class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{'required-label': ControlAccess['validators']?.['required'] || FieldControl.errors?.['required']}">{{ ControlAccess["label"] }}</label>
 
     <div class="col-8">
         <input type="text" [formControlName]="ControlAccess['id']" [maxlength]="ControlAccess['length']" numberonly [ngClass]="{'form-control': true, 'required-field': FieldControl.touched && FieldControl.errors?.['required']}" />

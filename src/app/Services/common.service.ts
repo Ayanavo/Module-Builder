@@ -42,4 +42,8 @@ export class CommonService {
     updateDataSource(id: string, dataObj): Observable<unknown> {
         return this.http.patch(this.firebaseUrl + "/listing/" + id + ".json", dataObj);
     }
+
+    resetListing(): Observable<unknown> {
+        return this.http.delete(this.firebaseUrl + "/listing/" + ".json");
+    }
 }
