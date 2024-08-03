@@ -3,7 +3,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { NgModule, isDevMode } from "@angular/core";
 import { ScreenTrackingService, UserTrackingService, getAnalytics, provideAnalytics } from "@angular/fire/analytics";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
-import { ReCaptchaV3Provider, initializeAppCheck, provideAppCheck } from "@angular/fire/app-check";
 import { getAuth, provideAuth } from "@angular/fire/auth";
 import { getDatabase, provideDatabase } from "@angular/fire/database";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";

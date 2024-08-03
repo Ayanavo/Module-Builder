@@ -1,13 +1,12 @@
+import { Clipboard } from "@angular/cdk/clipboard";
 import { Component, inject, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { FirebaseError } from "firebase/app";
-import { debounceTime, forkJoin, switchMap } from "rxjs";
-import { AuthService } from "src/app/auth/auth.service";
+import { forkJoin } from "rxjs";
 import { CommonService } from "src/app/Services/common.service";
 import { StorageService } from "src/app/Services/storage.service";
 import { ToastService } from "src/app/toast-service/toast-container.service";
-import { Clipboard } from "@angular/cdk/clipboard";
 
 @Component({
     selector: "app-listing",
@@ -23,7 +22,7 @@ export class ListingComponent implements OnInit {
     service = inject(CommonService);
     store = inject(StorageService);
     modalService = inject(NgbModal);
-    authService = inject(AuthService);
+
     notifyservice = inject(ToastService);
     router = inject(Router);
     clipboard = inject(Clipboard);
@@ -34,12 +33,10 @@ export class ListingComponent implements OnInit {
     initializeTable() {
         forkJoin([this.service.getDataSource(), this.service.getFormSchema()]).subscribe({
             next: (res) => {
-                if (res[0]) {
-                    this.injectionIdArray = Object.keys(res[0]);
-                    this.CommonListing = Object.values(res[0]);
-                }
-                const response = Object.values(res[1])[0];
-                response["tabs"].forEach((_: any, i: string | number) => response["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el) => (this.CommonSchema.push(el), this.CommonHeader.push(el.label)))));
+                res[0] && (this.injectionIdArray = Object.keys(res[0]));
+                res[0] && (this.CommonListing = Object.values(res[0]));
+                const response = Object.values(res[1] ?? [undefined])[0];
+                res[1] && response["tabs"].forEach((_, i: number) => response["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el) => (this.CommonSchema.push(el), this.CommonHeader.push(el.label)))));
             },
             error: (err: FirebaseError) => {
                 this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });
@@ -75,25 +72,5 @@ export class ListingComponent implements OnInit {
     copy(item: string) {
         this.clipboard.copy(JSON.stringify({ id: this.injectionIdArray[item], data: this.CommonListing[item] }));
         this.notifyservice.showToasterMsg({ message: "Copied successfully", type: "success" });
-    }
-
-    logout() {
-        this.authService
-            .AuthLogout()
-            .pipe(
-                debounceTime(300),
-                switchMap(async (x) => x)
-            )
-            .subscribe({
-                next: () => {
-                    localStorage.clear();
-                    this.notifyservice.showToasterMsg({ message: "Logged out successfully", type: "success" });
-                    this.router.navigateByUrl("/");
-                },
-                error: (err: FirebaseError) => {
-                    this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });
-                    console.error(err.message);
-                },
-            });
     }
 }

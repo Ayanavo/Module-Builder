@@ -167,15 +167,13 @@ export class BuildCanvasComponent implements OnInit {
 
     SubmitForm() {
         console.log(this.Basic_Layout);
-        let $submitApi = this.Basic_Layout ? this.service.updateFormSchema(this.Basic_Layout) : this.service.setFormSchema(this.Basic_Layout);
-        if (this.Basic_Layout) {
-            console.log(this.Basic_Layout);
-        }
+        let $submitApi = false ? this.service.updateFormSchema(this.Basic_Layout) : this.service.setFormSchema(this.Basic_Layout);
+
         $submitApi.subscribe({
             next: (res) => {
                 this.notifyservice.showToasterMsg({ message: "Form submitted successfully", type: "success" });
                 console.log(res);
-                this.route.navigateByUrl("/forms");
+                this.route.navigateByUrl("/forms/create");
             },
             error: (err) => {
                 this.notifyservice.showToasterMsg({ message: "Error submitting form", type: "fail" });

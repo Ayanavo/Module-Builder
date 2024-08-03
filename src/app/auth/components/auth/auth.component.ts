@@ -40,8 +40,8 @@ export class AuthComponent implements OnDestroy {
                 .subscribe({
                     next: (res: UserCredential) => {
                         res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
-                        this.notifyservice.showToasterMsg({ message: "Logged in successfully", type: "success" });
                         this.router.navigateByUrl("/table-listing");
+                        this.notifyservice.showToasterMsg({ message: "Logged in successfully", type: "success" });
                     },
                     error: (err: FirebaseError) => {
                         this.notifyservice.showToasterMsg({ message: err.code + " " + err.message, type: "fail" });
@@ -60,8 +60,8 @@ export class AuthComponent implements OnDestroy {
             .subscribe({
                 next: (res: UserCredential) => {
                     res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
-                    this.notifyservice.showToasterMsg({ message: "Logged in as Guest", type: "success" });
                     this.router.navigateByUrl("/table-listing");
+                    this.notifyservice.showToasterMsg({ message: "Logged in as Guest", type: "success" });
                 },
                 error: (err: FirebaseError) => {
                     this.notifyservice.showToasterMsg({ message: err.code + " " + err.message, type: "fail" });

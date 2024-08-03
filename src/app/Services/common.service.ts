@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
+import { Auth, getAuth } from "@angular/fire/auth";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -8,9 +9,10 @@ import { Observable } from "rxjs";
 export class CommonService {
     firebaseUrl: string = "https://my-project-82219-c98e3-default-rtdb.asia-southeast1.firebasedatabase.app/";
     http = inject(HttpClient);
+    auth = inject(Auth);
 
     setFormSchema(config) {
-        return this.http.post(this.firebaseUrl + "/schema.json", config);
+        return this.http.post("users/" + this.auth.currentUser.uid, this.firebaseUrl + "/schema.json", config);
     }
 
     getFormSchema() {
