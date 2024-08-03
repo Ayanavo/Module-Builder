@@ -57,7 +57,7 @@ export class BuildCanvasComponent implements OnInit {
         this.StructuredFieldArray = this.Fieldsarray.map((item) => item.field);
         this.service.getFormSchema().subscribe({
             next: (res) => {
-                res && (this.Basic_Layout = res[this.uid]);
+                res && (this.Basic_Layout = res);
                 // this.col_size = [0, 1, 2];
             },
             error: (err) => {

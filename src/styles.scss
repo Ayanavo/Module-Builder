@@ -36,15 +36,6 @@ label.required-label:after {
     }
 }
 
-html,
-body {
-    height: 100%;
-}
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 //for dynamic button size
 .w-10 {
     width: 10%;
@@ -80,4 +71,4 @@ body {
 }
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
