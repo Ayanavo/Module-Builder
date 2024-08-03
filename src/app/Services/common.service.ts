@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import { Auth } from "@angular/fire/auth";
-import { Database } from "@angular/fire/database";
-import { Observable } from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {inject, Injectable} from "@angular/core";
+import {Auth} from "@angular/fire/auth";
+import {Database} from "@angular/fire/database";
+import {Observable} from "rxjs";
 
 @Injectable({
     providedIn: "root",

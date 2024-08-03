@@ -1,11 +1,11 @@
-import { Component, inject, OnDestroy } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { FirebaseError } from "firebase/app";
-import { UserCredential } from "firebase/auth";
-import { debounceTime, Subscription, switchMap } from "rxjs";
-import { ToastService } from "src/app/toast-service/toast-container.service";
-import { AuthService } from "../../auth.service";
+import {Component, inject, OnDestroy} from "@angular/core";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {FirebaseError} from "firebase/app";
+import {UserCredential} from "firebase/auth";
+import {debounceTime, Subscription, switchMap} from "rxjs";
+import {ToastService} from "src/app/toast-service/toast-container.service";
+import {AuthService} from "../../auth.service";
 
 @Component({
     selector: "app-auth",
@@ -42,10 +42,10 @@ export class AuthComponent implements OnDestroy {
                         res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
                         res.user?.uid && localStorage.setItem("uid", res.user.uid);
                         this.router.navigateByUrl("/table-listing");
-                        this.notifyservice.showToasterMsg({ message: "Logged in successfully", type: "success" });
+                        this.notifyservice.showToasterMsg({message: "Logged in successfully", type: "success"});
                     },
                     error: (err: FirebaseError) => {
-                        this.notifyservice.showToasterMsg({ message: err.code + " " + err.message, type: "fail" });
+                        this.notifyservice.showToasterMsg({message: err.code + " " + err.message, type: "fail"});
                     },
                 });
         }
@@ -63,10 +63,10 @@ export class AuthComponent implements OnDestroy {
                     res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
                     res.user?.uid && localStorage.setItem("uid", res.user.uid);
                     this.router.navigateByUrl("/table-listing");
-                    this.notifyservice.showToasterMsg({ message: "Logged in as Guest", type: "success" });
+                    this.notifyservice.showToasterMsg({message: "Logged in as Guest", type: "success"});
                 },
                 error: (err: FirebaseError) => {
-                    this.notifyservice.showToasterMsg({ message: err.code + " " + err.message, type: "fail" });
+                    this.notifyservice.showToasterMsg({message: err.code + " " + err.message, type: "fail"});
                     console.log(err.message);
                 },
             });
@@ -83,11 +83,11 @@ export class AuthComponent implements OnDestroy {
                 next: (res: UserCredential) => {
                     res.user.getIdToken(false).then((res) => localStorage.setItem("access_token", res));
                     res.user?.uid && localStorage.setItem("uid", res.user.uid);
-                    this.notifyservice.showToasterMsg({ message: "Logged in successfully", type: "success" });
+                    this.notifyservice.showToasterMsg({message: "Logged in successfully", type: "success"});
                     this.router.navigateByUrl("/table-listing");
                 },
                 error: (err: FirebaseError) => {
-                    this.notifyservice.showToasterMsg({ message: err.code + " " + err.message, type: "fail" });
+                    this.notifyservice.showToasterMsg({message: err.code + " " + err.message, type: "fail"});
                     console.log(err.message);
                 },
             });

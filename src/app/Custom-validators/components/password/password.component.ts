@@ -1,7 +1,7 @@
-import { JsonPipe } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { CustomValidators } from "../custom-validators";
+import {JsonPipe} from "@angular/common";
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {CustomValidators} from "../custom-validators";
 
 @Component({
     selector: "ch-password",
@@ -17,7 +17,7 @@ export class PasswordComponent implements OnInit {
                 nwp: ["", Validators.required],
                 cwp: ["", Validators.required],
             },
-            { validators: CustomValidators.PatternMatch("nwp", "cwp") }
+            {validators: CustomValidators.PatternMatch("nwp", "cwp")}
         );
     }
 

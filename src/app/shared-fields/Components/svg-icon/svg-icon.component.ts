@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, Input } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
+import {HttpClient} from "@angular/common/http";
+import {Component, Input} from "@angular/core";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: "app-svg-icon",
@@ -22,7 +22,7 @@ export class SvgIconComponent {
             this.svgIcon = "";
             return;
         }
-        this.httpClient.get(`assets/svg/${this.name}.svg`, { responseType: "text" }).subscribe((value) => {
+        this.httpClient.get(`assets/svg/${this.name}.svg`, {responseType: "text"}).subscribe((value) => {
             this.svgIcon = this.sanitizer.bypassSecurityTrustHtml(value);
         });
     }

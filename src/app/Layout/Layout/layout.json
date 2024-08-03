@@ -10,7 +10,7 @@
                     "label": "Text",
                     "input": true,
                     "default": "Name",
-                    "validators": { "required": true, "maxLength": 6 },
+                    "validators": {"required": true, "maxLength": 6},
                     "col-width": "third",
                     "seq": 0
                 },
@@ -46,7 +46,7 @@
                     "label": "Text-Area1",
                     "input": true,
                     "default": "",
-                    "validators": { "required": true },
+                    "validators": {"required": true},
                     "col-width": "third",
                     "seq": 3
                 },
@@ -104,7 +104,7 @@
                     "label": "Progress",
                     "input": true,
                     "default": ["New"],
-                    "validators": { "requiredcheckbox": true },
+                    "validators": {"requiredcheckbox": true},
                     "options": ["New", "In Progress", "Pending", "Completed"],
                     "col-width": "third",
                     "seq": 7
@@ -136,7 +136,7 @@
                     "label": "Phone",
                     "input": true,
                     "default": "",
-                    "validators": { "required": true, "format": true },
+                    "validators": {"required": true, "format": true},
                     "col-width": "half",
                     "seq": 5
                 },
@@ -170,7 +170,7 @@
                     "label": "First Address",
                     "input": true,
                     "default": null,
-                    "validators": { "maxLength": 6 },
+                    "validators": {"maxLength": 6},
                     "col-width": "full",
                     "seq": 1
                 },
@@ -180,7 +180,7 @@
                     "label": "Second Address",
                     "input": true,
                     "default": null,
-                    "validators": { "maxLength": 6 },
+                    "validators": {"maxLength": 6},
                     "col-width": "full",
                     "seq": 2
                 },

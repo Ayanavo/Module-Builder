@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, Sanitizer, ViewChild } from "@angular/core";
-import { ControlContainer, FormGroup } from "@angular/forms";
+import {Component, Input, OnInit, Sanitizer, ViewChild} from "@angular/core";
+import {ControlContainer, FormGroup} from "@angular/forms";
 import "quill-mention";
-import { QuillEditorComponent } from "ngx-quill";
-import { FieldConfig } from "../../WidthConfig";
-import { DomSanitizer } from "@angular/platform-browser";
+import {QuillEditorComponent} from "ngx-quill";
+import {FieldConfig} from "../../WidthConfig";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: "app-editor",
@@ -25,7 +25,7 @@ export class EditorComponent implements OnInit {
         // icons["undo"] = this.quillUndoIcon;
         // icons["redo"] = this.quillRedoIcon;
     }
-    @ViewChild(QuillEditorComponent, { static: true }) editor: QuillEditorComponent;
+    @ViewChild(QuillEditorComponent, {static: true}) editor: QuillEditorComponent;
     @ViewChild("quill") quill;
 
     modules = {
@@ -39,8 +39,8 @@ export class EditorComponent implements OnInit {
             },
             source: (searchTerm, renderList) => {
                 const values = [
-                    { id: 1, value: "Fredrik Sundqvist" },
-                    { id: 2, value: "Patrik Sjölin" },
+                    {id: 1, value: "Fredrik Sundqvist"},
+                    {id: 2, value: "Patrik Sjölin"},
                 ];
 
                 if (searchTerm.length === 0) {

@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { increment } from "src/app/store/counter.action";
+import {Component} from "@angular/core";
+import {Store} from "@ngrx/store";
+import {increment} from "src/app/store/counter.action";
 
 @Component({
     selector: "action",
@@ -8,7 +8,7 @@ import { increment } from "src/app/store/counter.action";
     styleUrls: ["./action.component.scss"],
 })
 export class ActionComponent {
-    constructor(private store: Store<{ counter: { counter: number } }>) {}
+    constructor(private store: Store<{counter: {counter: number}}>) {}
     increment() {
         this.store.dispatch(increment());
     }

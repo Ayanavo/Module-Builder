@@ -1,5 +1,5 @@
-import { Component, ElementRef, Input } from "@angular/core";
-import { AbstractControl, ControlContainer, FormControl, FormGroup } from "@angular/forms";
+import {Component, ElementRef, Input} from "@angular/core";
+import {AbstractControl, ControlContainer, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
     selector: "app-file",

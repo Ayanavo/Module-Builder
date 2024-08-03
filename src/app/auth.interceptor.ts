@@ -1,7 +1,7 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { catchError, defer, Observable, of, switchMap, take } from "rxjs";
-import { environment } from "src/environments/environment";
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {Injectable} from "@angular/core";
+import {catchError, defer, Observable, of, switchMap, take} from "rxjs";
+import {environment} from "src/environments/environment";
 
 @Injectable()
 export class authInterceptor implements HttpInterceptor {
@@ -11,7 +11,7 @@ export class authInterceptor implements HttpInterceptor {
             switchMap((token: string) => {
                 if (token) {
                     req = req.clone({
-                        setHeaders: { "Content-Type": "application/json", "X-Firebase-AppCheck": token },
+                        setHeaders: {"Content-Type": "application/json", "X-Firebase-AppCheck": token},
                     });
 
                     return next.handle(req);
@@ -27,7 +27,7 @@ export class authInterceptor implements HttpInterceptor {
 
     getAppChecktoken(): Observable<unknown> {
         if ((window as any).grecaptcha) {
-            return defer(() => (window as any).grecaptcha.execute(environment.firebase.recaptchaSiteKey, { action: "submit" }));
+            return defer(() => (window as any).grecaptcha.execute(environment.firebase.recaptchaSiteKey, {action: "submit"}));
         }
         return of();
     }

@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import {Injectable} from "@angular/core";
+import {FormControl, Validators} from "@angular/forms";
 
 @Injectable({
     providedIn: "root",
@@ -15,7 +15,7 @@ export class FieldDependencyService {
 
                 switch (field["field_action"]) {
                     case "deactive":
-                        val ? Object.assign(targetschema, { active: true }) : Object.assign(targetschema, { active: false });
+                        val ? Object.assign(targetschema, {active: true}) : Object.assign(targetschema, {active: false});
                         break;
                     case "disabled":
                         !val ? dependant.disable() : dependant.enable();
@@ -27,7 +27,7 @@ export class FieldDependencyService {
                             return;
                         }
                         !val ? control.setValidators(Validators.required) : control.setValidators(null), control.updateValueAndValidity();
-                        !val ? (targetschema.validators = { required: true }) : (targetschema.validators = { required: false });
+                        !val ? (targetschema.validators = {required: true}) : (targetschema.validators = {required: false});
                 }
             });
         });

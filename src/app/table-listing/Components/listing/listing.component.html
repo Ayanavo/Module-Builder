@@ -1,4 +1,3 @@
-
 <div class="m-3">
     <div class="m-4 d-flex align-items-end flex-column">
         <button class="btn btn-primary mb-3" [routerLink]="['/forms/create']">Add<i-bs name="plus" width="15" height="15"></i-bs></button>
@@ -40,8 +39,8 @@
 </div>
 
 <ng-template #menu let-data="id">
-    <button ngbDropdownItem (click)="edit(data)">Edit</button>
-    <button ngbDropdownItem (click)="copy(data)">Copy</button>
+    <button ngbDropdownItem class="cursor-pointer" (click)="edit(data)">Edit</button>
+    <button ngbDropdownItem class="cursor-pointer" (click)="copy(data)">Copy</button>
     <div class="dropdown-divider"></div>
-    <button ngbDropdownItem (click)="delete(data)">Delete</button></ng-template
+    <button ngbDropdownItem class="cursor-pointer" (click)="delete(data)">Delete</button></ng-template
 >

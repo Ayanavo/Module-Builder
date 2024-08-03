@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import {Component, Input, OnInit} from "@angular/core";
+import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
     selector: "app-field",
@@ -7,7 +7,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
     styleUrls: ["./field.component.scss"],
 })
 export class FieldComponent implements OnInit {
-    @Input() field: { label: string; id: string; type: string; options: Array<any>; validators: Object };
+    @Input() field: {label: string; id: string; type: string; options: Array<any>; validators: Object};
     @Input() data: any;
     mode: "list" | "edit" = "list";
     FormArrays: string[] = ["phone", "email"];

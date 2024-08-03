@@ -1,5 +1,5 @@
-import { Component, inject } from "@angular/core";
-import { ToastService } from "./toast-container.service";
+import {Component, inject} from "@angular/core";
+import {ToastService} from "./toast-container.service";
 
 @Component({
     selector: "app-toasts",

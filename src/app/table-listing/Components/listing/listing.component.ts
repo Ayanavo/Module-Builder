@@ -1,12 +1,12 @@
-import { Clipboard } from "@angular/cdk/clipboard";
-import { Component, inject, OnInit, TemplateRef, ViewChild } from "@angular/core";
-import { NavigationExtras, Router } from "@angular/router";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { FirebaseError } from "firebase/app";
-import { forkJoin } from "rxjs";
-import { CommonService } from "src/app/Services/common.service";
-import { StorageService } from "src/app/Services/storage.service";
-import { ToastService } from "src/app/toast-service/toast-container.service";
+import {Clipboard} from "@angular/cdk/clipboard";
+import {Component, inject, OnInit, TemplateRef, ViewChild} from "@angular/core";
+import {NavigationExtras, Router} from "@angular/router";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {FirebaseError} from "firebase/app";
+import {forkJoin} from "rxjs";
+import {CommonService} from "src/app/Services/common.service";
+import {StorageService} from "src/app/Services/storage.service";
+import {ToastService} from "src/app/toast-service/toast-container.service";
 
 @Component({
     selector: "app-listing",
@@ -32,15 +32,13 @@ export class ListingComponent implements OnInit {
     }
     initializeTable() {
         forkJoin([this.service.getDataSource(), this.service.getFormSchema()]).subscribe({
-            next: (res) => {
-                console.log(res);
-
+            next: (res: Array<unknown>) => {
                 res[0] && (this.injectionIdArray = Object.keys(res[0]));
                 res[0] && (this.CommonListing = Object.values(res[0]));
-                res[1] && res[1]["tabs"].forEach((_, i: number) => res[1]["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el) => (this.CommonSchema.push(el), this.CommonHeader.push(el.label)))));
+                res[1] && res[1]["tabs"].forEach((_, i: number) => res[1]["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el: {label: any}) => (this.CommonSchema.push(el), this.CommonHeader.push(el.label)))));
             },
             error: (err: FirebaseError) => {
-                this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });
+                this.notifyservice.showToasterMsg({message: err.code + err.message, type: "fail"});
                 console.error(err.message);
             },
         });
@@ -64,14 +62,14 @@ export class ListingComponent implements OnInit {
                 this.CommonListing = this.CommonListing.filter((_, index) => index !== +item);
             },
             error: (err: FirebaseError) => {
-                this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });
+                this.notifyservice.showToasterMsg({message: err.code + err.message, type: "fail"});
                 console.error(err.message);
             },
         });
     }
 
     copy(item: string) {
-        this.clipboard.copy(JSON.stringify({ id: this.injectionIdArray[item], data: this.CommonListing[item] }));
-        this.notifyservice.showToasterMsg({ message: "Copied successfully", type: "success" });
+        this.clipboard.copy(JSON.stringify({id: this.injectionIdArray[item], data: this.CommonListing[item]}));
+        this.notifyservice.showToasterMsg({message: "Copied successfully", type: "success"});
     }
 }

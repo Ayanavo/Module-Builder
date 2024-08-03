@@ -1,7 +1,7 @@
-import { Component, HostListener, Input } from "@angular/core";
-import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {Component, HostListener, Input} from "@angular/core";
+import {ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import countrycode from "./countrycode.json";
-import { CustomValidators } from "src/app/Custom-validators/components/custom-validators";
+import {CustomValidators} from "src/app/Custom-validators/components/custom-validators";
 
 @Component({
     selector: "app-phone",
@@ -9,19 +9,19 @@ import { CustomValidators } from "src/app/Custom-validators/components/custom-va
     styleUrls: ["./phone.component.scss"],
 })
 export class PhoneComponent {
-    @Input() ControlAccess: { id: string; validators: Object | null };
+    @Input() ControlAccess: {id: string; validators: Object | null};
     @Input() mode: "edit" | "list";
     FormGroup: FormGroup;
     defaultIsd = "+91";
     initialPattern = "(201)555-0123";
-    IsdCode: { dial_code: any; code: any }[];
+    IsdCode: {dial_code: any; code: any}[];
 
     constructor(
         public controlContainer: ControlContainer,
         private fb: FormBuilder
     ) {
-        this.IsdCode = countrycode.map((cc: { dial_code: any; code: any }) => {
-            return { isd: cc.dial_code, cc: cc.code };
+        this.IsdCode = countrycode.map((cc: {dial_code: any; code: any}) => {
+            return {isd: cc.dial_code, cc: cc.code};
         });
     }
     @HostListener("window:submit") onSubmit() {

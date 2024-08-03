@@ -1,15 +1,15 @@
-import { Component, OnInit, inject } from "@angular/core";
-import { FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from "@angular/forms";
-import { CustomValidators } from "src/app/Custom-validators/components/custom-validators";
-import { CommonService } from "src/app/Services/common.service";
-import { StorageService } from "src/app/Services/storage.service";
-import { FieldConfig } from "../../shared-fields/WidthConfig";
-import { FieldDependencyService } from "../field-dependency.service";
-import { FieldModel } from "./field.model";
-import { ToastService } from "src/app/toast-service/toast-container.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Auth } from "@angular/fire/auth";
-type Tabs = { tabs: Array<{ seq: number; label: string; columns: Array<{ seq: number; fields: Array<FieldModel> }> }> };
+import {Component, OnInit, inject} from "@angular/core";
+import {FormGroup, NonNullableFormBuilder, ValidatorFn, Validators} from "@angular/forms";
+import {CustomValidators} from "src/app/Custom-validators/components/custom-validators";
+import {CommonService} from "src/app/Services/common.service";
+import {StorageService} from "src/app/Services/storage.service";
+import {FieldConfig} from "../../shared-fields/WidthConfig";
+import {FieldDependencyService} from "../field-dependency.service";
+import {FieldModel} from "./field.model";
+import {ToastService} from "src/app/toast-service/toast-container.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Auth} from "@angular/fire/auth";
+type Tabs = {tabs: Array<{seq: number; label: string; columns: Array<{seq: number; fields: Array<FieldModel>}>}>};
 @Component({
     selector: "app-layout",
     templateUrl: "./layout.component.html",
@@ -32,7 +32,7 @@ export class LayoutComponent implements OnInit {
     route = inject(ActivatedRoute);
     router = inject(Router);
     auth = inject(Auth);
-    detailData: { [k: string]: any };
+    detailData: {[k: string]: any};
     uid: string = "";
 
     constructor() {
@@ -46,7 +46,7 @@ export class LayoutComponent implements OnInit {
                 this.initializeForm();
             },
             error: (err) => {
-                this.notifyservice.showToasterMsg({ message: "Error loading form", type: "fail" });
+                this.notifyservice.showToasterMsg({message: "Error loading form", type: "fail"});
                 console.error(err);
             },
         });
@@ -59,17 +59,17 @@ export class LayoutComponent implements OnInit {
 
         !this.detailData &&
             templisting.length &&
-            templisting.forEach((elm: { [x: string]: any }) => {
+            templisting.forEach((elm: {[x: string]: any}) => {
                 //for formArrays
                 if (this.FormArrays.includes(elm["type"])) {
                     this.formGroup.setControl(elm["id"], this.nfb.array([]));
                 }
                 //form formGroups
                 else if (this.FormGroups.includes(elm["type"])) {
-                    this.formGroup.setControl(elm["id"], this.nfb.group(this.formGroupValueAssign(elm), { validators: this.Validation(elm["validators"]) }));
+                    this.formGroup.setControl(elm["id"], this.nfb.group(this.formGroupValueAssign(elm), {validators: this.Validation(elm["validators"])}));
                     //for formControls
                 } else {
-                    this.formGroup.setControl(elm["id"], this.nfb.control({ value: elm["default"], disabled: !elm["input"] }, { validators: this.Validation(elm["validators"]) }));
+                    this.formGroup.setControl(elm["id"], this.nfb.control({value: elm["default"], disabled: !elm["input"]}, {validators: this.Validation(elm["validators"])}));
                 }
 
                 elm["dependencies"] && this.dependencyservice.dependencyInjection(this.formGroup, templisting, elm);
@@ -79,7 +79,7 @@ export class LayoutComponent implements OnInit {
     formGroupValueAssign(elm) {
         switch (elm["type"]) {
             case "checkbox":
-                return elm["options"].reduce((result: { string: boolean }, ctrl: string, index: number) => {
+                return elm["options"].reduce((result: {string: boolean}, ctrl: string, index: number) => {
                     result[ctrl] = !!elm["default"][index];
                     return result;
                 }, {});
@@ -89,7 +89,7 @@ export class LayoutComponent implements OnInit {
         return null;
     }
 
-    Validation(validators: { required: any; maxLength: number; minLength: number; email: any; requiredcheckbox: any }): ValidatorFn[] {
+    Validation(validators: {required: any; maxLength: number; minLength: number; email: any; requiredcheckbox: any}): ValidatorFn[] {
         let validatorArr = [];
         validators?.required && validatorArr.push(Validators.required),
             validators?.maxLength && validatorArr.push(Validators.maxLength(validators.maxLength)),
@@ -104,11 +104,11 @@ export class LayoutComponent implements OnInit {
         this.formGroup.valid &&
             $apiRequest.subscribe({
                 next: (res) => {
-                    this.notifyservice.showToasterMsg({ message: this.detailData ? "Form updated successfully" : "Form submitted successfully", type: "success" });
+                    this.notifyservice.showToasterMsg({message: this.detailData ? "Form updated successfully" : "Form submitted successfully", type: "success"});
                     this.formGroup.reset();
                 },
                 error: (err) => {
-                    this.notifyservice.showToasterMsg({ message: this.detailData ? "Error updating form" : "Error saving form", type: "fail" });
+                    this.notifyservice.showToasterMsg({message: this.detailData ? "Error updating form" : "Error saving form", type: "fail"});
                     console.error(err);
                 },
             });

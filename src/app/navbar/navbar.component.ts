@@ -1,9 +1,9 @@
-import { Component, inject } from "@angular/core";
-import { FirebaseError } from "firebase/app";
-import { debounceTime, switchMap } from "rxjs";
-import { AuthService } from "../auth/auth.service";
-import { ToastService } from "../toast-service/toast-container.service";
-import { Router } from "@angular/router";
+import {Component, inject} from "@angular/core";
+import {FirebaseError} from "firebase/app";
+import {debounceTime, switchMap} from "rxjs";
+import {AuthService} from "../auth/auth.service";
+import {ToastService} from "../toast-service/toast-container.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: "app-navbar",
@@ -24,11 +24,11 @@ export class NavbarComponent {
             .subscribe({
                 next: () => {
                     localStorage.clear();
-                    this.notifyservice.showToasterMsg({ message: "Logged out successfully", type: "success" });
+                    this.notifyservice.showToasterMsg({message: "Logged out successfully", type: "success"});
                     this.router.navigateByUrl("/");
                 },
                 error: (err: FirebaseError) => {
-                    this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });
+                    this.notifyservice.showToasterMsg({message: err.code + err.message, type: "fail"});
                     console.error(err.message);
                 },
             });

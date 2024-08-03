@@ -1,7 +1,6 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { ListingComponent } from "./Components/listing/listing.component";
-import { FieldComponent } from "./Components/field/field.component";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {ListingComponent} from "./Components/listing/listing.component";
 
 const routes: Routes = [
     {

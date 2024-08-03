@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
+import {Component, OnInit} from "@angular/core";
+import {Store} from "@ngrx/store";
 
 @Component({
     selector: "display",
@@ -8,7 +8,7 @@ import { Store } from "@ngrx/store";
 })
 export class DisplayComponent implements OnInit {
     counterDislay: number;
-    constructor(private store: Store<{ counter: { counter: number } }>) {}
+    constructor(private store: Store<{counter: {counter: number}}>) {}
 
     ngOnInit(): void {
         this.store.select("counter").subscribe((x) => {

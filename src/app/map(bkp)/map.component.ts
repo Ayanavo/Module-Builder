@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { increment } from "../store/counter.action";
+import {Component, OnInit} from "@angular/core";
+import {Store} from "@ngrx/store";
+import {increment} from "../store/counter.action";
 
 @Component({
     selector: "app-map",

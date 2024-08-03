@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { FormGroup, ControlContainer, AbstractControl, FormControl } from "@angular/forms";
-import { DomSanitizer } from "@angular/platform-browser";
+import {Component, Input, OnInit} from "@angular/core";
+import {FormGroup, ControlContainer, AbstractControl, FormControl} from "@angular/forms";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: "app-audio",

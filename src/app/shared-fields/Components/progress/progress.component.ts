@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { FormGroup, ControlContainer, AbstractControl } from "@angular/forms";
-import { FieldDependencyService } from "src/app/Layout/field-dependency.service";
+import {Component, Input, OnInit} from "@angular/core";
+import {FormGroup, ControlContainer, AbstractControl} from "@angular/forms";
+import {FieldDependencyService} from "src/app/Layout/field-dependency.service";
 
 @Component({
     selector: "app-progress",

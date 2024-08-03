@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { AbstractControl, ControlContainer, FormControl, FormGroup } from "@angular/forms";
-import { FieldDependencyService } from "../../../Layout/field-dependency.service";
+import {Component, Input, OnInit} from "@angular/core";
+import {AbstractControl, ControlContainer, FormControl, FormGroup} from "@angular/forms";
+import {FieldDependencyService} from "../../../Layout/field-dependency.service";
 
 @Component({
     selector: "app-list",
@@ -9,7 +9,7 @@ import { FieldDependencyService } from "../../../Layout/field-dependency.service
     providers: [FieldDependencyService],
 })
 export class ListComponent implements OnInit {
-    @Input() ControlAccess: { id: string; type: string; options: string[] };
+    @Input() ControlAccess: {id: string; type: string; options: string[]};
     @Input() mode: "edit" | "list";
     FormGroup: FormGroup;
     constructor(

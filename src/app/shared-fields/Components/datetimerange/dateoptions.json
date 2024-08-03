@@ -1,10 +1,10 @@
 [
-    { "label": "Today", "ngbDate": 0 },
-    { "label": "Yesterday", "ngbDate": -1 },
-    { "label": "Tomorrow", "ngbDate": 1 },
-    { "label": "Next Week", "ngbDate": 7 },
-    { "label": "2 Weeks", "ngbDate": 14 },
-    { "label": "4 Weeks", "ngbDate": 28 },
-    { "label": "8 Weeks", "ngbDate": 56 },
-    { "label": "Previous Week", "ngbDate": -7 }
+    {"label": "Today", "ngbDate": 0},
+    {"label": "Yesterday", "ngbDate": -1},
+    {"label": "Tomorrow", "ngbDate": 1},
+    {"label": "Next Week", "ngbDate": 7},
+    {"label": "2 Weeks", "ngbDate": 14},
+    {"label": "4 Weeks", "ngbDate": 28},
+    {"label": "8 Weeks", "ngbDate": 56},
+    {"label": "Previous Week", "ngbDate": -7}
 ]

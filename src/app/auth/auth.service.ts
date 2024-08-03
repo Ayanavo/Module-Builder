@@ -1,5 +1,5 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {inject, Injectable} from "@angular/core";
 import {
     Auth,
     AuthProvider,
@@ -15,8 +15,8 @@ import {
     updateProfile,
     UserCredential,
 } from "@angular/fire/auth";
-import { defer, from, Observable, switchMap } from "rxjs";
-import { environment } from "src/environments/environment";
+import {defer, from, Observable, switchMap} from "rxjs";
+import {environment} from "src/environments/environment";
 
 type LoginConfig = {
     email: string;
@@ -49,7 +49,7 @@ export class AuthService {
     }
 
     RegisterUser(params: RegisterConfig): Observable<void | any> {
-        return from(createUserWithEmailAndPassword(this.auth, params.email, params.password).then((res) => updateProfile(res.user, { displayName: params.username })));
+        return from(createUserWithEmailAndPassword(this.auth, params.email, params.password).then((res) => updateProfile(res.user, {displayName: params.username})));
     }
 
     setAuthProvider(providertype: string): Observable<UserCredential | any> {

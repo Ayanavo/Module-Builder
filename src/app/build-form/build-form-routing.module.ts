@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { BuildCanvasComponent } from "./Components/build-canvas/build-canvas.component";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {BuildCanvasComponent} from "./Components/build-canvas/build-canvas.component";
 
 const routes: Routes = [
     {

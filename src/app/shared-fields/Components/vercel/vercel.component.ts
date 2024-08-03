@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { AbstractControl, ControlContainer, FormControl, FormGroup } from "@angular/forms";
-import { FieldDependencyService } from "../../../Layout/field-dependency.service";
-import { StorageService } from "src/app/Services/storage.service";
+import {Component, Input, OnInit} from "@angular/core";
+import {AbstractControl, ControlContainer, FormControl, FormGroup} from "@angular/forms";
+import {FieldDependencyService} from "../../../Layout/field-dependency.service";
+import {StorageService} from "src/app/Services/storage.service";
 import * as VercelOption from "./vercel.model";
 
 @Component({
@@ -11,7 +11,7 @@ import * as VercelOption from "./vercel.model";
     providers: [FieldDependencyService],
 })
 export class VercelComponent implements OnInit {
-    @Input() ControlAccess: { id: string; type: string; options: VercelOption.VercelOption };
+    @Input() ControlAccess: {id: string; type: string; options: VercelOption.VercelOption};
     @Input() mode: "edit" | "list";
     FormGroup: FormGroup;
     activeVercelId: string;

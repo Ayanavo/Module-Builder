@@ -1,5 +1,5 @@
-import { Component, HostListener, Input } from "@angular/core";
-import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {Component, HostListener, Input} from "@angular/core";
+import {ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: "app-email",
@@ -7,7 +7,7 @@ import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Valid
     styleUrls: ["./email.component.scss"],
 })
 export class EmailComponent {
-    @Input() ControlAccess: { id: string; validators: Object | null };
+    @Input() ControlAccess: {id: string; validators: Object | null};
     @Input() mode: "edit" | "list";
     FormGroup: FormGroup;
     defaultIsd = "+91";

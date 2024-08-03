@@ -1,7 +1,7 @@
-import { Component, Inject, Input, OnInit } from "@angular/core";
-import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
-import { NgbActiveModal, NgbCalendar, NgbDatepicker } from "@ng-bootstrap/ng-bootstrap";
-import { CustomValidators } from "src/app/Custom-validators/components/custom-validators";
+import {Component, Inject, Input, OnInit} from "@angular/core";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {NgbActiveModal, NgbCalendar, NgbDatepicker} from "@ng-bootstrap/ng-bootstrap";
+import {CustomValidators} from "src/app/Custom-validators/components/custom-validators";
 
 @Component({
     selector: "build-field",
@@ -15,15 +15,15 @@ export class BuildFieldComponent implements OnInit {
     @Input() formInfo: any;
     isFormReady: boolean = false;
     dateformatter = "dd/mm/yyyy";
-    CustomNavConfig: Array<{ label: string; ngbDate: number }> = [
-        { label: "Today", ngbDate: 0 },
-        { label: "Yesterday", ngbDate: -1 },
-        { label: "Tomorrow", ngbDate: 1 },
-        { label: "Next Week", ngbDate: 7 },
-        { label: "2 Weeks", ngbDate: 14 },
-        { label: "4 Weeks", ngbDate: 28 },
-        { label: "8 Weeks", ngbDate: 56 },
-        { label: "Previous Week", ngbDate: -7 },
+    CustomNavConfig: Array<{label: string; ngbDate: number}> = [
+        {label: "Today", ngbDate: 0},
+        {label: "Yesterday", ngbDate: -1},
+        {label: "Tomorrow", ngbDate: 1},
+        {label: "Next Week", ngbDate: 7},
+        {label: "2 Weeks", ngbDate: 14},
+        {label: "4 Weeks", ngbDate: 28},
+        {label: "8 Weeks", ngbDate: 56},
+        {label: "Previous Week", ngbDate: -7},
     ];
 
     constructor(
@@ -34,10 +34,10 @@ export class BuildFieldComponent implements OnInit {
     ngOnInit(): void {
         this.CustomOptions.reset();
         setTimeout(() => {
-            this.CustomOptions.addControl("id", new FormControl({ value: this.formInfo?.label.trim().toLowerCase().replaceAll(" ", "_"), disabled: true }));
-            this.CustomOptions.addControl("label", new FormControl(this.formInfo?.label, { validators: Validators.required }));
+            this.CustomOptions.addControl("id", new FormControl({value: this.formInfo?.label.trim().toLowerCase().replaceAll(" ", "_"), disabled: true}));
+            this.CustomOptions.addControl("label", new FormControl(this.formInfo?.label, {validators: Validators.required}));
             this.CustomOptions.addControl("help", new FormControl(this.formInfo?.help ? this.formInfo["help"] : ""));
-            this.CustomOptions.addControl("default", new FormControl(this.formInfo?.default != undefined ? this.formInfo["default"] : null, { validators: this.DefaultFieldValidator }));
+            this.CustomOptions.addControl("default", new FormControl(this.formInfo?.default != undefined ? this.formInfo["default"] : null, {validators: this.DefaultFieldValidator}));
             this.CustomOptions.addControl("required", new FormControl(this.formInfo?.validators?.required != undefined ? this.formInfo["validators"]["required"] : false));
             this.CustomOptions.addControl("disabled", new FormControl(this.formInfo?.disabled != undefined ? this.formInfo["disabled"] : false));
             this.CustomOptions.addControl("input", new FormControl(this.formInfo?.input != undefined ? this.formInfo["input"] : false));
@@ -47,15 +47,15 @@ export class BuildFieldComponent implements OnInit {
             ["text", "textarea"].includes(this.formInfo?.type) &&
                 this.formInfo?.validators != undefined &&
                 this.CustomOptions.addControl("minLength", new FormControl(this.formInfo["validators"]["minLength"] ? this.formInfo["validators"]["minLength"] : this.minAllowedLimit));
-            this.formInfo?.range != undefined && this.CustomOptions.addControl("range", new FormControl(this.formInfo["range"] ? this.formInfo["range"] : 0, { validators: CustomValidators.RangeValidator }));
+            this.formInfo?.range != undefined && this.CustomOptions.addControl("range", new FormControl(this.formInfo["range"] ? this.formInfo["range"] : 0, {validators: CustomValidators.RangeValidator}));
             this.formInfo?.options && this.CustomOptions.addControl("options", new FormArray([]));
 
             this.formInfo?.options &&
-                (this.formInfo?.options?.length
-                    ? this.formInfo["options"].forEach((value) => {
-                          this.FieldControl.push(new FormControl(value, { validators: [Validators.required, Validators.maxLength(100)] }));
-                      })
-                    : this.FieldControl.push(this.createElement));
+                (this.formInfo?.options?.length ?
+                    this.formInfo["options"].forEach((value) => {
+                        this.FieldControl.push(new FormControl(value, {validators: [Validators.required, Validators.maxLength(100)]}));
+                    })
+                :   this.FieldControl.push(this.createElement));
 
             this.isFormReady = true;
             this.CustomOptions.get("label").valueChanges.subscribe((val) => this.CustomOptions.get("id").setValue(val.trim().toLowerCase().replaceAll(" ", "_")));
@@ -67,7 +67,7 @@ export class BuildFieldComponent implements OnInit {
     }
 
     get createElement(): FormControl {
-        return new FormControl("", { validators: [Validators.required, Validators.maxLength(100)] });
+        return new FormControl("", {validators: [Validators.required, Validators.maxLength(100)]});
     }
 
     get DefaultFieldValidator() {

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { FormGroup, ControlContainer, AbstractControl, FormControl } from "@angular/forms";
-import { FieldDependencyService } from "src/app/Layout/field-dependency.service";
+import {Component, Input, OnInit} from "@angular/core";
+import {FormGroup, ControlContainer, AbstractControl, FormControl} from "@angular/forms";
+import {FieldDependencyService} from "src/app/Layout/field-dependency.service";
 
 @Component({
     selector: "app-tag",
@@ -8,7 +8,7 @@ import { FieldDependencyService } from "src/app/Layout/field-dependency.service"
     styleUrls: ["./tag.component.scss"],
 })
 export class TagComponent implements OnInit {
-    @Input() ControlAccess: { id: string; options: string[] };
+    @Input() ControlAccess: {id: string; options: string[]};
     @Input() mode: "edit" | "list";
     FormGroup: FormGroup;
     SelectedItems: Array<string> = [];

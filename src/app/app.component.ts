@@ -1,7 +1,7 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges, TemplateRef } from "@angular/core";
-import { SwUpdate } from "@angular/service-worker";
-import { NgbOffcanvas } from "@ng-bootstrap/ng-bootstrap";
-import { PromtUserService } from "./Services/promt-user.service";
+import {AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges, TemplateRef} from "@angular/core";
+import {SwUpdate} from "@angular/service-worker";
+import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
+import {PromtUserService} from "./Services/promt-user.service";
 
 @Component({
     selector: "app-root",
@@ -75,7 +75,7 @@ export class AppComponent implements OnChanges, OnInit, DoCheck, AfterContentIni
     }
 
     open(content: TemplateRef<any>) {
-        this.offcanvasService.open(content, { backdrop: false });
+        this.offcanvasService.open(content, {backdrop: false});
     }
 
     close() {

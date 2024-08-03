@@ -23,7 +23,7 @@
                             "label": "File",
                             "input": true,
                             "default": null,
-                            "validators": { "required": true },
+                            "validators": {"required": true},
                             "col-width": "full",
                             "seq": 0
                         },
@@ -34,7 +34,7 @@
                             "label": "Tag",
                             "input": true,
                             "default": ["Not Started"],
-                            "validators": { "required": true },
+                            "validators": {"required": true},
                             "options": [
                                 "Not Started",
                                 "In Progress",
@@ -64,7 +64,7 @@
                             "type": "date",
                             "label": "Active date",
                             "input": true,
-                            "default": { "year": 2024, "month": 2, "day": 11 },
+                            "default": {"year": 2024, "month": 2, "day": 11},
                             "validators": null,
                             "col-width": "full",
                             "seq": 1

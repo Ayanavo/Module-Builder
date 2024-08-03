@@ -23,7 +23,7 @@
                             "label": "Tag",
                             "input": true,
                             "default": ["Not Started", "Completed"],
-                            "validators": { "required": true },
+                            "validators": {"required": true},
                             "options": [
                                 "Not Started",
                                 "In Progress",

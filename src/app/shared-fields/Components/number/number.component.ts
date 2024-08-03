@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { AbstractControl, ControlContainer, FormGroup } from "@angular/forms";
-import { FieldDependencyService } from "../../../Layout/field-dependency.service";
+import {Component, Input, OnInit} from "@angular/core";
+import {AbstractControl, ControlContainer, FormGroup} from "@angular/forms";
+import {FieldDependencyService} from "../../../Layout/field-dependency.service";
 @Component({
     selector: "app-number",
     templateUrl: "./number.component.html",

@@ -1,13 +1,13 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
-import { Component, ElementRef, OnInit, ViewChild, inject } from "@angular/core";
-import { FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { CommonService } from "src/app/Services/common.service";
-import { StorageService } from "src/app/Services/storage.service";
-import { ToastService } from "src/app/toast-service/toast-container.service";
-import { FieldConfig } from "../../../shared-fields/WidthConfig";
-import { BuildFieldComponent } from "../build-field/build-field.component";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {Component, ElementRef, OnInit, ViewChild, inject} from "@angular/core";
+import {FormControl} from "@angular/forms";
+import {Router} from "@angular/router";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CommonService} from "src/app/Services/common.service";
+import {StorageService} from "src/app/Services/storage.service";
+import {ToastService} from "src/app/toast-service/toast-container.service";
+import {FieldConfig} from "../../../shared-fields/WidthConfig";
+import {BuildFieldComponent} from "../build-field/build-field.component";
 import * as Fieldsarray from "./Field-toolbar-layout.json";
 
 @Component({
@@ -18,7 +18,7 @@ import * as Fieldsarray from "./Field-toolbar-layout.json";
 })
 export class BuildCanvasComponent implements OnInit {
     @ViewChild("focusinput") focusInput: ElementRef;
-    Fieldsarray: Array<{ label: string; icon: any; field: any }> = (Fieldsarray as any).default;
+    Fieldsarray: Array<{label: string; icon: any; field: any}> = (Fieldsarray as any).default;
     StructuredFieldArray: Array<any>;
     FormArrays = ["phone", "email"];
     FormGroups = ["currency", "checkbox"];
@@ -61,7 +61,7 @@ export class BuildCanvasComponent implements OnInit {
                 // this.col_size = [0, 1, 2];
             },
             error: (err) => {
-                this.notifyservice.showToasterMsg({ message: "Error submitting form", type: "fail" });
+                this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
                 console.error(err);
             },
         });
@@ -121,23 +121,23 @@ export class BuildCanvasComponent implements OnInit {
     }
 
     setColumnConfig(tabindex: number, colindex: number) {
-        this.col_size[tabindex] <= colindex
-            ? Array(colindex - this.col_size[tabindex])
-                  .fill(0)
-                  .forEach((_, i) =>
-                      this.Basic_Layout.tabs[tabindex].columns.push({
-                          seq: i,
-                          fields: [],
-                      })
-                  )
-            : Array(this.col_size[tabindex] - colindex)
-                  .fill(0)
-                  .forEach((_, i) => this.Basic_Layout.tabs[tabindex].columns.pop());
+        this.col_size[tabindex] <= colindex ?
+            Array(colindex - this.col_size[tabindex])
+                .fill(0)
+                .forEach((_, i) =>
+                    this.Basic_Layout.tabs[tabindex].columns.push({
+                        seq: i,
+                        fields: [],
+                    })
+                )
+        :   Array(this.col_size[tabindex] - colindex)
+                .fill(0)
+                .forEach((_, i) => this.Basic_Layout.tabs[tabindex].columns.pop());
         this.col_size[tabindex] = colindex;
     }
 
     openFieldSettings(item: any) {
-        const modalRef = this.modalService.open(BuildFieldComponent, { centered: true, scrollable: true });
+        const modalRef = this.modalService.open(BuildFieldComponent, {centered: true, scrollable: true});
         modalRef.componentInstance.formInfo = item;
         modalRef.closed.subscribe(
             (res) => (
@@ -160,7 +160,7 @@ export class BuildCanvasComponent implements OnInit {
         if (this.Basic_Layout.tabs.some((tab) => tab.columns.some((col) => col.fields.length))) {
             this.route.navigateByUrl("/forms");
         } else {
-            this.notifyservice.showToasterMsg({ message: "Please add fields to the layout before proceeding.", type: "warning" });
+            this.notifyservice.showToasterMsg({message: "Please add fields to the layout before proceeding.", type: "warning"});
         }
     }
 
@@ -169,12 +169,12 @@ export class BuildCanvasComponent implements OnInit {
 
         $submitApi.subscribe({
             next: (res) => {
-                this.notifyservice.showToasterMsg({ message: "Form submitted successfully", type: "success" });
+                this.notifyservice.showToasterMsg({message: "Form submitted successfully", type: "success"});
                 console.log(res);
                 this.route.navigateByUrl("/forms/create");
             },
             error: (err) => {
-                this.notifyservice.showToasterMsg({ message: "Error submitting form", type: "fail" });
+                this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
                 console.log(err);
             },
         });
