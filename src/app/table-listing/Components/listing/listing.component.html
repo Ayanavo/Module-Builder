@@ -41,7 +41,7 @@
 
 <ng-template #menu let-data="id">
     <button ngbDropdownItem (click)="edit(data)">Edit</button>
-    <button ngbDropdownItem>Copy</button>
+    <button ngbDropdownItem (click)="copy(data)">Copy</button>
     <div class="dropdown-divider"></div>
-    <button ngbDropdownItem>Delete</button></ng-template
+    <button ngbDropdownItem (click)="delete(data)">Delete</button></ng-template
 >

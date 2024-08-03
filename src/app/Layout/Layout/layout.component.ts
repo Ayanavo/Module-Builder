@@ -95,15 +95,17 @@ export class LayoutComponent implements OnInit {
 
     onSubmit() {
         this.formGroup.markAllAsTouched();
+
+        const apiRequest = this.detailData ? this.service.updateDataSource(this.router.url.split("/", 4)[3], this.formGroup.value) : this.service.saveDataSource(this.formGroup.value);
         this.formGroup.valid &&
-            this.service.saveDataSource(this.formGroup.value).subscribe({
+            apiRequest.subscribe({
                 next: (res) => {
-                    this.notifyservice.showToasterMsg({ message: "Form submitted successfully", type: "success" });
+                    this.notifyservice.showToasterMsg({ message: this.detailData ? "Form updated successfully" : "Form submitted successfully", type: "success" });
                     console.log(res);
                     this.formGroup.reset();
                 },
                 error: (err) => {
-                    this.notifyservice.showToasterMsg({ message: "Error saving form", type: "fail" });
+                    this.notifyservice.showToasterMsg({ message: this.detailData ? "Error updating form" : "Error saving form", type: "fail" });
                     console.error(err);
                 },
             });

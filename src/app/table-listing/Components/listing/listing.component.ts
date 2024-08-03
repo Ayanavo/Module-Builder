@@ -1,14 +1,13 @@
 import { Component, inject, OnInit, TemplateRef, ViewChild } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { StorageService } from "src/app/Services/storage.service";
-import { TableListingService } from "../../table-listing.service";
-import { AuthService } from "src/app/auth/auth.service";
-import { debounceTime, forkJoin, switchMap } from "rxjs";
-import { UserCredential } from "firebase/auth";
-import { FirebaseError } from "firebase/app";
 import { NavigationExtras, Router } from "@angular/router";
-import { ToastService } from "src/app/toast-service/toast-container.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { FirebaseError } from "firebase/app";
+import { debounceTime, forkJoin, switchMap } from "rxjs";
+import { AuthService } from "src/app/auth/auth.service";
 import { CommonService } from "src/app/Services/common.service";
+import { StorageService } from "src/app/Services/storage.service";
+import { ToastService } from "src/app/toast-service/toast-container.service";
+import { Clipboard } from "@angular/cdk/clipboard";
 
 @Component({
     selector: "app-listing",
@@ -27,33 +26,22 @@ export class ListingComponent implements OnInit {
     authService = inject(AuthService);
     notifyservice = inject(ToastService);
     router = inject(Router);
+    clipboard = inject(Clipboard);
     injectionIdArray: Array<string>;
     ngOnInit(): void {
-        // this.store.get("listing").then((res) => {
-        //     this.CommonListing = res;
-        //     console.log(this.CommonListing);
-        // });
         this.initializeTable();
-        // this.store.get("layout_schema").then((res) => {
-        //     res &&
-        //         res.tabs.forEach((col, i) =>
-        //             res.tabs[i].columns.forEach((fl) =>
-        //                 fl.fields.forEach((el) => {
-        //                     this.CommonSchema.push(el), this.CommonHeader.push(el.label);
-        //                 })
-        //             )
-        //         );
-        // });
     }
     initializeTable() {
         forkJoin([this.service.getDataSource(), this.service.getFormSchema()]).subscribe({
             next: (res) => {
-                this.injectionIdArray = Object.keys(res[0]);
-                this.CommonListing = Object.values(res[0]);
+                if (res[0]) {
+                    this.injectionIdArray = Object.keys(res[0]);
+                    this.CommonListing = Object.values(res[0]);
+                }
                 const response = Object.values(res[1])[0];
                 response["tabs"].forEach((_: any, i: string | number) => response["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el) => (this.CommonSchema.push(el), this.CommonHeader.push(el.label)))));
             },
-            error: (err) => {
+            error: (err: FirebaseError) => {
                 this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });
                 console.error(err.message);
             },
@@ -70,6 +58,23 @@ export class ListingComponent implements OnInit {
         this.router.navigate(["/forms/update", this.injectionIdArray[item]], {
             state: this.CommonListing[item],
         } as NavigationExtras);
+    }
+
+    delete(item: string) {
+        this.service.deleteDataSource(this.injectionIdArray[item]).subscribe({
+            next: (res) => {
+                this.CommonListing = this.CommonListing.filter((_, index) => index !== +item);
+            },
+            error: (err: FirebaseError) => {
+                this.notifyservice.showToasterMsg({ message: err.code + err.message, type: "fail" });
+                console.error(err.message);
+            },
+        });
+    }
+
+    copy(item: string) {
+        this.clipboard.copy(JSON.stringify({ id: this.injectionIdArray[item], data: this.CommonListing[item] }));
+        this.notifyservice.showToasterMsg({ message: "Copied successfully", type: "success" });
     }
 
     logout() {
