@@ -10,7 +10,7 @@
         <div class="col-10">
             <ul class="nav nav-pills flex-column flex-xl-row flex-nowrap overflow-x-auto">
                 <li class="text-xl-center nav-link" role="presentation" *ngFor="let tab of Basic_Layout.tabs; index as i">
-                    <a draggable="false" [ngClass]="{ active: activeIndex == i }" class="nav-link" href="javascript:void(0)" (click)="activeIndex = i" (dblclick)="editTab(i)"
+                    <a draggable="false" [ngClass]="{active: activeIndex == i}" class="nav-link" href="javascript:void(0)" (click)="activeIndex = i" (dblclick)="editTab(i)"
                         >{{ activeEditTab != i ? tab["label"] : "" }}
                         <input #focusinput class="width60" *ngIf="activeEditTab == i" type="text" [formControl]="editTabControl" (keyup.enter)="saveTab(i)" (blur)="saveTab(i)" />
                         <span class="ps-2"> <i-bs *ngIf="i" class="px-2" name="x" width="15" height="15" (click)="removeTab(i)"> </i-bs></span>
@@ -24,7 +24,7 @@
             </ul>
 
             <div class="tab-content">
-                <div [ngClass]="{ active: activeIndex == formindex }" class="tab-pane fade show" [id]="'dragcolumn' + formindex" role="tabpanel" *ngFor="let body of Basic_Layout.tabs; index as formindex" [tabindex]="formindex">
+                <div [ngClass]="{active: activeIndex == formindex}" class="tab-pane fade show" [id]="'dragcolumn' + formindex" role="tabpanel" *ngFor="let body of Basic_Layout.tabs; index as formindex" [tabindex]="formindex">
                     <div class="form-canvas">
                         <!-- col-width -->
                         <div class="d-flex justify-content-end">
@@ -82,3 +82,16 @@
 
     <!-- <ngb-toast header="Hello" [autohide]="true"> I am a simple static toast. </ngb-toast> -->
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Warning!</h4>
+        <button type="button" class="btn-close" aria-describedby="modal-title" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body align-items-center">
+        <strong>Form Submission will reset records!</strong>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close(true)">Ok</button>
+    </div>
+</ng-template>

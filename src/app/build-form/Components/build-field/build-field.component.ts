@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from "@angular/core";
+import {Component, inject, Input, OnInit} from "@angular/core";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal, NgbCalendar, NgbDatepicker} from "@ng-bootstrap/ng-bootstrap";
 import {CustomValidators} from "src/app/Custom-validators/components/custom-validators";
@@ -26,10 +26,8 @@ export class BuildFieldComponent implements OnInit {
         {label: "Previous Week", ngbDate: -7},
     ];
 
-    constructor(
-        @Inject(NgbCalendar) private calendar,
-        public activeModal: NgbActiveModal
-    ) {}
+    calendar = inject(NgbCalendar);
+    activeModal = inject(NgbActiveModal);
 
     ngOnInit(): void {
         this.CustomOptions.reset();

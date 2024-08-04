@@ -18,6 +18,7 @@ import * as Fieldsarray from "./Field-toolbar-layout.json";
 })
 export class BuildCanvasComponent implements OnInit {
     @ViewChild("focusinput") focusInput: ElementRef;
+    @ViewChild("content") confirmContent: ElementRef;
     Fieldsarray: Array<{label: string; icon: any; field: any}> = (Fieldsarray as any).default;
     StructuredFieldArray: Array<any>;
     FormArrays = ["phone", "email"];
@@ -59,6 +60,19 @@ export class BuildCanvasComponent implements OnInit {
             next: (res) => {
                 res && (this.Basic_Layout = res);
                 // this.col_size = [0, 1, 2];
+                const modalRef = this.modalService.open(this.confirmContent, {centered: true, scrollable: true, backdrop: "static", keyboard: false});
+                modalRef.closed.subscribe((res) => {
+                    res &&
+                        this.service.resetListing().subscribe({
+                            error: (err) => {
+                                this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
+                                console.log(err);
+                            },
+                        });
+                });
+                modalRef.dismissed.subscribe((res) => {
+                    this.route.navigateByUrl("/table-listing");
+                });
             },
             error: (err) => {
                 this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
@@ -137,7 +151,7 @@ export class BuildCanvasComponent implements OnInit {
     }
 
     openFieldSettings(item: any) {
-        const modalRef = this.modalService.open(BuildFieldComponent, {centered: true, scrollable: true});
+        const modalRef = this.modalService.open(BuildFieldComponent, {centered: true, scrollable: true, backdrop: "static"});
         modalRef.componentInstance.formInfo = item;
         modalRef.closed.subscribe(
             (res) => (
@@ -158,7 +172,7 @@ export class BuildCanvasComponent implements OnInit {
 
     reRouteLayout() {
         if (this.Basic_Layout.tabs.some((tab) => tab.columns.some((col) => col.fields.length))) {
-            this.route.navigateByUrl("/forms");
+            this.route.navigateByUrl("/forms/create");
         } else {
             this.notifyservice.showToasterMsg({message: "Please add fields to the layout before proceeding.", type: "warning"});
         }
@@ -166,24 +180,16 @@ export class BuildCanvasComponent implements OnInit {
 
     SubmitForm() {
         const $submitApi = this.Basic_Layout ? this.service.updateFormSchema(this.Basic_Layout) : this.service.setFormSchema(this.Basic_Layout);
-        confirm("Warning! Form Submission will reset records!") &&
-            this.service.resetListing().subscribe({
-                error: (err) => {
-                    this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
-                    console.log(err);
-                },
-            }) &&
-            $submitApi.subscribe({
-                next: (res) => {
-                    this.notifyservice.showToasterMsg({message: "Form submitted successfully", type: "success"});
-
-                    this.route.navigateByUrl("/forms/create");
-                },
-                error: (err) => {
-                    this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
-                    console.log(err);
-                },
-            });
+        $submitApi.subscribe({
+            next: (res) => {
+                this.notifyservice.showToasterMsg({message: "Form submitted successfully", type: "success"});
+                this.route.navigateByUrl("/forms/create");
+            },
+            error: (err) => {
+                this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
+                console.log(err);
+            },
+        });
         // this.storage.set("layout_schema", this.Basic_Layout);
     }
 }

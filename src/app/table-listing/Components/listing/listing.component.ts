@@ -44,12 +44,6 @@ export class ListingComponent implements OnInit {
         });
     }
 
-    // openActionmenu(obj: any) {
-    //     const modalRef = this.modalService.open(this.content, { centered: true, scrollable: true });
-    //     modalRef.componentInstance.field = obj;
-    //     modalRef.closed.subscribe((res) => console.log(res));
-    // }
-
     edit(item: string) {
         this.router.navigate(["/forms/update", this.injectionIdArray[item]], {
             state: this.CommonListing[item],
