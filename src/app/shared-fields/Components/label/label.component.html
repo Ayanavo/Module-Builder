@@ -1,4 +1,4 @@
-<span class="m-3">
+<span *ngIf="(mode == 'edit' && ControlAccess?.['active'] === undefined) || ControlAccess?.['active']" class="m-3">
     <h1 data-bs-toggle="tooltip" data-bs-placement="right" [title]="ControlAccess['help']">{{ ControlAccess["label"] }}</h1>
     <hr />
 </span>

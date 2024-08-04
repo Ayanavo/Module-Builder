@@ -29,9 +29,15 @@
                         <!-- col-width -->
                         <div class="d-flex justify-content-end">
                             <div class="btn-group btn-group-sm" role="group">
-                                <ng-container *ngFor="let col of [].constructor(MaxColSize); index as i">
-                                    <input type="radio" class="btn-check" name="btnradio{{ formindex }}" id="btnradio{{ formindex + '' + i }}" [checked]="i == col_size[formindex]" (click)="setColumnConfig(formindex, i)" />
-                                    <label class="btn btn-outline-primary" for="btnradio{{ formindex + '' + i }}">{{ i + 1 }}</label>
+                                <ng-container *ngFor="let col of [].constructor(MaxColSize); index as btnindex">
+                                    <input
+                                        type="radio"
+                                        class="btn-check"
+                                        name="btnradio{{ formindex }}"
+                                        id="btnradio{{ formindex + '' + btnindex }}"
+                                        [checked]="btnindex == Basic_Layout.tabs[formindex].columns.length - 1"
+                                        (click)="setColumnConfig(formindex, btnindex)" />
+                                    <label class="btn btn-outline-primary" for="btnradio{{ formindex + '' + btnindex }}">{{ btnindex + 1 }}</label>
                                 </ng-container>
                             </div>
                         </div>
@@ -41,16 +47,16 @@
                         <div class="container-flex">
                             <div class="row mx-4">
                                 <div
-                                    *ngFor="let col of Array(col_size[formindex]); index as i"
-                                    [id]="'dragcolumn' + i"
+                                    *ngFor="let col of Basic_Layout.tabs[formindex].columns; index as colindex"
+                                    [id]="'dragcolumn' + colindex"
                                     cdkDropList
-                                    [cdkDropListData]="Basic_Layout.tabs[formindex].columns[i].fields"
+                                    [cdkDropListData]="Basic_Layout.tabs[formindex].columns[colindex].fields"
                                     cdkDropListConnectedTo="dragsourcecolumn"
                                     (cdkDropListDropped)="ondrop($event)"
                                     class="column-form col">
-                                    <span class="d-flex flex-column align-items-center">Column {{ formindex }}{{ i }}</span>
+                                    <span class="d-flex flex-column align-items-center">Column {{ formindex }}{{ colindex }}</span>
 
-                                    <div cdkDrag class="d-flex flex-column w-100 p-2" *ngFor="let item of Basic_Layout.tabs[formindex].columns[i].fields; index as i">
+                                    <div cdkDrag class="d-flex flex-column w-100 p-2" *ngFor="let item of Basic_Layout.tabs[formindex].columns[colindex].fields; index as i">
                                         <div class="tablet mb-auto">
                                             <div class="label-wrapper">
                                                 <div class="label-text">{{ item["label"] }}</div>
@@ -60,7 +66,7 @@
                                                 <i-bs name="pencil-square" width="15" height="15"> </i-bs>
                                             </button>
 
-                                            <button (click)="deleteField(Basic_Layout.tabs[formindex].columns[0].fields, i)" class="mx-2 ps-2 btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete Field">
+                                            <button (click)="deleteField(Basic_Layout.tabs[formindex].columns[colindex].fields, i)" class="mx-2 ps-2 btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete Field">
                                                 <i-bs name="trash" width="15" height="15"> </i-bs>
                                             </button>
                                         </div>

@@ -55,7 +55,7 @@ export class LayoutComponent implements OnInit {
         this.detailData && (this.formGroup = this.nfb.group(this.detailData));
 
         let templisting = [];
-        this.Layout_Schema && this.Layout_Schema.tabs.forEach((col, i) => this.Layout_Schema.tabs[i].columns.forEach((fl) => fl.fields.forEach((el) => templisting.push(el))));
+        this.Layout_Schema && this.Layout_Schema.tabs.forEach((col, i) => col.columns.forEach((fl) => fl.fields.forEach((el) => templisting.push(el))));
 
         !this.detailData &&
             templisting.length &&

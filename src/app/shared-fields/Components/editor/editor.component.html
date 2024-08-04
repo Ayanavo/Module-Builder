@@ -1,8 +1,8 @@
-<div *ngIf="mode == 'edit'" class="mb-3 row" [formGroup]="FormGroup">
-    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{ 'required-label': ControlAccess['validators']?.['required'] }">{{ ControlAccess["label"] }}</label>
+<div *ngIf="(mode == 'edit' && ControlAccess?.['active'] === undefined) || ControlAccess?.['active']" class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{'required-label': ControlAccess['validators']?.['required']}">{{ ControlAccess["label"] }}</label>
 
     <div class="col-8">
-        <quill-editor #quill customToolbarPosition="bottom" [formControlName]="ControlAccess['id']" [modules]="modules" [styles]="editorStyle" [ngClass]="{ 'ql-required': FieldControl.touched && FieldControl.errors?.['required']}">
+        <quill-editor #quill customToolbarPosition="bottom" [formControlName]="ControlAccess['id']" [modules]="modules" [styles]="editorStyle" [ngClass]="{'ql-required': FieldControl.touched && FieldControl.errors?.['required']}">
             <div quill-editor-toolbar>
                 <span class="ql-format">
                     <button class="ql-undo" (click)="undo()">
@@ -58,5 +58,6 @@
 </div>
 
 <span *ngIf="mode == 'list'">
-    <span [innerHTML]="SanitizedHTML"></span>
+    HTML
+    <!-- <span [innerHTML]="SanitizedHTML"></span> -->
 </span>

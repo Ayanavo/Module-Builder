@@ -19,4 +19,8 @@ export class CheckboxComponent implements OnInit {
     get FieldControl(): FormGroup {
         return this.FormGroup.get(this.ControlAccess["id"]) as FormGroup;
     }
+
+    get displayData() {
+        return Object.keys(this.FieldControl.value).filter((key) => this.FieldControl.value[key]);
+    }
 }

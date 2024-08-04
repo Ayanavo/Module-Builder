@@ -50,6 +50,9 @@ export class BuildCanvasComponent implements OnInit {
     route = inject(Router);
     storage = inject(StorageService);
     service = inject(CommonService);
+    MaxColSize: number = Object.keys(this.config.colWidthConfig).length;
+    editTabControl: FormControl = new FormControl("");
+    ActivefieldControl: FormControl = new FormControl("");
 
     constructor() {
         this.uid = localStorage.getItem("uid");
@@ -59,7 +62,7 @@ export class BuildCanvasComponent implements OnInit {
         this.service.getFormSchema().subscribe({
             next: (res) => {
                 res && (this.Basic_Layout = res);
-                // this.col_size = [0, 1, 2];
+                this.col_size = this.Basic_Layout.tabs.map((i) => i.columns.length - 1);
                 const modalRef = this.modalService.open(this.confirmContent, {centered: true, scrollable: true, backdrop: "static", keyboard: false});
                 modalRef.closed.subscribe((res) => {
                     res &&
@@ -70,9 +73,7 @@ export class BuildCanvasComponent implements OnInit {
                             },
                         });
                 });
-                modalRef.dismissed.subscribe((res) => {
-                    this.route.navigateByUrl("/table-listing");
-                });
+                modalRef.dismissed.subscribe(() => this.route.navigateByUrl("/table-listing"));
             },
             error: (err) => {
                 this.notifyservice.showToasterMsg({message: "Error submitting form", type: "fail"});
@@ -80,14 +81,6 @@ export class BuildCanvasComponent implements OnInit {
             },
         });
     }
-
-    Array(index: number) {
-        return index !== undefined ? Array(index + 1) : [];
-    }
-
-    MaxColSize: number = Object.keys(this.config.colWidthConfig).length;
-    editTabControl: FormControl = new FormControl("");
-    ActivefieldControl: FormControl = new FormControl("");
 
     addTab(index: number) {
         this.Basic_Layout.tabs.push({
@@ -129,8 +122,6 @@ export class BuildCanvasComponent implements OnInit {
     }
 
     deleteField(item: any, index: number) {
-        console.log(item, index);
-
         item.splice(index, 1);
     }
 

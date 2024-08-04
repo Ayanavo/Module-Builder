@@ -1,11 +1,11 @@
 <div *ngIf="Layout_Schema" class="m-3">
     <ul class="nav nav-pills flex-column flex-xl-row">
         <li class="flex-fill text-xl-center nav-link" role="presentation" *ngFor="let tab of Layout_Schema.tabs; index as i">
-            <a [ngClass]="{ active: activeIndex == i }" class="nav-link" href="javascript:void(0)" (click)="activeIndex = i">{{ tab["label"] }}</a>
+            <a [ngClass]="{active: activeIndex == i}" class="nav-link" href="javascript:void(0)" (click)="activeIndex = i">{{ tab["label"] }}</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-        <div [ngClass]="{ active: activeIndex == i }" class="tab-pane fade show" [id]="i" role="tabpanel" *ngFor="let body of Layout_Schema.tabs; index as i" [tabindex]="i">
+        <div [ngClass]="{active: activeIndex == i}" class="tab-pane fade show" [id]="i" role="tabpanel" *ngFor="let body of Layout_Schema.tabs; index as i" [tabindex]="i">
             <form class="form-group" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
                 <div class="container-fluid">
                     <div class="mb-3 row needs-validation">
