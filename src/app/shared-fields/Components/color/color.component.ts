@@ -10,6 +10,7 @@ import {FieldDependencyService} from "src/app/Layout/field-dependency.service";
 export class ColorComponent implements OnInit {
     @Input() ControlAccess: Object;
     @Input() mode: "edit" | "list";
+    defaultColour = "#0d6efd";
     FormGroup: FormGroup;
     constructor(
         public controlContainer: ControlContainer,
@@ -18,6 +19,7 @@ export class ColorComponent implements OnInit {
 
     ngOnInit() {
         this.FormGroup = this.controlContainer.control as FormGroup;
+        !this.FieldControl.value && this.FieldControl.setValue(this.defaultColour);
     }
 
     get FieldControl(): FormControl {
