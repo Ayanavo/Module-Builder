@@ -1,0 +1,14 @@
+<div *ngIf="(mode == 'edit' && ControlAccess?.['active'] === undefined) || ControlAccess?.['active']" class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label , text-truncate, col-3" [ngClass]="{'required-label': ControlAccess['validators']?.['required']}" for="flexSwitchCheckDefault">{{ ControlAccess["label"] }}</label>
+
+    <div class="form-check form-switch form-check-custom col-8">
+        <input [formControlName]="ControlAccess['id']" class="form-check-input" type="color" id="flexSwitchCheckDefault" />
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+    </div>
+    <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
+        ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
+    ></span>
+</div>
+<span *ngIf="mode == 'list'">
+    <div class="palette-box" [style.background-color]="FieldControl.value"></div>
+</span>

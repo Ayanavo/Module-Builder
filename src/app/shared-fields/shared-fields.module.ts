@@ -23,6 +23,7 @@ import {TextareaComponent} from "../shared-fields/Components/textarea/textarea.c
 import {VercelComponent} from "../shared-fields/Components/vercel/vercel.component";
 import {AudioComponent} from "./Components/audio/audio.component";
 import {ButtonComponent} from "./Components/button/button.component";
+import {ColorComponent} from "./Components/color/color.component";
 import {CurrencyComponent} from "./Components/currency/currency.component";
 import {FileComponent} from "./Components/file/file.component";
 import {FileDirective} from "./Components/file/file.directive";
@@ -50,6 +51,7 @@ import {FieldConfig} from "./WidthConfig";
         NumberComponent,
         NumberonlyDirective,
         EditorComponent,
+        ColorComponent,
         EmailComponent,
         VercelComponent,
         PasswordComponent,
@@ -83,6 +85,7 @@ import {FieldConfig} from "./WidthConfig";
         NumberonlyDirective,
         EditorComponent,
         EmailComponent,
+        ColorComponent,
         VercelComponent,
         PasswordComponent,
         FormulaComponent,

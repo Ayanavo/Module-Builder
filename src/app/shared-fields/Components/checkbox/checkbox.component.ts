@@ -21,6 +21,8 @@ export class CheckboxComponent implements OnInit {
     }
 
     get displayData() {
-        return Object.keys(this.FieldControl.value).filter((key) => this.FieldControl.value[key]);
+        return Object.keys(this.FieldControl.value)
+            .filter((key) => this.FieldControl.value[key])
+            .join(", ");
     }
 }

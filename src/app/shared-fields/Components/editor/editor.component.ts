@@ -57,11 +57,6 @@ export class EditorComponent implements OnInit {
             },
         },
     };
-    editorStyle = {
-        margin: "0px",
-        width: "100rem",
-        height: "200px",
-    };
 
     redo() {
         this.quill.history.redo();
