@@ -18,15 +18,14 @@ export class ListingComponent implements OnInit {
     CommonHeader: Array<any> = [];
     CommonSchema: Array<any> = [];
     @ViewChild("content") content!: TemplateRef<any>;
-    item: any;
     service = inject(CommonService);
     store = inject(StorageService);
     modalService = inject(NgbModal);
-
     notifyservice = inject(ToastService);
     router = inject(Router);
     clipboard = inject(Clipboard);
     injectionIdArray: Array<string>;
+    SystemFields = ["label", "html", "audio"];
     ngOnInit(): void {
         this.initializeTable();
     }
@@ -35,7 +34,10 @@ export class ListingComponent implements OnInit {
             next: (res: Array<unknown>) => {
                 res[0] && (this.injectionIdArray = Object.keys(res[0]));
                 res[0] && (this.CommonListing = Object.values(res[0]));
-                res[1] && res[1]["tabs"].forEach((_, i: number) => res[1]["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el: {label: any}) => (this.CommonSchema.push(el), this.CommonHeader.push(el.label)))));
+                res[1] &&
+                    res[1]["tabs"].forEach((_, i: number) =>
+                        res[1]["tabs"][i].columns.forEach((fl) => fl.fields.forEach((el: {label: string; type: string}) => !this.SystemFields.includes(el.type) && (this.CommonSchema.push(el), this.CommonHeader.push(el.label))))
+                    );
             },
             error: (err: FirebaseError) => {
                 this.notifyservice.showToasterMsg({message: err.code + err.message, type: "fail"});
