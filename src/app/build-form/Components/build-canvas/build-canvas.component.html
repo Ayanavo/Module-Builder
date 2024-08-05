@@ -2,7 +2,7 @@
     <div class="row" cdkDropListGroup>
         <div class="col-2">
             <div id="dragsourcecolumn" class="container form-toolbar" cdkDropList [cdkDropListData]="StructuredFieldArray" [cdkDropListConnectedTo]="['dragcolumn0', 'dragcolumn1', 'dragcolumn2']" (cdkDropListDropped)="ondrop($event)">
-                <div class="d-flex flex-column p-2" *ngFor="let item of Fieldsarray; index as index">
+                <div class="d-flex flex-column p-2 onhover" *ngFor="let item of Fieldsarray; index as index">
                     <div class="tablet" cdkDrag><i-bs [name]="item['icon']" width="15" height="15"> </i-bs> {{ item["label"] }}</div>
                 </div>
             </div>
@@ -92,10 +92,12 @@
 <ng-template #content let-modal>
     <div class="modal-header">
         <h2 class="modal-title text-warning">Warning!</h2>
-        <button type="button" class="btn-close" aria-describedby="modal-title" (click)="modal.dismiss()"></button>
+        <button type="button" class="mx-2 ps-2 btn btn-danger btn-sm" aria-label="Close" (click)="modal.dismiss()">
+            <i-bs name="x" width="15" height="15"> </i-bs>
+        </button>
     </div>
     <div class="modal-body align-items-center">
-        <strong>Recreating new form will reset records!</strong>
+        <strong>Recreating New Form Will Reset Records!</strong>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="modal.close(true)">Ok</button>
