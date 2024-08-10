@@ -2,7 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import {inject, Injectable} from "@angular/core";
 import {Auth} from "@angular/fire/auth";
 import {Database} from "@angular/fire/database";
-import {Observable} from "rxjs";
+import {defer, Observable} from "rxjs";
 
 @Injectable({
     providedIn: "root",
@@ -12,6 +12,7 @@ export class CommonService {
     http = inject(HttpClient);
     auth = inject(Auth);
     database = inject(Database);
+
     constructor() {
         this.firebaseUrl = `https://my-project-82219-c98e3-default-rtdb.asia-southeast1.firebasedatabase.app/${localStorage.getItem("uid")}`;
     }
@@ -46,4 +47,8 @@ export class CommonService {
     resetListing(): Observable<unknown> {
         return this.http.delete(this.firebaseUrl + "/listing/" + ".json");
     }
+
+    // getUserConfig() {
+    //     return defer(() => this.afAuth.currentUser.then((user) => (user ? user.getIdToken() : null)));
+    // }
 }

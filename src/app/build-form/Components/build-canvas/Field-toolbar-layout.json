@@ -232,8 +232,10 @@
             "input": true,
             "range": 5,
             "default": 0,
+            "icontypes": ["star", "emoji-smile", "heart"],
             "validators": {},
             "help": "",
+            "symbol": "star",
             "col-width": "full",
             "seq": 0
         }

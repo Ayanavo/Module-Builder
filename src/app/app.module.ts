@@ -4,6 +4,7 @@ import {NgModule, isDevMode} from "@angular/core";
 import {ScreenTrackingService, UserTrackingService, getAnalytics, provideAnalytics} from "@angular/fire/analytics";
 import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getAuth, provideAuth} from "@angular/fire/auth";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {getDatabase, provideDatabase} from "@angular/fire/database";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {FormsModule} from "@angular/forms";
@@ -24,7 +25,6 @@ import {CommonService} from "./Services/common.service";
 import {StorageService} from "./Services/storage.service";
 import {counterReducer} from "./store/reducers/counter.reducer";
 import {ToastServiceComponent} from "./toast-service/toast-service.component";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
 // import { reducers, metaReducers } from "./store/reducers/counter.reducer";
 

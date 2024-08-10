@@ -2,17 +2,15 @@
     <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{'required-label': ControlAccess['validators']?.['required'] || FieldControl.errors?.['required']}">{{ ControlAccess["label"] }}</label>
 
     <div class="col-8">
-        <div class="d-flex">
-            <ngb-rating [(rate)]="customRate" [max]="ControlAccess['range']" (click)="getFractionalValue()">
-                <ng-template let-fill="fill" let-index="index">
-                    <div class="mx-1">
-                        <i-bs class="text-warning" [name]="fill === 100 ? 'star-fill' : 'star'" width="20" height="20"> </i-bs></div
-                ></ng-template>
-            </ngb-rating>
+        <ngb-rating class="d-flex flex-wrap" [(rate)]="customRate" [max]="ControlAccess['range']" (click)="getFractionalValue()">
+            <ng-template let-fill="fill" let-index="index">
+                <div class="m-1">
+                    <i-bs class="text-warning" [name]="fill === 100 ? ControlAccess['symbol'] + '-fill' : ControlAccess['symbol']" width="20" height="20"> </i-bs></div
+            ></ng-template>
+        </ngb-rating>
 
-            <error-msg [control]="ControlAccess['id']"></error-msg>
-            <div class="pt-1">({{ FieldControl.value * ControlAccess["range"] }}/{{ ControlAccess["range"] }})</div>
-        </div>
+        <error-msg [control]="ControlAccess['id']"></error-msg>
+        <div class="pt-1">({{ customRate }}/{{ ControlAccess["range"] }})</div>
     </div>
     <span *ngIf="ControlAccess['help']" class="col-1 d-flex align-items-center"
         ><i-bs class="cursor-pointer text-success" name="exclamation-circle" width="15" height="15" placement="right" [ngbPopover]="ControlAccess['help']" container="body" triggers="mouseenter:mouseleave"> </i-bs
@@ -20,5 +18,5 @@
 </div>
 
 <span *ngIf="mode == 'list'">
-    <div class="palette-box text-light fw-semibold">{{ FieldControl.value * ControlAccess["range"] }}/{{ ControlAccess["range"] }}</div>
+    <div class="palette-box text-light fw-semibold">{{ customRate }}/{{ ControlAccess["range"] }}</div>
 </span>

@@ -16,7 +16,7 @@ export class RatingComponent implements OnInit {
 
     ngOnInit() {
         this.FormGroup = this.controlContainer.control as FormGroup;
-        this.customRate = this.ControlAccess["default"] * this.ControlAccess["range"];
+        this.customRate = this.FieldControl.value ?? (this.ControlAccess["default"] ? this.ControlAccess["range"] / this.ControlAccess["default"] : 0);
     }
 
     get FieldControl(): AbstractControl {
@@ -24,6 +24,6 @@ export class RatingComponent implements OnInit {
     }
 
     getFractionalValue() {
-        setTimeout(() => this.FieldControl.setValue(this.customRate / this.ControlAccess["range"]));
+        setTimeout(() => this.FieldControl.setValue(this.customRate));
     }
 }

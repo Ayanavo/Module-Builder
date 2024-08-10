@@ -34,7 +34,7 @@
         "@ngrx/store": "15.4.0",
         "@popperjs/core": "^2.11.6",
         "acorn": "^8.11.3",
-        "bootstrap": "^5.2.3",
+        "bootstrap": "^5.3.3",
         "bootstrap4-toggle": "^3.6.1",
         "firebase": "^10.12.2",
         "localforage": "^1.10.0",

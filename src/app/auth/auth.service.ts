@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {inject, Injectable} from "@angular/core";
 import {
     Auth,
@@ -15,7 +15,7 @@ import {
     updateProfile,
     UserCredential,
 } from "@angular/fire/auth";
-import {defer, from, Observable, switchMap} from "rxjs";
+import {defer, from, Observable} from "rxjs";
 import {environment} from "src/environments/environment";
 
 type LoginConfig = {

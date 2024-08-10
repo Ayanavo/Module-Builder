@@ -1,6 +1,7 @@
-import {Component, inject, Input, OnInit} from "@angular/core";
+import {Component, ElementRef, inject, Input, OnInit, ViewChild} from "@angular/core";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal, NgbCalendar, NgbDatepicker} from "@ng-bootstrap/ng-bootstrap";
+import {IconName} from "ngx-bootstrap-icons";
 import {CustomValidators} from "src/app/Custom-validators/components/custom-validators";
 
 @Component({
@@ -13,6 +14,7 @@ export class BuildFieldComponent implements OnInit {
     minAllowedLimit: number = 0;
     CustomOptions: FormGroup = new FormGroup({});
     @Input() formInfo: any;
+    // @ViewChild("select") select: ElementRef<HTMLSelectElement>;
     isFormReady: boolean = false;
     dateformatter = "dd/mm/yyyy";
     CustomNavConfig: Array<{label: string; ngbDate: number}> = [
@@ -30,7 +32,6 @@ export class BuildFieldComponent implements OnInit {
     activeModal = inject(NgbActiveModal);
 
     ngOnInit(): void {
-        this.CustomOptions.reset();
         setTimeout(() => {
             this.CustomOptions.addControl("id", new FormControl({value: this.formInfo?.label.trim().toLowerCase().replaceAll(" ", "_"), disabled: true}));
             this.CustomOptions.addControl("label", new FormControl(this.formInfo?.label, {validators: Validators.required}));
@@ -46,6 +47,7 @@ export class BuildFieldComponent implements OnInit {
                 this.formInfo?.validators != undefined &&
                 this.CustomOptions.addControl("minLength", new FormControl(this.formInfo["validators"]["minLength"] ? this.formInfo["validators"]["minLength"] : this.minAllowedLimit));
             this.formInfo?.range != undefined && this.CustomOptions.addControl("range", new FormControl(this.formInfo["range"] ? this.formInfo["range"] : 0, {validators: CustomValidators.RangeValidator}));
+            this.formInfo?.symbol != undefined && this.CustomOptions.addControl("symbol", new FormControl(this.formInfo["symbol"] ? this.formInfo["symbol"] : "", Validators.required));
             this.formInfo?.options && this.CustomOptions.addControl("options", new FormArray([]));
 
             this.formInfo?.options &&

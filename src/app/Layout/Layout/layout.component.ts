@@ -52,13 +52,11 @@ export class LayoutComponent implements OnInit {
         });
     }
     initializeForm(): void {
-        this.detailData && (this.formGroup = this.nfb.group(this.detailData));
-
         let templisting = [];
         this.Layout_Schema && this.Layout_Schema.tabs.forEach((col, i) => col.columns.forEach((fl) => fl.fields.forEach((el) => templisting.push(el))));
 
-        !this.detailData &&
-            templisting.length &&
+        // !this.detailData &&
+        templisting.length &&
             templisting.forEach((elm: {[x: string]: any}) => {
                 //for formArrays
                 if (this.FormArrays.includes(elm["type"])) {
@@ -69,7 +67,7 @@ export class LayoutComponent implements OnInit {
                     this.formGroup.setControl(elm["id"], this.nfb.group(this.formGroupValueAssign(elm), {validators: this.Validation(elm["validators"])}));
                     //for formControls
                 } else {
-                    this.formGroup.setControl(elm["id"], this.nfb.control({value: elm["default"], disabled: !elm["input"]}, {validators: this.Validation(elm["validators"])}));
+                    this.formGroup.setControl(elm["id"], this.nfb.control({value: this.detailData?.[elm["id"]] ?? elm["default"], disabled: !elm["input"]}, {validators: this.Validation(elm["validators"])}));
                 }
 
                 elm["dependencies"] && this.dependencyservice.dependencyInjection(this.formGroup, templisting, elm);
@@ -77,6 +75,9 @@ export class LayoutComponent implements OnInit {
     }
 
     formGroupValueAssign(elm) {
+        if (this.detailData?.[elm["id"]]) {
+            return this.detailData?.[elm["id"]];
+        }
         switch (elm["type"]) {
             case "checkbox":
                 return elm["options"].reduce((result: {string: boolean}, ctrl: string, index: number) => {

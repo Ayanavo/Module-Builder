@@ -98,8 +98,21 @@
         <div *ngIf="formInfo?.type == 'rating'" class="mb-3 row d-flex justify-content-between">
             <label class="col-form-label text-wrap w-10 col-4">Range</label>
             <div class="col-8">
-                <input formControlName="range" [min]="minAllowedLimit" [max]="maxAllowedLimit" type="number" class="form-control" />
+                <input formControlName="range" [min]="minAllowedLimit" [max]="maxAllowedLimit" numberonly type="number" class="form-control" />
                 <error-msg control="range"></error-msg>
+            </div>
+        </div>
+
+        <div *ngIf="formInfo?.type == 'rating'" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Symbol</label>
+            <div ngbDropdown class="col-8">
+                <input type="text" class="form-control" data-toggle="dropdown" [value]="CustomOptions.controls['symbol']?.value" ngbDropdownToggle placeholder="Select" readonly />
+                <div ngbDropdownMenu>
+                    <button ngbDropdownItem>Select</button>
+                    <button *ngFor="let item of formInfo?.icontypes" ngbDropdownItem class="cursor-pointer" (click)="CustomOptions.controls['symbol'].setValue(item)">
+                        <i-bs class="text-warning" [name]="item" width="20" height="20"> </i-bs>
+                    </button>
+                </div>
             </div>
         </div>
 

@@ -18,6 +18,6 @@ export class CustomValidators {
 
     //Range field default and range Validator
     static RangeValidator(control: AbstractControl): ValidationErrors {
-        return control.value <= +control.parent?.get("default").value ? {outOfRange: true} : null;
+        return control.value < +control.parent?.get("default").value ? {outOfRange: true} : null;
     }
 }

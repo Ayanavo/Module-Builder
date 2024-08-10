@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {authGuard} from "./auth.guard";
+import {accessGuard} from "./access.guard";
 
 const routes: Routes = [
     {
@@ -31,6 +32,11 @@ const routes: Routes = [
         path: "build-forms",
         loadChildren: () => import("./build-form/build-form.module").then((A) => A.BuildFormModule),
         canActivate: [authGuard],
+    },
+    {
+        path: "profile",
+        loadChildren: () => import("./profile/profile.module").then((A) => A.ProfileModule),
+        canActivate: [accessGuard],
     },
     {
         path: "**",

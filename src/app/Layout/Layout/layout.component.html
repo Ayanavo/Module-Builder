@@ -1,4 +1,4 @@
-<div *ngIf="Layout_Schema" class="m-3">
+<div *ngIf="Layout_Schema">
     <ul class="nav nav-pills flex-column flex-xl-row">
         <li class="flex-fill text-xl-center nav-link" role="presentation" *ngFor="let tab of Layout_Schema.tabs; index as i">
             <a [ngClass]="{active: activeIndex == i}" class="nav-link" href="javascript:void(0)" (click)="activeIndex = i">{{ tab["label"] }}</a>
