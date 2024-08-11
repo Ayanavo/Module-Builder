@@ -3,12 +3,13 @@ import {FormGroup, ControlContainer, AbstractControl, FormControl} from "@angula
 import {FieldDependencyService} from "src/app/Layout/field-dependency.service";
 
 @Component({
-    selector: "app-tag",
-    templateUrl: "./tag.component.html",
-    styleUrls: ["./tag.component.scss"],
+    selector: "app-multilist",
+    templateUrl: "./multilist.component.html",
+    styleUrl: "./multilist.component.scss",
+    providers: [FieldDependencyService],
 })
-export class TagComponent implements OnInit {
-    @Input() ControlAccess: {id: string; options: string[]};
+export class MultilistComponent implements OnInit {
+    @Input() ControlAccess: {id: string; type: string; options: string[]};
     @Input() mode: "edit" | "list";
     FormGroup: FormGroup;
     SelectedItems: Array<string> = [];
@@ -20,7 +21,7 @@ export class TagComponent implements OnInit {
 
     ngOnInit() {
         this.FormGroup = this.controlContainer.control as FormGroup;
-        this.SelectedItems = this.FieldControl.value ?? [];
+        !this.FieldControl.value && this.FieldControl.setValue([]);
     }
 
     get FieldControl(): AbstractControl {
@@ -31,14 +32,15 @@ export class TagComponent implements OnInit {
         if (!this.SelectedItems.some((alteritem: string) => alteritem == item)) {
             this.SelectedItems.push(item);
             this.FieldControl.setValue(this.SelectedItems);
+            this.SelectedItems.length == this.ControlAccess.options.length && (this.active = false);
         } else {
             this.removeSelected(item);
         }
     }
 
-    selectAll(active) {
-        this.SelectedItems.length == this.ControlAccess.options.length && (active = false);
-        active ? (this.SelectedItems = this.ControlAccess.options) : (this.SelectedItems = []);
+    selectAll() {
+        this.SelectedItems.length == this.ControlAccess.options.length && (this.active = false);
+        this.active ? (this.SelectedItems = JSON.parse(JSON.stringify(this.ControlAccess.options))) : (this.SelectedItems = []);
         this.FieldControl.setValue(this.SelectedItems);
     }
 

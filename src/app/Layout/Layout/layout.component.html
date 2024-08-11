@@ -16,7 +16,8 @@
                                         <app-label *ngSwitchCase="'label'" [ControlAccess]="item" [mode]="mode"></app-label>
                                         <app-text *ngSwitchCase="'text'" [ControlAccess]="item" [mode]="mode"></app-text>
                                         <app-textarea *ngSwitchCase="'textarea'" [ControlAccess]="item" [mode]="mode"></app-textarea>
-                                        <app-list *ngSwitchCase="['list', 'multilist'].includes(item.type) && item.type" [ControlAccess]="item" [mode]="mode"></app-list>
+                                        <app-list *ngSwitchCase="'list'" [ControlAccess]="item" [mode]="mode"></app-list>
+                                        <app-multilist *ngSwitchCase="'multilist'" [ControlAccess]="item" [mode]="mode"></app-multilist>
                                         <app-boolean *ngSwitchCase="'boolean'" [ControlAccess]="item" [mode]="mode"></app-boolean>
                                         <app-phone *ngSwitchCase="'phone'" [ControlAccess]="item" [mode]="mode"></app-phone>
                                         <app-datetimerange *ngSwitchCase="['date', 'datetime', 'time'].includes(item.type) && item.type" [ControlAccess]="item" [mode]="mode"></app-datetimerange>

@@ -57,6 +57,22 @@
         }
     },
     {
+        "label": "Multi List",
+        "icon": "card-checklist",
+        "field": {
+            "id": "tag",
+            "type": "multilist",
+            "label": "Multi List",
+            "input": true,
+            "default": [],
+            "options": [],
+            "validators": {},
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
         "label": "Boolean",
         "icon": "toggle-on",
         "field": {
@@ -333,21 +349,6 @@
             "input": true,
             "default": "#0d6efd",
             "help": "",
-            "col-width": "full",
-            "seq": 0
-        }
-    },
-    {
-        "label": "Tag",
-        "icon": "tag",
-        "field": {
-            "id": "tag",
-            "type": "tag",
-            "label": "Tag",
-            "input": true,
-            "default": [],
-            "validators": {},
-            "options": [],
             "col-width": "full",
             "seq": 0
         }

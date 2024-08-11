@@ -2,7 +2,8 @@
     <app-label [formGroup]="FormGroup" *ngSwitchCase="'label'" [ControlAccess]="field" [mode]="mode"></app-label>
     <app-text [formGroup]="FormGroup" *ngSwitchCase="'text'" [ControlAccess]="field" [mode]="mode"></app-text>
     <app-textarea [formGroup]="FormGroup" *ngSwitchCase="'textarea'" [ControlAccess]="field" [mode]="mode"></app-textarea>
-    <app-list [formGroup]="FormGroup" *ngSwitchCase="['list', 'multilist'].includes(field.type) && field.type" [ControlAccess]="field" [mode]="mode"></app-list>
+    <app-list [formGroup]="FormGroup" *ngSwitchCase="'list'" [ControlAccess]="field" [mode]="mode"></app-list>
+    <app-multilist [formGroup]="FormGroup" *ngSwitchCase="'multilist'" [ControlAccess]="field" [mode]="mode"></app-multilist>
     <app-boolean [formGroup]="FormGroup" *ngSwitchCase="'boolean'" [ControlAccess]="field" [mode]="mode"></app-boolean>
     <app-phone [formGroup]="FormGroup" *ngSwitchCase="'phone'" [ControlAccess]="field" [mode]="mode"></app-phone>
     <app-datetimerange [formGroup]="FormGroup" *ngSwitchCase="['date', 'datetime', 'time'].includes(field.type) && field.type" [ControlAccess]="field" [mode]="mode"></app-datetimerange>

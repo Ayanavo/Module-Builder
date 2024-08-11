@@ -39,16 +39,29 @@
                 <input type="text" formControlName="default" type="text" class="form-control" />
                 <error-msg control="default"></error-msg>
             </div>
-            <div class="col-8" *ngIf="['list', 'multilist', 'vercel', 'checkbox', 'radio'].includes(formInfo?.type)">
-                <select formControlName="default" class="form-select">
+            <div class="col-8" *ngIf="['list', 'multilist', 'tag', 'vercel', 'checkbox', 'radio'].includes(formInfo?.type)">
+                <!-- <select formControlName="default" class="form-select">
                     <option value="">Select</option>
                     <ng-container *ngFor="let item of FieldControl.value">
                         <option *ngIf="item" [value]="item">
                             {{ item }}
                         </option>
                     </ng-container>
-                </select>
-                <error-msg control="default"></error-msg>
+                </select> -->
+
+                <div ngbDropdown #droptrigger="ngbDropdown">
+                    <div class="form-select" type="button" data-toggle="dropdown" (click)="droptrigger.open()">
+                        {{ CustomOptions.controls["default"].value?.length ? CustomOptions.controls["default"].value : "Select" }}
+                    </div>
+                    <div ngbDropdownMenu class="w-100">
+                        <div type="button" ngbDropdownItem (click)="CustomOptions.controls['default'].setValue('')">Select</div>
+                        <ng-container *ngFor="let item of FieldControl.value">
+                            <div type="button" ngbDropdownItem [ngClass]="{'cursor-pointer': true, active: CustomOptions.controls['default'].value == item}" *ngIf="item" (click)="CustomOptions.controls['default'].setValue(item)">
+                                {{ item }}
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
             </div>
             <div class="col-8" *ngIf="formInfo?.type == 'boolean'">
                 <select class="form-select" formControlName="default">
@@ -118,8 +131,13 @@
                     {{ (CustomOptions.controls["symbol"]?.value.trim() | titlecase).replaceAll("-", " ") || "Select" }}
                 </div>
                 <div ngbDropdownMenu class="w-100">
-                    <div type="button" ngbDropdownItem [ngClass]="{active: !FieldControl.value}" (click)="CustomOptions.controls['rangecolor'].setValue('')">Select</div>
-                    <div type="button" [ngClass]="{'cursor-pointer': true, active: FieldControl.value == item}" *ngFor="let item of formInfo?.icontypes" ngbDropdownItem (click)="CustomOptions.controls['symbol'].setValue(item)">
+                    <div type="button" ngbDropdownItem [ngClass]="{active: !CustomOptions.controls['rangecolor'].value}" (click)="CustomOptions.controls['rangecolor'].setValue('')">Select</div>
+                    <div
+                        type="button"
+                        [ngClass]="{'cursor-pointer': true, active: CustomOptions.controls['rangecolor'].value == item}"
+                        *ngFor="let item of formInfo?.icontypes"
+                        ngbDropdownItem
+                        (click)="CustomOptions.controls['symbol'].setValue(item)">
                         <i-bs [style.color]="CustomOptions.controls['rangecolor']?.value" [name]="item" width="20" height="20"> </i-bs>
                         {{ (item.trim() | titlecase).replaceAll("-", " ") }}
                     </div>

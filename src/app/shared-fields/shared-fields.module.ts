@@ -30,6 +30,7 @@ import {FileDirective} from "./Components/file/file.directive";
 import {SizeConverterPipe} from "./Components/file/sizeConverter.pipe";
 import {LabelComponent} from "./Components/label/label.component";
 import {LinkComponent} from "./Components/link/link.component";
+import {MultilistComponent} from "./Components/multilist/multilist.component";
 import {NumberonlyDirective} from "./Components/number/numberonly.directive";
 import {PhoneFormaterDirective} from "./Components/phone/phone-formater.directive";
 import {ProgressComponent} from "./Components/progress/progress.component";
@@ -67,6 +68,7 @@ import {FieldConfig} from "./WidthConfig";
         SizeConverterPipe,
         AudioComponent,
         TagComponent,
+        MultilistComponent,
         ProgressComponent,
         SvgIconComponent,
     ],
@@ -109,6 +111,7 @@ import {FieldConfig} from "./WidthConfig";
         ErrorMsgComponent,
         CurrencyComponent,
         FileComponent,
+        MultilistComponent,
         AudioComponent,
         TagComponent,
         ProgressComponent,

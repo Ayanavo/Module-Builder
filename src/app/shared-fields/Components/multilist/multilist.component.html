@@ -4,11 +4,11 @@
     <div class="col-8">
         <div ngbDropdown #droptrigger="ngbDropdown" [id]="ControlAccess['id']">
             <div [ngClass]="{'form-select': true, 'required-field': FieldControl.touched && FieldControl.errors?.['required']}" type="button" data-toggle="dropdown" (click)="droptrigger.open()">
-                {{ FieldControl.value || "Select" }}
+                {{ FieldControl.value?.length ? FieldControl.value.join(", ") : "Select" }}
             </div>
             <div ngbDropdownMenu class="w-100">
-                <div type="button" ngbDropdownItem (click)="FieldControl.setValue('')">Select</div>
-                <div type="button" ngbDropdownItem [ngClass]="{'cursor-pointer': true, active: FieldControl.value == item}" *ngFor="let item of ControlAccess['options']" (click)="FieldControl.setValue(item)">
+                <div type="button" ngbDropdownItem [ngClass]="{active: SelectedItems.length == ControlAccess.options.length}" (click)="active = !active; selectAll()">Select</div>
+                <div type="button" ngbDropdownItem [ngClass]="{'cursor-pointer': true, active: SelectedItems.includes(item)}" *ngFor="let item of ControlAccess['options']" (click)="getSelection(item)">
                     {{ item }}
                 </div>
             </div>
@@ -20,11 +20,4 @@
     ></span>
 </div>
 
-<span *ngIf="mode == 'list'">{{ FieldControl.value }}</span>
-
-<!-- <option *ngFor="let item of ControlAccess['options']">
-  <div>
-      <input type="checkbox" [id]="item.id" [value]="item" (change)="toggleSelection(item)" />
-  </div>
-  {{ item }}
-</option> -->
+<span *ngIf="mode == 'list'">{{ FieldControl.value.join(", ") }}</span>
