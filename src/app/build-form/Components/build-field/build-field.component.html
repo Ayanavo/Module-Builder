@@ -76,6 +76,11 @@
                 <input type="text" formControlName="default" type="number" class="form-control" />
                 <error-msg control="default"></error-msg>
             </div>
+
+            <div *ngIf="formInfo?.type == 'color'" class="form-label col-8">
+                <input formControlName="default" class="form-control form-control-color p-0" type="color" />
+                <error-msg control="default"></error-msg>
+            </div>
         </div>
         <!-- Default Values -->
 
@@ -128,8 +133,6 @@
                 <input formControlName="rangecolor" class="form-control form-control-color p-0" type="color" />
             </div>
         </div>
-
-        <div></div>
 
         <!-- Specific Values -->
 

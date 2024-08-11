@@ -331,7 +331,7 @@
             "type": "color",
             "label": "Colour",
             "input": true,
-            "default": false,
+            "default": "#0d6efd",
             "help": "",
             "col-width": "full",
             "seq": 0
