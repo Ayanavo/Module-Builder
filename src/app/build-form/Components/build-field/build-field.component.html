@@ -42,9 +42,11 @@
             <div class="col-8" *ngIf="['list', 'multilist', 'vercel', 'checkbox', 'radio'].includes(formInfo?.type)">
                 <select formControlName="default" class="form-select">
                     <option value="">Select</option>
-                    <option *ngFor="let item of FieldControl.value" [value]="item">
-                        {{ item }}
-                    </option>
+                    <ng-container *ngFor="let item of FieldControl.value">
+                        <option *ngIf="item" [value]="item">
+                            {{ item }}
+                        </option>
+                    </ng-container>
                 </select>
                 <error-msg control="default"></error-msg>
             </div>
@@ -105,16 +107,29 @@
 
         <div *ngIf="formInfo?.type == 'rating'" class="mb-3 row d-flex justify-content-between">
             <label class="col-form-label text-wrap w-10 col-4">Symbol</label>
-            <div ngbDropdown class="col-8">
-                <input type="text" class="form-control" data-toggle="dropdown" [value]="CustomOptions.controls['symbol']?.value" ngbDropdownToggle placeholder="Select" readonly />
+            <div ngbDropdown #droptrigger="ngbDropdown" class="col-8">
+                <div class="form-select" type="button" data-toggle="dropdown" (click)="droptrigger.open()">
+                    <i-bs [style.color]="CustomOptions.controls['rangecolor']?.value" [name]="CustomOptions.controls['symbol']?.value" width="20" height="20"> </i-bs>
+                    {{ (CustomOptions.controls["symbol"]?.value.trim() | titlecase).replaceAll("-", " ") }}
+                </div>
                 <div ngbDropdownMenu>
                     <button ngbDropdownItem>Select</button>
-                    <button *ngFor="let item of formInfo?.icontypes" ngbDropdownItem class="cursor-pointer" (click)="CustomOptions.controls['symbol'].setValue(item)">
-                        <i-bs class="text-warning" [name]="item" width="20" height="20"> </i-bs>
-                    </button>
+                    <div type="button" *ngFor="let item of formInfo?.icontypes" ngbDropdownItem class="cursor-pointer" (click)="CustomOptions.controls['symbol'].setValue(item)">
+                        <i-bs [style.color]="CustomOptions.controls['rangecolor']?.value" [name]="item" width="20" height="20"> </i-bs>
+                        {{ (item.trim() | titlecase).replaceAll("-", " ") }}
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div *ngIf="formInfo?.type == 'rating'" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Colour</label>
+            <div class="form-label col-8">
+                <input formControlName="rangecolor" class="form-control form-control-color p-0" type="color" />
+            </div>
+        </div>
+
+        <div></div>
 
         <!-- Specific Values -->
 
@@ -141,6 +156,14 @@
             <div class="form-check form-switch form-check-custom col-8">
                 <input class="form-check-input" type="checkbox" formControlName="input" />
                 <error-msg control="input"></error-msg>
+            </div>
+        </div>
+
+        <div *ngIf="['list', 'multilist', 'vercel', 'checkbox', 'radio'].includes(formInfo?.type)" class="mb-3 row d-flex justify-content-between">
+            <label class="col-form-label text-wrap w-10 col-4">Shuffle Options</label>
+            <div class="form-check form-switch form-check-custom col-8">
+                <input class="form-check-input" type="checkbox" formControlName="shuffle" />
+                <error-msg control="shuffle"></error-msg>
             </div>
         </div>
 

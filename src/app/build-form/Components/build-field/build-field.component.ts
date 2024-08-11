@@ -1,7 +1,6 @@
-import {Component, ElementRef, inject, Input, OnInit, ViewChild} from "@angular/core";
+import {Component, inject, Input, OnInit} from "@angular/core";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal, NgbCalendar, NgbDatepicker} from "@ng-bootstrap/ng-bootstrap";
-import {IconName} from "ngx-bootstrap-icons";
 import {CustomValidators} from "src/app/Custom-validators/components/custom-validators";
 
 @Component({
@@ -48,6 +47,8 @@ export class BuildFieldComponent implements OnInit {
                 this.CustomOptions.addControl("minLength", new FormControl(this.formInfo["validators"]["minLength"] ? this.formInfo["validators"]["minLength"] : this.minAllowedLimit));
             this.formInfo?.range != undefined && this.CustomOptions.addControl("range", new FormControl(this.formInfo["range"] ? this.formInfo["range"] : 0, {validators: CustomValidators.RangeValidator}));
             this.formInfo?.symbol != undefined && this.CustomOptions.addControl("symbol", new FormControl(this.formInfo["symbol"] ? this.formInfo["symbol"] : "", Validators.required));
+            this.formInfo?.rangecolor != undefined && this.CustomOptions.addControl("rangecolor", new FormControl(this.formInfo["rangecolor"] ? this.formInfo["rangecolor"] : ""));
+            this.formInfo?.options && this.CustomOptions.addControl("shuffle", new FormControl(this.formInfo["shuffle"] ? this.formInfo["shuffle"] : ""));
             this.formInfo?.options && this.CustomOptions.addControl("options", new FormArray([]));
 
             this.formInfo?.options &&

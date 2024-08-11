@@ -5,7 +5,7 @@
         <ngb-rating class="d-flex flex-wrap" [(rate)]="customRate" [max]="ControlAccess['range']" (click)="getFractionalValue()">
             <ng-template let-fill="fill" let-index="index">
                 <div class="m-1">
-                    <i-bs class="text-warning" [name]="fill === 100 ? ControlAccess['symbol'] + '-fill' : ControlAccess['symbol']" width="20" height="20"> </i-bs></div
+                    <i-bs [style.color]="ControlAccess?.['rangecolor']" [name]="fill === 100 ? ControlAccess['symbol'] + '-fill' : ControlAccess['symbol']" width="20" height="20"> </i-bs></div
             ></ng-template>
         </ngb-rating>
 
