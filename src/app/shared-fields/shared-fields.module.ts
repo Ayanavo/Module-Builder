@@ -25,6 +25,7 @@ import {AudioComponent} from "./Components/audio/audio.component";
 import {ButtonComponent} from "./Components/button/button.component";
 import {ColorComponent} from "./Components/color/color.component";
 import {CurrencyComponent} from "./Components/currency/currency.component";
+import {EmbedComponent} from "./Components/embed/embed.component";
 import {FileComponent} from "./Components/file/file.component";
 import {FileDirective} from "./Components/file/file.directive";
 import {SizeConverterPipe} from "./Components/file/sizeConverter.pipe";
@@ -71,6 +72,7 @@ import {FieldConfig} from "./WidthConfig";
         MultilistComponent,
         ProgressComponent,
         SvgIconComponent,
+        EmbedComponent,
     ],
     imports: [
         CommonModule,
@@ -116,6 +118,7 @@ import {FieldConfig} from "./WidthConfig";
         TagComponent,
         ProgressComponent,
         SvgIconComponent,
+        EmbedComponent,
     ],
     providers: [FieldConfig],
 })

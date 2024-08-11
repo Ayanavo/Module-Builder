@@ -26,24 +26,24 @@
                                         <app-number *ngSwitchCase="'number'" [ControlAccess]="item" [mode]="mode"></app-number>
                                         <app-editor *ngSwitchCase="'html'" [ControlAccess]="item" [mode]="mode"></app-editor>
                                         <app-email *ngSwitchCase="'email'" [ControlAccess]="item" [mode]="mode"></app-email>
-                                        <app-vercel *ngSwitchCase="'vercel'" [ControlAccess]="item" [mode]="mode"></app-vercel>
                                         <app-password *ngSwitchCase="'password'" [ControlAccess]="item" [mode]="mode"></app-password>
                                         <app-rating *ngSwitchCase="'rating'" [ControlAccess]="item" [mode]="mode"></app-rating>
-                                        <app-formula *ngSwitchCase="'formula'" [ControlAccess]="item" [mode]="mode"></app-formula>
                                         <app-currency *ngSwitchCase="'currency'" [ControlAccess]="item" [mode]="mode"></app-currency>
                                         <app-link *ngSwitchCase="'link'" [ControlAccess]="item" [mode]="mode"></app-link>
                                         <app-file *ngSwitchCase="'file'" [ControlAccess]="item" [mode]="mode"></app-file>
-                                        <app-audio *ngSwitchCase="'audio'" [ControlAccess]="item" [mode]="mode"></app-audio>
-                                        <app-tag *ngSwitchCase="'tag'" [ControlAccess]="item" [mode]="mode"></app-tag>
+                                        <app-embed *ngSwitchCase="'embed'" [ControlAccess]="item" [mode]="mode"></app-embed>
                                         <app-color *ngSwitchCase="'color'" [ControlAccess]="item" [mode]="mode"></app-color>
                                         <app-progress *ngSwitchCase="'progress'" [ControlAccess]="item" [mode]="mode"></app-progress>
+                                        <!-- <app-vercel *ngSwitchCase="'vercel'" [ControlAccess]="item" [mode]="mode"></app-vercel> -->
+                                        <!-- <app-formula *ngSwitchCase="'formula'" [ControlAccess]="item" [mode]="mode"></app-formula> -->
+                                        <!-- <app-audio *ngSwitchCase="'audio'" [ControlAccess]="item" [mode]="mode"></app-audio> -->
+                                        <!-- <app-tag *ngSwitchCase="'tag'" [ControlAccess]="item" [mode]="mode"></app-tag> -->
                                     </div>
                                     <app-button *ngSwitchCase="'button'" [ControlAccess]="item"></app-button>
                                 </ng-container>
                             </ng-container>
                         </div>
                     </div>
-
                     <div class="m-3 fixed-bottom d-flex align-items-start flex-column">
                         <button class="btn btn-primary mb-3" [routerLink]="['/table-listing']"><i-bs name="dot" width="20" height="20"> </i-bs> Form table</button>
                         <button class="btn btn-primary mb-3" [routerLink]="['/build-forms']"><i-bs name="dot" width="20" height="20"> </i-bs> Form Builder</button>

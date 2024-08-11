@@ -159,7 +159,8 @@ export class BuildCanvasComponent implements OnInit {
                 item?.default != undefined && (item["default"] = res["default"]),
                 item?.symbol != undefined && (item["symbol"] = res["symbol"]),
                 item?.rangecolor != undefined && (item["rangecolor"] = res["rangecolor"]),
-                item?.shuffle != undefined && (item["shuffle"] = res["shuffle"])
+                item?.shuffle != undefined && (item["shuffle"] = res["shuffle"]),
+                item?.embedurl != undefined && (item["embedurl"] = res["embedurl"])
             )
         );
     }

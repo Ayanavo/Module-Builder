@@ -195,7 +195,7 @@
     },
     {
         "label": "Html",
-        "icon": "code-square",
+        "icon": "body-text",
         "field": {
             "id": "",
             "type": "html",
@@ -348,6 +348,20 @@
             "label": "Colour",
             "input": true,
             "default": "#0d6efd",
+            "help": "",
+            "col-width": "full",
+            "seq": 0
+        }
+    },
+    {
+        "label": "Embed",
+        "icon": "code-square",
+        "field": {
+            "id": "",
+            "type": "embed",
+            "label": "Embed",
+            "embedurl": true,
+            "validators": {},
             "help": "",
             "col-width": "full",
             "seq": 0

@@ -48,6 +48,7 @@ export class BuildFieldComponent implements OnInit {
             this.formInfo?.range != undefined && this.CustomOptions.addControl("range", new FormControl(this.formInfo["range"] ? this.formInfo["range"] : 0, {validators: CustomValidators.RangeValidator}));
             this.formInfo?.symbol != undefined && this.CustomOptions.addControl("symbol", new FormControl(this.formInfo["symbol"] ? this.formInfo["symbol"] : "", Validators.required));
             this.formInfo?.rangecolor != undefined && this.CustomOptions.addControl("rangecolor", new FormControl(this.formInfo["rangecolor"] ? this.formInfo["rangecolor"] : ""));
+            this.formInfo?.embedurl != undefined && this.CustomOptions.addControl("embedurl", new FormControl(""));
             this.formInfo?.options && this.CustomOptions.addControl("shuffle", new FormControl(this.formInfo["shuffle"] ? this.formInfo["shuffle"] : ""));
             this.formInfo?.options && this.CustomOptions.addControl("options", new FormArray([]));
 
