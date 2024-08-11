@@ -2,7 +2,7 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgbDatepickerModule, NgbPopover, NgbRatingModule, NgbTimepickerModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDatepickerModule, NgbDropdownModule, NgbPopover, NgbRatingModule, NgbTimepickerModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {NgxBootstrapIconsModule, allIcons} from "ngx-bootstrap-icons";
 import {QuillModule} from "ngx-quill";
 import {BooleanComponent} from "../shared-fields/Components/boolean/boolean.component";
@@ -70,7 +70,20 @@ import {FieldConfig} from "./WidthConfig";
         ProgressComponent,
         SvgIconComponent,
     ],
-    imports: [CommonModule, HttpClientModule, FormsModule, ReactiveFormsModule, NgbDatepickerModule, NgbRatingModule, NgbTimepickerModule, NgbTooltipModule, QuillModule.forRoot(), NgxBootstrapIconsModule.pick(allIcons), NgbPopover],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        FormsModule,
+        NgbDropdownModule,
+        ReactiveFormsModule,
+        NgbDatepickerModule,
+        NgbRatingModule,
+        NgbTimepickerModule,
+        NgbTooltipModule,
+        QuillModule.forRoot(),
+        NgxBootstrapIconsModule.pick(allIcons),
+        NgbPopover,
+    ],
     exports: [
         TextComponent,
         ListComponent,

@@ -1,13 +1,18 @@
-<div *ngIf=" mode =='edit' && (ControlAccess?.['active'] === undefined) || (ControlAccess?.['active']) " class="mb-3 row" [formGroup]="FormGroup">
-    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{'required-label': ControlAccess['validators']?.['required'] ||  FieldControl.errors?.['required']}">{{ ControlAccess["label"] }}</label>
+<div *ngIf="(mode == 'edit' && ControlAccess?.['active'] === undefined) || ControlAccess?.['active']" class="mb-3 row" [formGroup]="FormGroup">
+    <label class="col-form-label text-wrap w-10 col-3" [ngClass]="{'required-label': ControlAccess['validators']?.['required'] || FieldControl.errors?.['required']}">{{ ControlAccess["label"] }}</label>
 
     <div class="col-8">
-        <select [formControlName]="ControlAccess['id']" [id]="ControlAccess['id']" [ngClass]="{'form-select': true, 'required-field':  FieldControl.touched && FieldControl.errors?.['required']}">
-            <option value="">Select</option>
-            <option *ngFor="let item of ControlAccess['options']" [value]="item">
-                {{ item }}
-            </option>
-        </select>
+        <div ngbDropdown #droptrigger="ngbDropdown" [id]="ControlAccess['id']" class="col-8">
+            <div [ngClass]="{'form-select': true, 'required-field': FieldControl.touched && FieldControl.errors?.['required']}" type="button" data-toggle="dropdown" (click)="droptrigger.open()">
+                {{ FieldControl.value || "Select" }}
+            </div>
+            <div ngbDropdownMenu class="w-100">
+                <div type="button" ngbDropdownItem [ngClass]="{active: !FieldControl.value}" (click)="FieldControl.setValue('')">Select</div>
+                <div type="button" ngbDropdownItem [ngClass]="{'cursor-pointer': true, active: FieldControl.value == item}" *ngFor="let item of ControlAccess['options']" (click)="FieldControl.setValue(item)">
+                    {{ item }}
+                </div>
+            </div>
+        </div>
 
         <error-msg [control]="ControlAccess['id']"></error-msg>
     </div>

@@ -115,11 +115,11 @@
             <div ngbDropdown #droptrigger="ngbDropdown" class="col-8">
                 <div class="form-select" type="button" data-toggle="dropdown" (click)="droptrigger.open()">
                     <i-bs [style.color]="CustomOptions.controls['rangecolor']?.value" [name]="CustomOptions.controls['symbol']?.value" width="20" height="20"> </i-bs>
-                    {{ (CustomOptions.controls["symbol"]?.value.trim() | titlecase).replaceAll("-", " ") }}
+                    {{ (CustomOptions.controls["symbol"]?.value.trim() | titlecase).replaceAll("-", " ") || "Select" }}
                 </div>
-                <div ngbDropdownMenu>
-                    <button ngbDropdownItem>Select</button>
-                    <div type="button" *ngFor="let item of formInfo?.icontypes" ngbDropdownItem class="cursor-pointer" (click)="CustomOptions.controls['symbol'].setValue(item)">
+                <div ngbDropdownMenu class="w-100">
+                    <div type="button" ngbDropdownItem [ngClass]="{active: !FieldControl.value}" (click)="CustomOptions.controls['rangecolor'].setValue('')">Select</div>
+                    <div type="button" [ngClass]="{'cursor-pointer': true, active: FieldControl.value == item}" *ngFor="let item of formInfo?.icontypes" ngbDropdownItem (click)="CustomOptions.controls['symbol'].setValue(item)">
                         <i-bs [style.color]="CustomOptions.controls['rangecolor']?.value" [name]="item" width="20" height="20"> </i-bs>
                         {{ (item.trim() | titlecase).replaceAll("-", " ") }}
                     </div>
